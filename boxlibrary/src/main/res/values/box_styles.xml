@@ -1,0 +1,129 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+
+    <style name="Box.Theme" parent="Theme.AppCompat">
+        <item name="buttonStyle">@style/Box.Button.Theme</item>
+    </style>
+
+    <style name="Box.Theme.Light" parent="Theme.AppCompat.Light">
+        <item name="buttonStyle">@style/Box.Button.Theme</item>
+    </style>
+
+    <style name="Box.Theme.Translucent" parent="Box.Theme.Light">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="Box.Theme.Light.NoTitleBar" parent="Box.Theme.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Box.Theme.Light.NoTitleBar.Fullscreen" parent="Box.Theme.Light.NoTitleBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="Box.Animation.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="Box.Button.Theme" parent="@android:style/Widget.Holo.Button.Small">
+        <item name="android:textAllCaps" tools:ignore="NewApi">false</item>
+    </style>
+
+    <style name="Box.Anim.Popupwindow" parent="">
+        <item name="android:windowEnterAnimation">@anim/box_anim_menushow</item>
+        <item name="android:windowExitAnimation">@anim/box_anim_menuhide</item>
+    </style>
+
+    <style name="Box.Anim.Popupwindow.Dir" parent="Box.Anim.Popupwindow">
+        <item name="android:windowEnterAnimation">@anim/box_anim_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/box_anim_slide_out</item>
+    </style>
+
+    <!-- dialog -->
+    <style name="Box.Translucent.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowAnimationStyle">@style/Box.Popupwindow.Anim.Style</item>
+    </style>
+
+    <style name="Box.Popupwindow.Anim.Style" parent="">
+        <item name="android:windowEnterAnimation">@anim/box_anim_menushow</item>
+        <item name="android:windowExitAnimation">@anim/box_anim_menuhide</item>
+    </style>
+
+    <style name="Box.Divider.Vertical" parent="">
+        <item name="android:layout_width">@dimen/box_divider_height</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#f5f5f5</item>
+    </style>
+
+    <style name="Box.Divider.Horizontal" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/box_divider_height</item>
+        <item name="android:background">#f5f5f5</item>
+    </style>
+
+    <style name="Box.ProgressBar" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/box_animation_progressbar</item>
+        <item name="android:minWidth">@dimen/box_width_progressbar</item>
+        <item name="android:maxWidth">@dimen/box_width_progressbar</item>
+        <item name="android:minHeight">@dimen/box_width_progressbar</item>
+        <item name="android:maxHeight">@dimen/box_width_progressbar</item>
+    </style>
+
+    <style name="Box.KeyBorad.Dialog" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Box.Anim.Slide.From.Bottom</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Box.Anim.Slide.From.Bottom" parent="">
+        <item name="android:windowEnterAnimation">@anim/box_slide_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/box_slide_out_to_bottom</item>
+    </style>
+
+    <style name="Box.Dialog.Bottom.Menu" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/Box.Anim.Slide.From.Bottom</item>
+    </style>
+    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+
+</resources>

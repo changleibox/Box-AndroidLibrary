@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:padding="@dimen/box_dialog_margin">
+
+    <LinearLayout
+        android:id="@+id/box_rl1_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_shape_dialog_bg"
+        android:divider="@drawable/box_shape_divider_horizontal"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/box_paddingLeft_personal"
+            android:paddingTop="@dimen/box_paddingLeft_personal">
+
+            <TextView
+                android:id="@+id/box_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/box_line_spacing_extra_favour"
+                android:layout_marginLeft="@dimen/box_paddingLeft_personal"
+                android:layout_marginRight="@dimen/box_paddingLeft_personal"
+                android:gravity="center"
+                android:text="@string/box_lable_prompt"
+                android:textColor="@color/box_text_color_describe"
+                android:textSize="@dimen/box_btn_text_size"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:id="@+id/box_fl_custom_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/box_paddingLeft_personal"
+                android:layout_marginRight="@dimen/box_paddingLeft_personal"
+                android:background="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/box_tv_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/box_paddingLeft_personal"
+                android:layout_marginRight="@dimen/box_paddingLeft_personal"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:lineSpacingExtra="@dimen/box_padding_edit"
+                android:textColor="@color/box_text_color_describe"
+                android:textSize="@dimen/box_edittext_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/box_ll_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/box_height_button"
+            android:divider="@drawable/box_shape_divider_vertical"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <Button
+                android:id="@+id/box_btn_sure"
+                style="?buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/box_tv_click_left_down"
+                android:gravity="center"
+                android:paddingLeft="@dimen/box_dialog_button_padding"
+                android:paddingRight="@dimen/box_dialog_button_padding"
+                android:text="@string/box_lable_sure"
+                android:textAllCaps="false"
+                android:textColor="@color/box_text_color_blue"
+                android:textSize="@dimen/box_btn_text_size"
+                tools:ignore="UnusedAttribute" />
+
+            <Button
+                android:id="@+id/box_btn_cancel"
+                style="?buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/box_tv_click_right_down"
+                android:gravity="center"
+                android:paddingLeft="@dimen/box_dialog_button_padding"
+                android:paddingRight="@dimen/box_dialog_button_padding"
+                android:text="@string/box_lable_cancel"
+                android:textAllCaps="false"
+                android:textColor="@color/box_text_color_blue"
+                android:textSize="@dimen/box_btn_text_size"
+                tools:ignore="UnusedAttribute" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

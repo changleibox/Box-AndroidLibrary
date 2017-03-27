@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <View style="@style/Box.Divider.Horizontal" />
+
+    <ListView
+        android:id="@+id/box_lv_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:paddingBottom="8dp"
+        android:scrollbars="none" />
+
+    <Button
+        android:id="@+id/box_btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@drawable/box_tv_click_white"
+        android:text="@string/box_btn_cancel"
+        android:textColor="#333"
+        android:textSize="16sp" />
+
+</LinearLayout>

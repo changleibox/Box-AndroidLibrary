@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <LinearLayout
+        android:id="@+id/box_ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#d1d0ce"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/box_btn_camera"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/box_selector_icon_button"
+            android:gravity="center"
+            android:text="@string/box_btn_camera"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/box_btn_photo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box_selector_icon_button"
+            android:gravity="center"
+            android:text="@string/box_btn_photo_album"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/box_btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box_selector_icon_cancel"
+            android:gravity="center"
+            android:text="@string/box_btn_cancel"
+            android:textColor="@color/box_text_color_blue"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</FrameLayout>

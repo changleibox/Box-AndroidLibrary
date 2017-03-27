@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- boxBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <color name="box_background_green_normal">#74c333</color>
+    <color name="box_background_green_sel">#00bd1b</color>
+    <color name="box_background_popup_window">#aa000000</color>
+    <color name="box_text_color_describe">#ff4a4a4a</color>
+    <color name="box_background_line">#ffcdcdcd</color>
+    <color name="box_text_color_blue">#0094d2</color>
+    <color name="box_background_layout">#fff</color>
+    <color name="box_background_tab_pressed">#6633B5E5</color>
+    <color name="box_background_progress">#00000000</color>
+    <color name="box_background_button">#00000000</color>
+    <color name="box_background_foot_view">#ffebecf2</color>
+    <color name="box_text_color_title_bar">#000</color>
+    <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+
+</resources>

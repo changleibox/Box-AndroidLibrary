@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/box_tv_click_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/box_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="#555"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/box_line"
+        style="@style/Box.Divider.Horizontal"
+        android:background="#ebebeb" />
+
+</LinearLayout>

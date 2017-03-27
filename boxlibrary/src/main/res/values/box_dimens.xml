@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="box_activity_horizontal_margin">16dp</dimen>
+    <dimen name="box_activity_vertical_margin">16dp</dimen>
+    <dimen name="box_btn_radius">3dp</dimen>
+    <dimen name="box_gv_space">3dp</dimen>
+    <dimen name="box_height_arrow">10dp</dimen>
+    <dimen name="box_height_title_bar">50dp</dimen>
+    <dimen name="box_margin_login_top">30dp</dimen>
+    <dimen name="box_paddingLeft_personal">15dp</dimen>
+    <dimen name="box_btn_text_size">18sp</dimen>
+    <dimen name="box_line_spacing_extra_favour">5dp</dimen>
+    <dimen name="box_draw_padding_edit">10dp</dimen>
+    <dimen name="box_padding_edit">10dp</dimen>
+    <dimen name="box_divider_height">0.5dp</dimen>
+    <dimen name="box_padding_edit_onself">15dp</dimen>
+    <dimen name="box_height_button_map">60dp</dimen>
+    <dimen name="box_height_button">50dp</dimen>
+    <dimen name="box_radius_comment">8dp</dimen>
+    <dimen name="box_padding_register">30dp</dimen>
+    <dimen name="box_height_tv_choose">60dp</dimen>
+    <dimen name="box_foot_view_margin">25dp</dimen>
+    <dimen name="box_foot_view_margin_left">3dp</dimen>
+    <dimen name="box_head_view_margin">5dp</dimen>
+    <dimen name="box_width_progressbar">16dp</dimen>
+    <dimen name="box_list_view_padding_bottom">5dp</dimen>
+    <dimen name="box_list_view_line_margin">10dp</dimen>
+    <dimen name="box_drawable_padding">4dp</dimen>
+    <dimen name="box_dialog_margin">30dp</dimen>
+    <dimen name="box_dialog_button_padding">8dp</dimen>
+    <dimen name="box_progress_background_radius">4dp</dimen>
+
+    <dimen name="box_edittext_size">16sp</dimen>
+    <dimen name="box_btn_title_text_size">16sp</dimen>
+    <dimen name="box_lable_text_size">14sp</dimen>
+    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+
+</resources>

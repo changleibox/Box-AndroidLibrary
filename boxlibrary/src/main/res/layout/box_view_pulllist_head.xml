@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><!-- ListView的头部 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/box_background_button"
+    android:paddingBottom="@dimen/box_head_view_margin"
+    android:paddingTop="@dimen/box_head_view_margin">
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/box_head_contentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/box_padding_edit"
+        android:layout_marginTop="@dimen/box_padding_edit"
+        android:background="@android:color/transparent"
+        android:paddingLeft="@dimen/box_padding_edit"
+        android:paddingRight="@dimen/box_padding_edit">
+
+        <!-- 箭头图像、进度条 -->
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <!-- 箭头 -->
+
+            <ImageView
+                android:id="@+id/box_head_arrowImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/box_library_name"
+                android:src="@drawable/box_img_pulltorefresh" />
+
+            <!-- 进度条 -->
+
+            <ProgressBar
+                android:id="@+id/box_head_progressBar"
+                style="@style/Box.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- 提示、最近更新 -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <!-- 提示 -->
+
+            <TextView
+                android:id="@+id/box_head_tipsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/box_text_color_title_bar"
+                android:textSize="@dimen/box_btn_title_text_size" />
+
+            <!-- 最近更新 -->
+
+            <TextView
+                android:id="@+id/box_head_lastUpdatedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/box_text_color_title_bar"
+                android:textSize="@dimen/box_lable_text_size" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

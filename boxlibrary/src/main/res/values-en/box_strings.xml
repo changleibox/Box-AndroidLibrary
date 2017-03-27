@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- izhuoBase lable text -->
+    <string name="box_lable_spread">%s Sheet</string>
+    <string name="box_lable_complete_spread">Complete(%1$s/%2$s)</string>
+    <string name="box_lable_no_sdcard">Memory card not found!</string>
+    <string name="box_lable_loading">Loading……</string>
+    <string name="box_lable_no_picture">No pictures found!</string>
+    <string name="box_lable_picture">Picture</string>
+    <string name="box_lable_select">Choice</string>
+    <string name="box_lable_preview">Preview(%s)</string>
+    <string name="box_lable_hot_city">Hot</string>
+    <string name="box_lable_hot">Hot</string>
+    <string name="box_lable_prompt">Prompt</string>
+    <string name="box_lable_sure">Confirm</string>
+    <string name="box_lable_cancel">Cancel</string>
+    <string name="box_lable_load_all">Loaded all</string>
+    <string name="box_lable_pull_to_refresh">Pull down refresh</string>
+    <string name="box_lable_release_to_refresh">Undo refresh</string>
+    <string name="box_lable_refreshing">Refreshing…</string>
+    <string name="box_lable_updating">Recent update:%s</string>
+    <string name="box_lable_get_load">Loading in…</string>
+    <string name="box_lable_chooser_title">Select operation</string>
+    <string name="box_lable_email_title">Title</string>
+    <string name="box_lable_email_text">Text</string>
+    <string name="box_lable_choose_email_title">Select mailbox</string>
+    <string name="box_lable_choose_file">Select file</string>
+    <string name="box_lable_choose_date_time">Select date time</string>
+    <string name="box_lable_to">To</string>
+
+    <!-- izhuoBase button text -->
+    <string name="box_btn_cancel">Cancel</string>
+    <string name="box_btn_complete">Complete</string>
+    <string name="box_btn_sure">Confirm</string>
+    <string name="box_btn_all_picture">All pictures</string>
+    <string name="box_btn_photo">Take photos</string>
+    <string name="box_btn_preview">Preview</string>
+    <string name="box_btn_get_more">Get more</string>
+    <string name="box_btn_camera">Photograph</string>
+    <string name="box_btn_photo_album">Album</string>
+
+    <!-- izhuoBase toast text -->
+    <string name="box_toast_max_select_picture">You can choose %s of the most!</string>
+    <string name="box_toast_exit_prompt">Press the return key to exit</string>
+    <string name="box_toast_net_exception">Network exception, please check the network!</string>
+    <string name="box_toast_net_connect_timeout">Request timeout, please try again later!</string>
+    <string name="box_toast_unknown_exception">Unknown exception!</string>
+    <string name="box_toast_file_save_success">Pictures have been successfully saved in the %s folder!</string>
+    <string name="box_toast_file_save_fail">Picture save failed!</string>
+    <string name="box_toast_not_permission">No authorization to operate, please authorize in settings!</string>
+    <string name="box_toast_wechat_client_inavailable">At present, your WeChat version is too low or not to install WeChat, WeChat needs to be installed to use.</string>
+
+    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+
+    <string name="box_library_name">IzhuoBaseLib</string>
+
+</resources>

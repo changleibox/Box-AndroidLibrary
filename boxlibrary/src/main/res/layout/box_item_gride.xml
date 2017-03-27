@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#353535"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/box_rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/box_id_item_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:contentDescription="@string/box_library_name"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/box_id_item_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:clickable="false"
+            android:contentDescription="@string/box_library_name"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="3dp"
+            android:paddingTop="3dp"
+            android:src="@drawable/box_img_pictures_selected" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/box_ll_opearView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/box_selector_back"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/box_id_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_selector_photograph"
+            android:contentDescription="@string/box_library_name"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/box_tv_prompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/box_btn_photo"
+            android:textColor="@color/box_color_btn_photo"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
