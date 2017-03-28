@@ -1,4 +1,9 @@
 # Box-AndroidLibrary
+
+Sample
+======
+<a href="https://github.com/changleibox/Box-AndroidLibrary/releases/tag/V1.0.0"> Sample & .zip file </a>
+
 Using
 ======
 First of all you have to upload animation submodule with `git submodule update --init` command <br>
@@ -12,6 +17,8 @@ dependencies {
 	compile 'me.box.library:boxlibrary:1.0.1'
 }
 ```
+
+To add gradle dependency you need to open  build.gradle (in your app folder,not in a project folder) then copy and add the dependencies there in the dependencies block;
 
 Maven
 ------
