@@ -10,8 +10,7 @@ First of all you have to upload animation submodule with `git submodule update -
 <br>
 Or you can add gradle dependency with command :<br>
 
-Gradle
-------
+#### Gradle
 ```groovy
 dependencies {
 	compile 'me.box.library:boxlibrary:1.0.1'
@@ -20,8 +19,7 @@ dependencies {
 
 To add gradle dependency you need to open  build.gradle (in your app folder,not in a project folder) then copy and add the dependencies there in the dependencies block;
 
-Maven
-------
+#### Maven
 ```xml
 <dependency>
   <groupId>me.box.library</groupId>
@@ -31,12 +29,39 @@ Maven
 </dependency>
 ```
 
-lvy
----
+#### lvy
 ```xml
 <dependency org='me.box.library' name='boxlibrary' rev='1.0.1'>
   <artifact name='boxlibrary' ext='pom' ></artifact>
 </dependency>
+```
+
+Example
+========
+
+#### Activity
+```java
+public abstract class BaseActivity extends IBaseActivity {
+
+    @Override
+    public void onUserCreateViews(Bundle savedInstanceState) {
+    }
+
+    public TestApplication getIApplication() {
+        return (TestApplication) getApplication();
+    }
+}
+```
+
+#### Fragment
+```java
+public abstract class BaseFragment extends IBaseFragment {
+
+    public TestApplication getIApplication() {
+        return (TestApplication) getApplication();
+    }
+
+}
 ```
 
 ## License
