@@ -3,6 +3,10 @@
 Sample
 ======
 <a href="https://github.com/changleibox/Box-AndroidLibrary/releases/tag/V1.0.0"> Sample & .aar file </a>
+Note
+====
+
+depends on <a href="https://github.com/google">Google's</a> appcompat-v7 for this for 25.3.0 version
 
 Using
 ======
