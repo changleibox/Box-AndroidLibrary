@@ -1,3 +1,7 @@
+/*
+ * Copyright © All right reserved by CHANGLEI.
+ */
+
 package net.izhuo.app.library.reader.entity;
 
 public class IImageFloder {

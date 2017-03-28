@@ -1,3 +1,7 @@
+/*
+ * Copyright © All right reserved by CHANGLEI.
+ */
+
 package com.daimajia.slider.library.Transformers;
 
 import android.os.Build;

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © All right reserved by CHANGLEI.
+  -->
+
 <resources>
     
   <City ID="1" CityName="北京市" PID="1" ZipCode="100000">北京市</City>

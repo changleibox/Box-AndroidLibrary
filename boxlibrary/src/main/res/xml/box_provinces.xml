@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © All right reserved by CHANGLEI.
+  -->
+
 <resources>
     <Province ID="0" ProvinceName="请选择">请选择  </Province>
     <Province ID="1" ProvinceName="北京市" >北京市      </Province>

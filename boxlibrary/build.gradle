@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
+/*
+ * Copyright © All right reserved by CHANGLEI.
+ */
+
 // This is the library version used when deploying the artifact
 version = "1.0.0"
 

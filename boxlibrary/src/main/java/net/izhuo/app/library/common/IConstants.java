@@ -1,6 +1,7 @@
-/**
- * Copyright  All right reserved by IZHUO.NET.
+/*
+ * Copyright © All right reserved by CHANGLEI.
  */
+
 package net.izhuo.app.library.common;
 
 import android.app.Activity;

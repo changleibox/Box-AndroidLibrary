@@ -1,3 +1,7 @@
+/*
+ * Copyright © All right reserved by CHANGLEI.
+ */
+
 package com.daimajia.slider.library.SliderTypes;
 
 import android.content.Context;

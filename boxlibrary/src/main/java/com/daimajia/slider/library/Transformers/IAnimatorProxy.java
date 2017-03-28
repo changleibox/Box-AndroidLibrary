@@ -1,6 +1,7 @@
-/**
- * Copyright © All right reserved by IZHUO.NET.
+/*
+ * Copyright © All right reserved by CHANGLEI.
  */
+
 package com.daimajia.slider.library.Transformers;
 
 /**

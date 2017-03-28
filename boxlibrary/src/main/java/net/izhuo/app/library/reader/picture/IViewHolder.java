@@ -1,3 +1,7 @@
+/*
+ * Copyright © All right reserved by CHANGLEI.
+ */
+
 package net.izhuo.app.library.reader.picture;
 
 import net.izhuo.app.library.reader.entity.IImageLoader;
