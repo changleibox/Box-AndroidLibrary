@@ -6,7 +6,7 @@ apply plugin: 'com.jfrog.bintray'
  */
 
 // This is the library version used when deploying the artifact
-version = "1.0.0"
+version = "1.0.1"
 
 android {
     compileSdkVersion 25
@@ -54,8 +54,8 @@ dependencies {
     compile 'com.android.support:multidex:1.0.1'
 }
 
-def siteUrl = 'https://github.com/changleibox/BoxAndroidLibrary' // 项目的主页
-def gitUrl = 'https://github.com/changleibox/BoxAndroidLibrary.git' // Git仓库的url
+def siteUrl = 'https://github.com/changleibox/Box-AndroidLibrary' // 项目的主页
+def gitUrl = 'https://github.com/changleibox/Box-AndroidLibrary.git' // Git仓库的url
 group = "me.box.library" // Maven Group ID for the artifact，一般填你唯一的包名
 
 install {
