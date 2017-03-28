@@ -2,7 +2,7 @@
 
 Sample
 ======
-<a href="https://github.com/changleibox/Box-AndroidLibrary/releases/tag/V1.0.0"> Sample & .zip file </a>
+<a href="https://bintray.com/cbox/maven/download_file?file_path=me%2Fbox%2Flibrary%2Fboxlibrary%2F1.0.1%2Fboxlibrary-1.0.1.aar"> Sample & .aar file </a>
 
 Using
 ======
