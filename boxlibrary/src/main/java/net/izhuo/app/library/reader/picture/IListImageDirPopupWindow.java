@@ -1,5 +1,5 @@
 /*
- * Copyright © All right reserved by CHANGLEI.
+ * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
 package net.izhuo.app.library.reader.picture;
