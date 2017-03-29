@@ -6,7 +6,7 @@ version = "1.0.0"
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
     resourcePrefix "box"    //这个随便填
 
     defaultConfig {
