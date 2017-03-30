@@ -1,6 +1,7 @@
-/**
- * Copyright © All right reserved by IZHUO.NET.
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
  */
+
 package com.daimajia.slider.library.Transformers;
 
 import android.os.Build;

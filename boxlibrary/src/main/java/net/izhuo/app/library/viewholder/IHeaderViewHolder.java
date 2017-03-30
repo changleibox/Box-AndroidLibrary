@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
+ */
+
 package net.izhuo.app.library.viewholder;
 
 import android.support.v7.widget.RecyclerView;

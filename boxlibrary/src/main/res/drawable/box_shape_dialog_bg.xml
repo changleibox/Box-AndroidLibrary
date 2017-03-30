@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2017 CHANGLEI. All rights reserved.
+  -->
+
 <shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <corners android:radius="@dimen/box_radius_comment" />

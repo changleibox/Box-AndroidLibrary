@@ -1,6 +1,7 @@
-/**
- * Copyright  All right reserved by IZHUO.NET.
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
  */
+
 package net.izhuo.app.library.view;
 
 import android.annotation.SuppressLint;

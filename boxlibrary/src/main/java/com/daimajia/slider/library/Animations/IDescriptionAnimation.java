@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
+ */
+
 package com.daimajia.slider.library.Animations;
 
 import android.animation.ObjectAnimator;

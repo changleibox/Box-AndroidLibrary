@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
+ */
+
 package net.izhuo.app.library.swipemenulistview;
 
 import java.util.List;
