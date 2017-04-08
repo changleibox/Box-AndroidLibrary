@@ -14,13 +14,14 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.v4.content.res.ConfigurationHelper;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
-import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
@@ -117,6 +118,14 @@ public final class IActivityCompat {
                     break;
             }
         }
+    }
+
+    public static int getScreenWidthDp(Context context) {
+        return ConfigurationHelper.getScreenWidthDp(context.getResources());
+    }
+
+    public static int getScreenHeightDp(Context context) {
+        return ConfigurationHelper.getScreenHeightDp(context.getResources());
     }
 
     public static int getWidth(Context context) {
