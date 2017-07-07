@@ -1,26 +1,38 @@
 package net.izhuo.app.library.text;
 
-import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class ValueInputFilter implements InputFilter {
+@SuppressWarnings("deprecation")
+public class ValueInputFilter extends DigitsKeyListener {
 
     private static final String EMPTY = "";
+    private static final String NEGATIVE_SIGN = "-";
 
-    private final double mMinValue;
-    private final double mMaxValue;
+    private final BigDecimal mMinValue;
+    private final BigDecimal mMaxValue;
 
     public ValueInputFilter(double minValue, double maxValue) {
-        this.mMinValue = minValue;
-        this.mMaxValue = maxValue;
+        super(minValue < 0, true);
+        this.mMinValue = BigDecimal.valueOf(minValue);
+        this.mMaxValue = BigDecimal.valueOf(maxValue);
     }
 
     @Override
     public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+        CharSequence filter = super.filter(source, start, end, dest, dstart, dend);
+        if (filter != null) {
+            return filter;
+        }
         if (TextUtils.isEmpty(source)) {
+            return null;
+        }
+
+        if (TextUtils.isEmpty(dest) && TextUtils.equals(NEGATIVE_SIGN, source)) {
             return null;
         }
 
@@ -35,48 +47,12 @@ public class ValueInputFilter implements InputFilter {
     }
 
     private boolean isExceed(CharSequence valueStr) {
-        double value;
+        BigDecimal value;
         try {
-            value = Double.valueOf(valueStr.toString());
+            value = new BigDecimal(valueStr.toString());
         } catch (Exception e) {
             return true;
         }
-        return value > mMaxValue || value < mMinValue;
+        return value.compareTo(mMaxValue) == 1 || value.compareTo(mMinValue) == -1;
     }
-
-    // private static final String TAG = ValueInputFilter.class.getSimpleName();
-    //
-    // private double mMinValue = Double.MIN_VALUE;
-    // private double mMaxValue = Double.MAX_VALUE;
-    //
-    // @SuppressWarnings("deprecation")
-    // public ValueInputFilter(double minValue, double maxValue) {
-    //     this.mMinValue = minValue;
-    //     this.mMaxValue = maxValue;
-    //
-    //     NumberFormat format = NumberFormat.getInstance();
-    //     Log.i(TAG, "minValue = " + format.format(mMinValue));
-    //     Log.i(TAG, "maxValue = " + format.format(mMaxValue));
-    // }
-    //
-    // @Override
-    // public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-    //     StringBuilder builder = new StringBuilder(dest);
-    //     if (TextUtils.isEmpty(source)) {
-    //         builder.delete(dstart, dend);
-    //     } else {
-    //         builder.insert(dstart, source.toString().toCharArray());
-    //     }
-    //
-    //     double value;
-    //     try {
-    //         value = Double.valueOf(builder.toString());
-    //     } catch (Exception e) {
-    //         return "";
-    //     }
-    //     if (value > mMaxValue || value < mMinValue) {
-    //         return "";
-    //     }
-    //     return null;
-    // }
 }
