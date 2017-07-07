@@ -17,7 +17,11 @@ public class ValueInputFilter extends DigitsKeyListener {
     private final BigDecimal mMaxValue;
 
     public ValueInputFilter(double minValue, double maxValue) {
-        super(minValue < 0, true);
+        this(minValue, maxValue, true);
+    }
+
+    public ValueInputFilter(double minValue, double maxValue, boolean decimal) {
+        super(minValue < 0, decimal);
         this.mMinValue = BigDecimal.valueOf(minValue);
         this.mMaxValue = BigDecimal.valueOf(maxValue);
     }
