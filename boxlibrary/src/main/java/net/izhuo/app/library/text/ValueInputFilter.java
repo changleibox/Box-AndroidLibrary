@@ -33,22 +33,23 @@ public class ValueInputFilter extends DigitsKeyListener {
             return filter;
         }
         if (TextUtils.isEmpty(source)) {
+            if (isExceed(new StringBuilder(dest).delete(dstart, dend))) {
+                return dest.subSequence(dstart, dend);
+            }
             return null;
         }
 
-        if (TextUtils.isEmpty(dest) && TextUtils.equals(NEGATIVE_SIGN, source)) {
+        if ((dest.length() == 1 && TextUtils.equals(dest, "-") && TextUtils.equals(source, "."))
+                || (TextUtils.isEmpty(dest) && ((TextUtils.equals(NEGATIVE_SIGN, source) || TextUtils.equals(".", source))))) {
             return null;
         }
 
-        int length = dest.length();
-        if (((length == 1 && dest.charAt(0) == '0')
-                || (length == 2 && dest.charAt(0) == '-' && dest.charAt(1) == '0'))
-                && !TextUtils.equals(".", source)) {
+        CharSequence tmpSource = removeInvalidZero(source, dest, dstart);
+        if (tmpSource == null) {
             return EMPTY;
         }
-
-        char[] chars = source.toString().toCharArray();
-        for (int i = source.length(); i >= 0; i--) {
+        char[] chars = tmpSource.toString().toCharArray();
+        for (int i = chars.length; i >= 0; i--) {
             char[] tmpChars = Arrays.copyOf(chars, i);
             if (!isExceed(new StringBuilder(dest).insert(dstart, tmpChars))) {
                 return new String(tmpChars);
@@ -58,6 +59,9 @@ public class ValueInputFilter extends DigitsKeyListener {
     }
 
     private boolean isExceed(CharSequence valueStr) {
+        if (TextUtils.isEmpty(valueStr) || (valueStr.length() == 1 && (valueStr.charAt(0) == '-' || valueStr.charAt(0) == '.'))) {
+            return false;
+        }
         BigDecimal value;
         try {
             value = new BigDecimal(valueStr.toString());
@@ -66,4 +70,22 @@ public class ValueInputFilter extends DigitsKeyListener {
         }
         return value.compareTo(mMaxValue) == 1 || value.compareTo(mMinValue) == -1;
     }
+
+    private CharSequence removeInvalidZero(CharSequence source, Spanned dest, int dstart) {
+        if (TextUtils.isEmpty(source)) {
+            return null;
+        }
+        char sourceFirst = source.charAt(0);
+        if (sourceFirst == '-' || TextUtils.isEmpty(dest)) {
+            return source;
+        }
+        if (((dstart <= 1 && dest.charAt(0) == '0'
+                || (dstart == 1 && dest.charAt(0) == '-' && dest.length() > 1 && source.length() == 1 && sourceFirst != '0' && dest.charAt(1) != '0'))
+                || (dstart <= 2 && dest.charAt(0) == '-' && dest.length() > 1 && dest.charAt(1) == '0'))
+                && sourceFirst != '.') {
+            return null;
+        }
+        return source;
+    }
+
 }
