@@ -40,6 +40,13 @@ public class ValueInputFilter extends DigitsKeyListener {
             return null;
         }
 
+        int length = dest.length();
+        if (((length == 1 && dest.charAt(0) == '0')
+                || (length == 2 && dest.charAt(0) == '-' && dest.charAt(1) == '0'))
+                && !TextUtils.equals(".", source)) {
+            return EMPTY;
+        }
+
         char[] chars = source.toString().toCharArray();
         for (int i = source.length(); i >= 0; i--) {
             char[] tmpChars = Arrays.copyOf(chars, i);
