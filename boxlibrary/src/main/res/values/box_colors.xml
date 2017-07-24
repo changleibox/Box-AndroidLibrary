@@ -18,6 +18,7 @@
     <color name="box_background_button">#00000000</color>
     <color name="box_background_foot_view">#ffebecf2</color>
     <color name="box_text_color_title_bar">#000</color>
+    <color name="box_color_text_gray">#999</color>
     <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
 </resources>

@@ -33,6 +33,8 @@
     <string name="box_lable_choose_file">Select file</string>
     <string name="box_lable_choose_date_time">Select date time</string>
     <string name="box_lable_to">To</string>
+    <string name="box_label_loaded_all">Loaded All</string>
+    <string name="box_label_loading">Loading……</string>
 
     <!-- izhuoBase button text -->
     <string name="box_btn_cancel">Cancel</string>
