@@ -32,11 +32,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
 /**
- * @author Box
- * @since Jdk1.6
- * <p/>
- * 2015年12月30日 下午12:04:53
- * <p/>
+ * Created by box on 2015/12/30.
+ * <p>
  * 加载https请求证书
  */
 @SuppressWarnings({"deprecation", "unused"})

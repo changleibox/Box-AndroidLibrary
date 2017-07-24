@@ -4,8 +4,6 @@
 
 package net.izhuo.app.library.reader.picture;
 
-import net.izhuo.app.library.reader.entity.IImageLoader;
-import net.izhuo.app.library.reader.entity.IImageLoader.Type;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
@@ -15,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.izhuo.app.library.reader.entity.IImageLoader;
+import net.izhuo.app.library.reader.entity.IImageLoader.Type;
+
 public class IViewHolder {
 	private final SparseArray<View> mViews;
 	private int mPosition;
@@ -23,7 +24,7 @@ public class IViewHolder {
 	private IViewHolder(Context context, ViewGroup parent, int layoutId,
 						int position) {
 		this.mPosition = position;
-		this.mViews = new SparseArray<View>();
+		this.mViews = new SparseArray<>();
 		mConvertView = LayoutInflater.from(context).inflate(layoutId, parent,
 				false);
 		// setTag
@@ -103,7 +104,7 @@ public class IViewHolder {
 	 * 为ImageView设置图片
 	 * 
 	 * @param viewId
-	 * @param drawableId
+	 * @param bm
 	 * @return
 	 */
 	public IViewHolder setImageBitmap(int viewId, Bitmap bm) {
@@ -116,7 +117,7 @@ public class IViewHolder {
 	 * 为ImageView设置图片
 	 * 
 	 * @param viewId
-	 * @param drawableId
+	 * @param url
 	 * @return
 	 */
 	public IViewHolder setImageByUrl(int viewId, String url) {

@@ -36,11 +36,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Created by box on 2014/7/29.
+ * <p>
  * 访问网络数据
- *
- * @author Changlei
- *         <p>
- *         2014年7月29日
  */
 @SuppressWarnings({"unused", "deprecation"})
 public class IHttpRequest<T> {
