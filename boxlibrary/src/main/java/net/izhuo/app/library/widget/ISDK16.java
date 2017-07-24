@@ -3,7 +3,7 @@
  */
 
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.annotation.TargetApi;
 import android.support.v4.view.ViewCompat;

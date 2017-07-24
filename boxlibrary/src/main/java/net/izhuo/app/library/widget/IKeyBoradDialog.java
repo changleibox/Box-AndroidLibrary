@@ -2,7 +2,7 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

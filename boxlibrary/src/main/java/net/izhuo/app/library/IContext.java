@@ -22,8 +22,8 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import net.izhuo.app.library.reader.picture.IOpenType;
-import net.izhuo.app.library.view.IOSDialog;
-import net.izhuo.app.library.view.IProgress;
+import net.izhuo.app.library.widget.IOSDialog;
+import net.izhuo.app.library.widget.IProgress;
 
 import java.util.List;
 

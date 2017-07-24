@@ -25,7 +25,7 @@ import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
-import net.izhuo.app.library.view.IOSDialog;
+import net.izhuo.app.library.widget.IOSDialog;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

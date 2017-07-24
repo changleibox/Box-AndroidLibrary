@@ -2,7 +2,7 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.os.Build.VERSION;
 import android.view.View;

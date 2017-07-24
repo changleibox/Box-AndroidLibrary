@@ -2,9 +2,7 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package net.izhuo.app.library.view;
-
-import java.util.ArrayList;
+package net.izhuo.app.library.widget;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -26,6 +24,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
+
+import java.util.ArrayList;
 
 /**
  * Layout manager that allows the user to flip horizontally or vertically
@@ -235,9 +235,9 @@ public class IDirectionalViewPager extends ViewPager {
 	/**
 	 * Like {@link View#scrollBy}, but scroll smoothly instead of immediately.
 	 * 
-	 * @param dx
+	 * @param x
 	 *            the number of pixels to scroll by on the X axis
-	 * @param dy
+	 * @param y
 	 *            the number of pixels to scroll by on the Y axis
 	 */
 	private void mSmoothScrollTo(int x, int y) {

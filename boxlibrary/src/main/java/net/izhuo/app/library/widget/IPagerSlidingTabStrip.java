@@ -2,13 +2,8 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import net.izhuo.app.library.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -30,6 +25,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import net.izhuo.app.library.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class IPagerSlidingTabStrip extends HorizontalScrollView {
 

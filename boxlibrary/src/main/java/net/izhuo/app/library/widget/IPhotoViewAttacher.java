@@ -3,9 +3,7 @@
  */
 
 
-package net.izhuo.app.library.view;
-
-import java.lang.ref.WeakReference;
+package net.izhuo.app.library.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,6 +20,8 @@ import android.view.View.OnLongClickListener;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+
+import java.lang.ref.WeakReference;
 
 public class IPhotoViewAttacher implements IPhotoViewImp, View.OnTouchListener, IVersionedGestureDetector.OnGestureListener,
 		GestureDetector.OnDoubleTapListener, ViewTreeObserver.OnGlobalLayoutListener {
@@ -178,7 +178,7 @@ public class IPhotoViewAttacher implements IPhotoViewImp, View.OnTouchListener, 
 	 * when the ImageView is no longer used. A good example is from
 	 * {@link View#onDetachedFromWindow()} or from
 	 * {@link android.app.Activity#onDestroy()}. This is automatically called if
-	 * you are using {@link uk.co.senab.photoview.PhotoView}.
+	 * you are using {@link IPhotoView}.
 	 */
 	@SuppressLint("NewApi")
 	public final void cleanup() {

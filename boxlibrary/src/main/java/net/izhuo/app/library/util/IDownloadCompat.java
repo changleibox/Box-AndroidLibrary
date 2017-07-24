@@ -11,8 +11,8 @@ import android.support.annotation.RequiresPermission;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
-import net.izhuo.app.library.api.IHttpRequest.CommonCallback;
-import net.izhuo.app.library.api.IHttpRequest.SpecialCallback;
+import net.izhuo.app.library.request.IHttpRequest.CommonCallback;
+import net.izhuo.app.library.request.IHttpRequest.SpecialCallback;
 
 import org.apache.http.Header;
 

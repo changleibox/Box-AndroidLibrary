@@ -34,8 +34,8 @@ import net.izhuo.app.library.util.IActivityCompat;
 import net.izhuo.app.library.util.IImageChooser;
 import net.izhuo.app.library.util.IIntentCompat;
 import net.izhuo.app.library.util.IWebViewChooseFile;
-import net.izhuo.app.library.view.IOSDialog;
-import net.izhuo.app.library.view.IProgress;
+import net.izhuo.app.library.widget.IOSDialog;
+import net.izhuo.app.library.widget.IProgress;
 
 import java.util.List;
 

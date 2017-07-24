@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 
 @SuppressWarnings("WeakerAccess")
-public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class IHeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private final RecyclerView.Adapter<? super RecyclerView.ViewHolder> mAdapter;
 
@@ -35,9 +35,9 @@ public class HeaderViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private final boolean isFilterable;
     private boolean isStaggered;
 
-    public HeaderViewAdapter(ArrayList<RecyclerViewCompat.FixedViewInfo> headerViewInfos,
-                             ArrayList<RecyclerViewCompat.FixedViewInfo> footerViewInfos,
-                             RecyclerView.Adapter<? super RecyclerView.ViewHolder> adapter) {
+    public IHeaderViewAdapter(ArrayList<RecyclerViewCompat.FixedViewInfo> headerViewInfos,
+                              ArrayList<RecyclerViewCompat.FixedViewInfo> footerViewInfos,
+                              RecyclerView.Adapter<? super RecyclerView.ViewHolder> adapter) {
         mAdapter = adapter;
         isFilterable = adapter instanceof Filterable;
 

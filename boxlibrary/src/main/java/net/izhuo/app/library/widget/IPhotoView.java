@@ -3,20 +3,19 @@
  */
 
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.content.Context;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-import net.izhuo.app.library.view.IPhotoViewAttacher.OnMatrixChangedListener;
-import net.izhuo.app.library.view.IPhotoViewAttacher.OnPhotoTapListener;
-import net.izhuo.app.library.view.IPhotoViewAttacher.OnViewTapListener;
+import net.izhuo.app.library.widget.IPhotoViewAttacher.OnMatrixChangedListener;
+import net.izhuo.app.library.widget.IPhotoViewAttacher.OnPhotoTapListener;
+import net.izhuo.app.library.widget.IPhotoViewAttacher.OnViewTapListener;
 
-public class IPhotoView extends ImageView implements IPhotoViewImp {
+public class IPhotoView extends android.support.v7.widget.AppCompatImageView implements IPhotoViewImp {
 
 	private final IPhotoViewAttacher mAttacher;
 

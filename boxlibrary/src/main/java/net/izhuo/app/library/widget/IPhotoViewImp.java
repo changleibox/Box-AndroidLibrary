@@ -3,7 +3,7 @@
  */
 
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.graphics.RectF;
 import android.view.View;

@@ -9,7 +9,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
-import net.izhuo.app.library.view.IProgress;
+import net.izhuo.app.library.widget.IProgress;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -91,7 +91,7 @@ public class IProgressCompat {
     /**
      * 请在第一次显示之前调用，否则无效
      *
-     * @param theme {@link net.izhuo.app.library.view.IProgress.Theme} 默认为黑色主题
+     * @param theme {@link net.izhuo.app.library.widget.IProgress.Theme} 默认为黑色主题
      */
     public static void setTheme(IProgress.Theme theme) {
         IProgressCompat.mTheme = theme;

@@ -22,7 +22,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import net.izhuo.app.library.IBaseActivity;
 import net.izhuo.app.library.common.IConstants.IKey;
 import net.izhuo.app.library.util.IImageLoaderCompat;
-import net.izhuo.app.library.view.IPhotoView;
+import net.izhuo.app.library.widget.IPhotoView;
 
 import java.io.File;
 import java.util.ArrayList;

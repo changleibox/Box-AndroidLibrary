@@ -90,7 +90,7 @@ import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.IBaseActivity;
 import net.izhuo.app.library.IBaseFragment;
 import net.izhuo.app.library.R;
-import net.izhuo.app.library.api.IHttpRequest.CommonCallback;
+import net.izhuo.app.library.request.IHttpRequest.CommonCallback;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IHttpError;
 import net.izhuo.app.library.common.IConstants.IRequestCode;

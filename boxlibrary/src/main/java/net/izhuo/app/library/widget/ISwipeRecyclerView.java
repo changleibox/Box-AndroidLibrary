@@ -2,7 +2,7 @@
  * Copyright (c) All right reserved by Box
  */
 
-package net.izhuo.app.library.view;
+package net.izhuo.app.library.widget;
 
 import android.content.Context;
 import android.support.annotation.IntRange;
@@ -26,7 +26,7 @@ import net.izhuo.app.library.R;
  * 具有上滑加载更多功能
  */
 @SuppressWarnings("unused")
-public class SwipeRecyclerView extends RecyclerViewCompat {
+public class ISwipeRecyclerView extends RecyclerViewCompat {
 
     private static final int FOOTER_HEIGHT = 48;
     private static final int DEFAULT_PAGE_SIZE = 10;
@@ -47,15 +47,15 @@ public class SwipeRecyclerView extends RecyclerViewCompat {
 
     private TextView mFooterView;
 
-    public SwipeRecyclerView(Context context) {
+    public ISwipeRecyclerView(Context context) {
         this(context, null);
     }
 
-    public SwipeRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public ISwipeRecyclerView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwipeRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public ISwipeRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mFooterHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, FOOTER_HEIGHT, getResources().getDisplayMetrics());
         addFooterView(getFooterView(context));

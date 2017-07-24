@@ -2,7 +2,7 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package net.izhuo.app.library.api;
+package net.izhuo.app.library.request;
 
 import android.annotation.TargetApi;
 import android.content.Context;

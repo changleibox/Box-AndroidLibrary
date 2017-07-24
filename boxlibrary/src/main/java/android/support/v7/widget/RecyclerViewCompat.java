@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import net.izhuo.app.library.adapter.HeaderViewAdapter;
+import net.izhuo.app.library.adapter.IHeaderViewAdapter;
 
 import java.util.ArrayList;
 
@@ -73,7 +73,7 @@ public class RecyclerViewCompat extends RecyclerView {
     public boolean removeHeaderView(View v) {
         if (mHeaderViewInfos.size() > 0) {
             boolean result = false;
-            if (mAdapter != null && ((HeaderViewAdapter) mAdapter).removeHeader(v)) {
+            if (mAdapter != null && ((IHeaderViewAdapter) mAdapter).removeHeader(v)) {
                 mAdapter.notifyDataSetChanged();
                 result = true;
             }
@@ -118,7 +118,7 @@ public class RecyclerViewCompat extends RecyclerView {
     public boolean removeFooterView(View v) {
         if (mFooterViewInfos.size() > 0) {
             boolean result = false;
-            if (mAdapter != null && ((HeaderViewAdapter) mAdapter).removeFooter(v)) {
+            if (mAdapter != null && ((IHeaderViewAdapter) mAdapter).removeFooter(v)) {
                 mAdapter.notifyDataSetChanged();
                 result = true;
             }
@@ -130,15 +130,15 @@ public class RecyclerViewCompat extends RecyclerView {
 
     @Override
     public void setAdapter(Adapter adapter) {
-        if (!(adapter instanceof HeaderViewAdapter)) {
+        if (!(adapter instanceof IHeaderViewAdapter)) {
             //noinspection unchecked
-            mAdapter = new HeaderViewAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
+            mAdapter = new IHeaderViewAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
         } else {
             mAdapter = adapter;
         }
         super.setAdapter(mAdapter);
         if (isShouldSpan) {
-            ((HeaderViewAdapter) mAdapter).adjustSpanSize(this);
+            ((IHeaderViewAdapter) mAdapter).adjustSpanSize(this);
         }
     }
 

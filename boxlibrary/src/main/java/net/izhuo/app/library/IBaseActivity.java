@@ -35,8 +35,8 @@ import net.izhuo.app.library.util.ILogCompat;
 import net.izhuo.app.library.util.IProgressCompat;
 import net.izhuo.app.library.util.IToastCompat;
 import net.izhuo.app.library.util.IWebViewChooseFile;
-import net.izhuo.app.library.view.IOSDialog;
-import net.izhuo.app.library.view.IProgress;
+import net.izhuo.app.library.widget.IOSDialog;
+import net.izhuo.app.library.widget.IProgress;
 
 import java.util.List;
 
