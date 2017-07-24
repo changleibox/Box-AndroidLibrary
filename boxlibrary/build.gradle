@@ -59,7 +59,7 @@ def siteUrl = 'https://github.com/changleibox/Box-AndroidLibrary' // 项目的�
 def gitUrl = 'https://github.com/changleibox/Box-AndroidLibrary.git' // Git仓库的url
 
 group = "me.box.library" // Maven Group ID for the artifact，一般填你唯一的包名
-version = "1.1.0" // This is the library version used when deploying the artifact
+version = "1.1.1" // This is the library version used when deploying the artifact
 
 install {
     repositories.mavenInstaller {
@@ -131,7 +131,19 @@ tasks.withType(Javadoc) {
     options {
         encoding "UTF-8"
         charSet 'UTF-8'
-        links "http://docs.oracle.com/javase/7/docs/api"
+        links 'http://docs.oracle.com/javase/7/docs/api'
+    }
+}
+
+javadoc {
+    options{
+        encoding 'UTF-8'
+        charSet 'UTF-8'
+        author true
+        version true
+        failOnError false
+        links 'http://docs.oracle.com/javase/7/docs/api'
+        title 'BoxLibrary'
     }
 }
 
