@@ -17,7 +17,7 @@ Or you can add gradle dependency with command :<br>
 #### Gradle
 ```groovy
 dependencies {
-	compile 'me.box.library:boxlibrary:1.1.1'
+	compile 'me.box.library:boxlibrary:1.0.1'
 }
 ```
 
@@ -28,14 +28,14 @@ To add gradle dependency you need to open  build.gradle (in your app folder,not 
 <dependency>
   <groupId>me.box.library</groupId>
   <artifactId>boxlibrary</artifactId>
-  <version>1.1.1</version>
+  <version>1.0.1</version>
   <type>pom</type>
 </dependency>
 ```
 
 #### lvy
 ```xml
-<dependency org='me.box.library' name='boxlibrary' rev='1.1.1'>
+<dependency org='me.box.library' name='boxlibrary' rev='1.0.1'>
   <artifact name='boxlibrary' ext='pom' ></artifact>
 </dependency>
 ```
