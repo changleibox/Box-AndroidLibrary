@@ -6,18 +6,22 @@ package net.izhuo.app.library;
 
 import android.support.multidex.MultiDexApplication;
 
-import net.izhuo.app.library.helper.IAppHelper;
-
 /**
  * Created by Box on 16/12/3.
  * <p>
  * Application
  */
 public class IApplication extends MultiDexApplication {
+
+    private static IApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+    }
 
-        IAppHelper.setContext(getApplicationContext());
+    public static IApplication getInstance() {
+        return instance;
     }
 }
