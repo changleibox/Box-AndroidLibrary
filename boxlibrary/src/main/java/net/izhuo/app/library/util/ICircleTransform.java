@@ -25,7 +25,8 @@ import com.squareup.picasso.Transformation;
 public class ICircleTransform implements Transformation {
 
     public static final int CIRCLE = -1;
-    protected final int size;
+
+    private final int size;
 
     public ICircleTransform() {
         this(CIRCLE);
@@ -37,12 +38,20 @@ public class ICircleTransform implements Transformation {
 
     @Override
     public Bitmap transform(Bitmap bitmap) {
-        return this.size == 0 ? bitmap : (this.size == CIRCLE ? transformCircle(bitmap) : transformRadius(bitmap, this.size));
+        return this.size == 0 ? bitmap : (this.size == CIRCLE ? onTransformCircle(bitmap) : onTransformRadius(bitmap, this.size));
     }
 
     @Override
     public String key() {
         return this.size == CIRCLE ? "circle" : "radius" + size;
+    }
+
+    protected Bitmap onTransformCircle(Bitmap source) {
+        return transformCircle(source);
+    }
+
+    protected Bitmap onTransformRadius(Bitmap source, int radius) {
+        return transformRadius(source, radius);
     }
 
     public static Bitmap transformCircle(Bitmap source) {
