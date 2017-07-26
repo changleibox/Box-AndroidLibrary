@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
+import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
 import net.izhuo.app.library.util.IActivityCompat;
 import net.izhuo.app.library.util.IImageChooser;
@@ -56,6 +57,7 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     private View mContentView;
 
     private Bundle mSavedInstanceState;
+    private IFragmentHelper mFragmentHelper;
 
     @CallSuper
     @Override
@@ -147,6 +149,14 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     @Override
     public Activity getActivity() {
         return this;
+    }
+
+    @Override
+    public IFragmentHelper getFragmentHelper() {
+        if (mFragmentHelper == null) {
+            mFragmentHelper = new IFragmentHelper(getSupportFragmentManager());
+        }
+        return mFragmentHelper;
     }
 
     public final int getWidth() {

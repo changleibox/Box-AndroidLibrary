@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
+import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
 import net.izhuo.app.library.widget.IOSDialog;
 import net.izhuo.app.library.widget.IProgress;
@@ -197,6 +198,8 @@ public interface IContext {
     Context getApplicationContext();
 
     ApplicationInfo getApplicationInfo();
+
+    IFragmentHelper getFragmentHelper();
 
     void onImageChooseCallback(List<String> imagePaths);
 

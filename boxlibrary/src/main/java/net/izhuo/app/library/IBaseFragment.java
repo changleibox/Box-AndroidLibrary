@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
+import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
 import net.izhuo.app.library.util.IActivityCompat;
 import net.izhuo.app.library.util.IImageChooser;
@@ -53,6 +54,7 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     private Fragment mFragment;
     private boolean isHidden;
     private int mPage;
+    private IFragmentHelper mFragmentHelper;
 
     @CallSuper
     @Override
@@ -136,6 +138,14 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     public ApplicationInfo getApplicationInfo() {
         if (mActivity != null) {
             return mActivity.getApplicationInfo();
+        }
+        return null;
+    }
+
+    @Override
+    public IFragmentHelper getFragmentHelper() {
+        if (mFragmentHelper == null) {
+            mFragmentHelper = new IFragmentHelper(getFragmentManager());
         }
         return null;
     }
