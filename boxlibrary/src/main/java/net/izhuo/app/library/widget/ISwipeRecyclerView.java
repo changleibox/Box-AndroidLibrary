@@ -7,6 +7,7 @@ package net.izhuo.app.library.widget;
 import android.content.Context;
 import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerViewCompat;
@@ -19,13 +20,14 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import net.izhuo.app.library.R;
+import net.izhuo.app.library.compat.IAttrCompat;
 
 /**
  * Created by Box on 17/3/16.
  * <p/>
  * 具有上滑加载更多功能
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "deprecation"})
 public class ISwipeRecyclerView extends RecyclerViewCompat {
 
     private static final int FOOTER_HEIGHT = 48;
@@ -80,6 +82,12 @@ public class ISwipeRecyclerView extends RecyclerViewCompat {
 
     public int getCurrentPage() {
         return mCurrentPage;
+    }
+
+    public void setFooterTextAppearance(@StyleRes int textAppearance) {
+        if (mFooterView != null) {
+            mFooterView.setTextAppearance(getContext(), textAppearance);
+        }
     }
 
     @Override
@@ -164,8 +172,7 @@ public class ISwipeRecyclerView extends RecyclerViewCompat {
             mFooterView.setGravity(Gravity.CENTER);
             mFooterView.setLayoutParams(footerParams);
             mFooterView.setPadding(0, getPaddingBottom(), 0, 0);
-            //noinspection deprecation
-            mFooterView.setTextAppearance(context, R.style.TextAppearance_AppCompat);
+            mFooterView.setTextAppearance(context, IAttrCompat.getResourceId(context, android.R.attr.textAppearance, R.style.TextAppearance_AppCompat));
             mFooterView.setTextColor(ContextCompat.getColor(getContext(), R.color.box_color_text_gray));
 
             layout = new FrameLayout(context);
