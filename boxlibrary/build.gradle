@@ -53,9 +53,15 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:multidex:1.0.1'
+    // json解析
     compile 'com.google.code.gson:gson:2.7'
+    // 图片加载
     compile 'com.squareup.picasso:picasso:2.5.2'
+    // 网络请求
     compile 'com.loopj.android:android-async-http:1.4.9'
+    // daimajia.slider 主要实现绚丽的轮播图
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
 }
 
 task sourcesJar(type: Jar) {
@@ -102,7 +108,7 @@ def siteUrl = 'https://github.com/changleibox/Box-AndroidLibrary' // 项目的�
 def gitUrl = 'https://github.com/changleibox/Box-AndroidLibrary.git' // Git仓库的url
 
 group = "me.box.library" // Maven Group ID for the artifact，一般填你唯一的包名
-version = "1.1.0" // This is the library version used when deploying the artifact
+version = "1.2.0" // This is the library version used when deploying the artifact
 
 install {
     repositories.mavenInstaller {
