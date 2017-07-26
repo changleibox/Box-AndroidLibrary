@@ -59,8 +59,10 @@ public class ICircleTransform implements Transformation {
         int height = source.getHeight();
         int size = Math.min(width, height);
 
-        int x = (width - size) / 2;
-        int y = (height - size) / 2;
+        int sourceSize = Math.min(width, height);
+
+        int x = (sourceSize - size) / 2;
+        int y = (sourceSize - size) / 2;
 
         Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
         if (squaredBitmap != source) {
@@ -73,6 +75,7 @@ public class ICircleTransform implements Transformation {
         canvas.setDrawFilter(new PaintFlagsDrawFilter(0,
                 Paint.FILTER_BITMAP_FLAG | Paint.ANTI_ALIAS_FLAG));
         Paint paint = new Paint();
+        paint.setAntiAlias(true);
         BitmapShader shader = new BitmapShader(squaredBitmap,
                 BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
         paint.setShader(shader);
