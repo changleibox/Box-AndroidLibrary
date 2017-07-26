@@ -24,10 +24,6 @@ import net.izhuo.app.library.util.IJsonDecoder;
 import net.izhuo.app.library.util.ILogCompat;
 import net.izhuo.app.library.util.IToastCompat;
 
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -35,12 +31,17 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
+import cz.msebera.android.httpclient.conn.ssl.SSLSocketFactory;
+import cz.msebera.android.httpclient.entity.StringEntity;
+
 /**
  * Created by box on 2014/7/29.
  * <p>
  * 访问网络数据
  */
-@SuppressWarnings({"unused", "deprecation"})
+@SuppressWarnings({"unused", "deprecation", "WeakerAccess"})
 public class IHttpRequest<T> {
 
     private static final String CONTENT_TYPE = "application/json;charset=utf-8";

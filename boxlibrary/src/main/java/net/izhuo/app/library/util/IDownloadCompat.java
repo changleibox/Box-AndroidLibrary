@@ -14,16 +14,16 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import net.izhuo.app.library.request.IHttpRequest.CommonCallback;
 import net.izhuo.app.library.request.IHttpRequest.SpecialCallback;
 
-import org.apache.http.Header;
-
 import java.io.File;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by Box on 16/9/19.
  * <p>
  * 文件下载
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "WeakerAccess", "unused"})
 public class IDownloadCompat {
 
     public static String getFilePath(@NonNull String url, @NonNull String dirPath) {
@@ -50,18 +50,18 @@ public class IDownloadCompat {
         AsyncHttpClient httpClient = new AsyncHttpClient();
         httpClient.get(url, new FileAsyncHttpResponseHandler(temporaryFile) {
             @Override
-            public void onFailure(int i, Header[] headers, Throwable throwable, File file) {
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
                 if (file != null) {
                     //noinspection ResultOfMethodCallIgnored
                     file.delete();
                 }
                 if (callback != null) {
-                    callback.onRequestFailure(i, throwable.getMessage());
+                    callback.onRequestFailure(statusCode, throwable.getMessage());
                 }
             }
 
             @Override
-            public void onSuccess(int i, Header[] headers, File file) {
+            public void onSuccess(int statusCode, Header[] headers, File file) {
                 if (callback != null) {
                     callback.onRequestSuccess(file);
                 }
