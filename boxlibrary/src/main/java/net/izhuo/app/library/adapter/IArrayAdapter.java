@@ -244,9 +244,10 @@ public abstract class IArrayAdapter<T, VH extends RecyclerView.ViewHolder> exten
         notifyDataSetChanged();
     }
 
+    @SuppressLint("RecyclerView")
     @CallSuper
     @Override
-    public void onBindViewHolder(final VH holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(final VH holder, final int position) {
         synchronized (mLock) {
             if (mClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
