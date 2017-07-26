@@ -2,9 +2,6 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-/**
- *
- */
 package net.izhuo.app.library.util;
 
 import android.graphics.Bitmap;
@@ -24,11 +21,11 @@ import com.squareup.picasso.Transformation;
  * <p>
  * 创建圆角图片
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ICircleTransform implements Transformation {
 
-    private static final int CIRCLE = -1;
-
-    private final int size;
+    public static final int CIRCLE = -1;
+    protected final int size;
 
     public ICircleTransform() {
         this(CIRCLE);
@@ -40,7 +37,7 @@ public class ICircleTransform implements Transformation {
 
     @Override
     public Bitmap transform(Bitmap bitmap) {
-        return this.size == 0 ? bitmap : (this.size == CIRCLE ? transformCircle(bitmap) : transformRadius(bitmap));
+        return this.size == 0 ? bitmap : (this.size == CIRCLE ? transformCircle(bitmap) : transformRadius(bitmap, this.size));
     }
 
     @Override
@@ -48,7 +45,7 @@ public class ICircleTransform implements Transformation {
         return this.size == CIRCLE ? "circle" : "radius" + size;
     }
 
-    private Bitmap transformCircle(Bitmap source) {
+    public static Bitmap transformCircle(Bitmap source) {
         int width = source.getWidth();
         int height = source.getHeight();
         int size = Math.min(width, height);
@@ -79,7 +76,7 @@ public class ICircleTransform implements Transformation {
         return bitmap;
     }
 
-    private Bitmap transformRadius(Bitmap source) {
+    public static Bitmap transformRadius(Bitmap source, int radius) {
         int width = source.getWidth();
         int height = source.getHeight();
 
@@ -91,7 +88,7 @@ public class ICircleTransform implements Transformation {
 
         RectF rectF = new RectF(new Rect(0, 0, width, height));
 
-        canvas.drawRoundRect(rectF, this.size, this.size, paintColor);
+        canvas.drawRoundRect(rectF, radius, radius, paintColor);
 
         Paint paintImage = new Paint();
         paintImage.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
