@@ -31,7 +31,7 @@ import java.util.Locale;
  * 应用辅助类
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class IAppHelper {
+public final class IAppHelper {
 
     private static final IAppHelper instance = new IAppHelper();
     private static final Handler handler = new Handler(Looper.getMainLooper());
@@ -39,10 +39,6 @@ public class IAppHelper {
     private Locale mLocale = Locale.getDefault();
 
     private IAppHelper() {
-    }
-
-    public static IAppHelper getInstance() {
-        return instance;
     }
 
     public static void setLocale(Locale locale) {
