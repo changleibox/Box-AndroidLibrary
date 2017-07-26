@@ -24,7 +24,7 @@ import java.util.Map;
  *         <p>
  *         2014年7月29日
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class IConstants {
 
     public static boolean DEBUG = true;
@@ -129,6 +129,10 @@ public final class IConstants {
         int REQUEST_CHOOSE_FILE = 0x000503;
         int REQUEST_PERMISSION_SDCARD = 0x000504;
         int REQUEST_PERMISSION_CAMERA = 0x000505;
+    }
+
+    public interface ISize {
+        int LIMIT_PHONE_LENGTH = 11;
     }
 
 }

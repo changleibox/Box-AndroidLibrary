@@ -57,6 +57,8 @@
     <string name="box_toast_file_save_fail">图片保存失败！</string>
     <string name="box_toast_not_permission">没有操作权限，请在设置中授权！</string>
     <string name="box_toast_wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="box_toast_no_camera">没有拍照设备</string>
+    <string name="box_toast_no_facing_camera">没有前置拍照设备，默认打开后置拍照设备</string>
 
     <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 

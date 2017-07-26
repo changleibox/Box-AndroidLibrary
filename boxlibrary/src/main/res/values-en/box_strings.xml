@@ -57,6 +57,8 @@
     <string name="box_toast_file_save_fail">Picture save failed!</string>
     <string name="box_toast_not_permission">No authorization to operate, please authorize in settings!</string>
     <string name="box_toast_wechat_client_inavailable">At present, your WeChat version is too low or not to install WeChat, WeChat needs to be installed to use.</string>
+    <string name="box_toast_no_camera">No camera equipment.</string>
+    <string name="box_toast_no_facing_camera">No pre camera device, open the rear camera device by default.</string>
 
     <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 

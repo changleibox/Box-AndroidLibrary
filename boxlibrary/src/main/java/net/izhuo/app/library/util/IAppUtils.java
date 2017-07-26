@@ -9,6 +9,9 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
+import android.app.Instrumentation;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.ComponentName;
@@ -42,6 +45,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
 import android.location.LocationManager;
 import android.media.ExifInterface;
 import android.net.ConnectivityManager;
@@ -53,17 +57,24 @@ import android.os.Environment;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.provider.Settings;
+import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresPermission;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -86,16 +97,17 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
-import net.izhuo.app.library.IContext;
+import net.izhuo.app.library.BuildConfig;
 import net.izhuo.app.library.IBaseActivity;
 import net.izhuo.app.library.IBaseFragment;
+import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
-import net.izhuo.app.library.request.IHttpRequest.CommonCallback;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IHttpError;
 import net.izhuo.app.library.common.IConstants.IRequestCode;
 import net.izhuo.app.library.helper.IAppHelper;
 import net.izhuo.app.library.reader.entity.IDevice;
+import net.izhuo.app.library.request.IHttpRequest.CommonCallback;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -103,6 +115,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
@@ -123,12 +137,15 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.regex.Pattern.compile;
+import static net.izhuo.app.library.common.IConstants.ISize.LIMIT_PHONE_LENGTH;
+
 /**
  * @author Changlei
  *         <p>
  *         2014年8月1日
  */
-@SuppressWarnings({"unused", "JavaDoc"})
+@SuppressWarnings({"unused", "JavaDoc", "WeakerAccess"})
 public class IAppUtils {
 
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("##.#");
@@ -333,7 +350,7 @@ public class IAppUtils {
      * @return 返回Boolean型，true为合法，false为不合法
      */
     public static boolean isMobileNO(String mobiles) {
-        Pattern p = Pattern.compile("^((\\(\\d{3}\\))|(\\d{3}\\-))?1[3-8][0-9]\\d{8}");
+        Pattern p = compile("^((\\(\\d{3}\\))|(\\d{3}-))?1[3-8][0-9]\\d{8}");
         Matcher m = p.matcher(mobiles);
         return m.matches();
     }
@@ -442,20 +459,20 @@ public class IAppUtils {
         final Paint paint = new Paint();
         paint.setAntiAlias(true);
         Bitmap target = Bitmap.createBitmap(min, min, Config.ARGB_8888);
-        /**
-         * 产生一个同样大小的画布
+        /*
+          产生一个同样大小的画布
          */
         Canvas canvas = new Canvas(target);
-        /**
-         * 首先绘制圆形
+        /*
+          首先绘制圆形
          */
         canvas.drawCircle(min / 2, min / 2, min / 2, paint);
-        /**
-         * 使用SRC_IN
+        /*
+          使用SRC_IN
          */
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        /**
-         * 绘制图片
+        /*
+          绘制图片
          */
         canvas.drawBitmap(source, 0, 0, paint);
         return target;
@@ -802,15 +819,8 @@ public class IAppUtils {
         }
         DisplayMetrics metrics = activity.getResources().getDisplayMetrics();
         final TypedValue tv = new TypedValue();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, metrics);
-            }
-        } else {
-            // 使用android.support.v7.appcompat包做actionbar兼容的情况
-            if (activity.getTheme().resolveAttribute(android.support.v7.appcompat.R.attr.actionBarSize, tv, true)) {
-                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, metrics);
-            }
+        if (activity.getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, metrics);
         }
         return actionBarHeight;
     }
@@ -852,19 +862,19 @@ public class IAppUtils {
     }
 
     public static boolean hasFroyo() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
+        return true;
     }
 
     public static boolean hasGingerbread() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
+        return true;
     }
 
     public static boolean hasHoneycomb() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+        return true;
     }
 
     public static boolean hasHoneycombMR1() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1;
+        return true;
     }
 
     public static boolean hasJellyBean() {
@@ -1008,7 +1018,7 @@ public class IAppUtils {
     }
 
     public static boolean isHanzi(String str) {
-        Pattern pattern = Pattern.compile("[\\u4e00-\\u9fa5]+");
+        Pattern pattern = compile("[\\u4e00-\\u9fa5]+");
         Matcher m = pattern.matcher(str);
         return m.find() && m.group(0).equals(str);
     }
@@ -1211,7 +1221,7 @@ public class IAppUtils {
                 mobile.substring(length - 4, length);
     }
 
-    public static final Pattern PATTERN = Pattern.compile(
+    public static final Pattern PATTERN = compile(
             "<img\\s+(?:[^>]*)src\\s*=\\s*([^>]+)", Pattern.CASE_INSENSITIVE
                     | Pattern.MULTILINE);
 
@@ -1371,19 +1381,19 @@ public class IAppUtils {
             Field fieldMonth = clazz.getField("month");
             fieldMonth.setAccessible(true);
             int hourId = fieldMonth.getInt(null);
-            NumberPicker hourNumberPicker = (NumberPicker) datePicker.findViewById(hourId);
+            NumberPicker hourNumberPicker = datePicker.findViewById(hourId);
             setDividerHeight(hourNumberPicker);
 
             Field fieldDay = clazz.getField("day");
             fieldDay.setAccessible(true);
             int dayId = fieldDay.getInt(null);
-            NumberPicker dayNumberPicker = (NumberPicker) datePicker.findViewById(dayId);
+            NumberPicker dayNumberPicker = datePicker.findViewById(dayId);
             setDividerHeight(dayNumberPicker);
 
             Field fieldYear = clazz.getField("year");
             fieldYear.setAccessible(true);
             int yearId = fieldYear.getInt(null);
-            NumberPicker yearNumberPicker = (NumberPicker) datePicker.findViewById(yearId);
+            NumberPicker yearNumberPicker = datePicker.findViewById(yearId);
             setDividerHeight(yearNumberPicker);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1397,13 +1407,13 @@ public class IAppUtils {
             Field fieldHour = clazz.getField("hour");
             fieldHour.setAccessible(true);
             int hourId = fieldHour.getInt(null);
-            NumberPicker hourNumberPicker = (NumberPicker) timePicker.findViewById(hourId);
+            NumberPicker hourNumberPicker = timePicker.findViewById(hourId);
             setDividerHeight(hourNumberPicker);
 
             Field fieldMinute = clazz.getField("minute");
             fieldMinute.setAccessible(true);
             int minuteId = fieldMinute.getInt(null);
-            NumberPicker minuteNumberPicker = (NumberPicker) timePicker.findViewById(minuteId);
+            NumberPicker minuteNumberPicker = timePicker.findViewById(minuteId);
             setDividerHeight(minuteNumberPicker);
         } catch (Exception e) {
             e.printStackTrace();
@@ -1428,9 +1438,7 @@ public class IAppUtils {
                     field.setAccessible(true);
                     try {
                         ColorDrawable colorDrawable = new ColorDrawable();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                            colorDrawable.setColor(Color.parseColor("#ffebebeb"));
-                        }
+                        colorDrawable.setColor(Color.parseColor("#ffebebeb"));
                         field.set(picker, colorDrawable);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -1471,7 +1479,7 @@ public class IAppUtils {
     public static boolean isApplicationBroughtToBackground(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         @SuppressWarnings("deprecation")
-        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        List<RunningTaskInfo> tasks = am.getRunningTasks(1);
         if (!tasks.isEmpty()) {
             ComponentName topActivity = tasks.get(0).topActivity;
             if (!topActivity.getPackageName().equals(context.getPackageName())) {
@@ -1562,7 +1570,179 @@ public class IAppUtils {
             //noinspection deprecation
             config.locale = locale;
         }
+        //noinspection deprecation
         resources.updateConfiguration(config, dm);
+    }
+
+    public static CharSequence getHightLightText(CharSequence source, CharSequence keyword, @ColorInt int color) {
+        CharSequence text = source;
+        if (!TextUtils.isEmpty(source) && !TextUtils.isEmpty(keyword)) {
+            Matcher matcher = compile(keyword.toString()).matcher(source);
+            while (matcher.find()) {
+                text = SpannableString.valueOf(text);
+                ForegroundColorSpan colorSpan = new ForegroundColorSpan(color);
+                ((SpannableString) text).setSpan(colorSpan, matcher.start(), matcher.end(), Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+            }
+        }
+        return text;
+    }
+
+    public static InputFilter getPhoneFilter() {
+        return getPhoneFilter(LIMIT_PHONE_LENGTH);
+    }
+
+    public static InputFilter getPhoneFilter(final int max) {
+        return new InputFilter.LengthFilter(max) {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                return super.filter(source, start, end, dest, dstart, dend);
+            }
+        };
+    }
+
+    public static boolean isNumeric(CharSequence str) {
+        return !TextUtils.isEmpty(str) && Pattern.matches("[0-9]*", str);
+    }
+
+    public static void openGPSSetting(Context context) {
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            // The Android SDK doc says that the location settings activity
+            // may not be found. In that case show the general settings.
+
+            // General settings activity
+            intent.setAction(Settings.ACTION_SETTINGS);
+            try {
+                context.startActivity(intent);
+            } catch (Exception ignored) {
+            }
+        }
+    }
+
+    public static boolean isTopActivity(Context context, String className) {
+        List<RunningTaskInfo> rTasks = getRunningTask(context, 1);
+        for (RunningTaskInfo task : rTasks) {
+            Log.d("SystemUtils", "isTopActivity:" + task.topActivity.getClassName() + "|" + className);
+            if (task.topActivity.getClassName().equals(className)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @SuppressWarnings("deprecation")
+    public static List<RunningTaskInfo> getRunningTask(Context context, int num) {
+        if (context != null) {
+            ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            return am.getRunningTasks(num);
+        }
+        return null;
+    }
+
+    /**
+     * 强制帮用户打开GPS
+     *
+     * @param context
+     */
+    public static void openGPS(Context context) {
+        Intent gpsIntent = new Intent();
+        gpsIntent.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
+        gpsIntent.addCategory("android.intent.category.ALTERNATIVE");
+        gpsIntent.setData(Uri.parse("custom:3"));
+        try {
+            PendingIntent.getBroadcast(context, 0, gpsIntent, 0).send();
+        } catch (PendingIntent.CanceledException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Nullable
+    public String getFromAssets(Context context, String fileName) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(context.getResources().getAssets().open(fileName));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line;
+            String result = "";
+            while ((line = bufReader.readLine()) != null) {
+                result += line;
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static byte[] readStream(InputStream inStream) throws Exception {
+        ByteArrayOutputStream outSteam = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = inStream.read(buffer)) != -1) {
+            outSteam.write(buffer, 0, len);
+        }
+        outSteam.close();
+        inStream.close();
+        return outSteam.toByteArray();
+    }
+
+    @Nullable
+    public static String getAssetsText(Context context, String fileName) {
+        try {
+            InputStream stream = context.getAssets().open(fileName);
+            return new String(readStream(stream), "utf-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @SuppressWarnings("deprecation")
+    @RequiresPermission(allOf = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    public static void openCamera(Activity activity, int requestCode, boolean isFontCamera, File outputFile) {
+        PackageManager packageManager = activity.getPackageManager();
+        if (!packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            IToastCompat.showText(activity, R.string.box_toast_no_camera);
+            return;
+        }
+        Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intentImage.addCategory(Intent.CATEGORY_DEFAULT);
+        intentImage.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(outputFile));
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
+            int facing = isFontCamera ? CameraInfo.CAMERA_FACING_FRONT : CameraInfo.CAMERA_FACING_BACK;
+            intentImage.putExtra("android.intent.extras.CAMERA_FACING", facing);
+        } else if (isFontCamera) {
+            IToastCompat.showText(activity, R.string.box_toast_no_facing_camera);
+        }
+        activity.startActivityForResult(intentImage, requestCode);
+    }
+
+    public static Uri parseUri(Activity activity, File file, Intent intent) {
+        Uri contentUri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            contentUri = FileProvider.getUriForFile(activity, BuildConfig.APPLICATION_ID + ".fileprovider", file);
+        } else {
+            contentUri = Uri.fromFile(file);
+        }
+        return contentUri;
+    }
+
+    /**
+     * 用Runtime模拟按键操作
+     *
+     * @param keyCode 按键事件(KeyEvent)的按键值
+     */
+    public static void sendKeyCode(final int keyCode) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Instrumentation().sendCharacterSync(keyCode);
+            }
+        }).start();
     }
 
 }
