@@ -390,11 +390,7 @@ public class IContextHelper implements IBaseContext {
                 return view.findViewById(id);
             }
         }
-        Activity activity = getActivity();
-        if (activity == null) {
-            return null;
-        }
-        return activity.findViewById(id);
+        return null;
     }
 
     @Override

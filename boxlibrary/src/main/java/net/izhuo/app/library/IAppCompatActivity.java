@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.support.annotation.CallSuper;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
@@ -96,12 +95,6 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
     @Override
     public void onContentChanged() {
         mHelper.onContentChanged();
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public View findViewById(@IdRes int id) {
-        return mHelper.findViewById(id);
     }
 
     @Override
