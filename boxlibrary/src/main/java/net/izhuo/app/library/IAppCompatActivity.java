@@ -29,7 +29,6 @@ import net.izhuo.app.library.helper.IContextHelper;
 import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
 import net.izhuo.app.library.util.IIntentCompat;
-import net.izhuo.app.library.util.IProgressCompat;
 import net.izhuo.app.library.widget.IOSDialog;
 import net.izhuo.app.library.widget.IProgress;
 
@@ -135,7 +134,7 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
 
     @Override
     public IProgress showLoad(CharSequence message) {
-        return IProgressCompat.showLoad(this, message);
+        return mHelper.showLoad(message);
     }
 
     @Override

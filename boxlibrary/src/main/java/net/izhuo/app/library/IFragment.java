@@ -194,6 +194,16 @@ public abstract class IFragment extends Fragment implements IContext {
         return mHelper.getText(textView);
     }
 
+    @Override
+    public IProgress showLoad(CharSequence message) {
+        return mHelper.showLoad(message);
+    }
+
+    @Override
+    public IProgress showLoad(int messageResId) {
+        return mHelper.showLoad(messageResId);
+    }
+
     @Nullable
     @Override
     public IProgress showLoad() {
