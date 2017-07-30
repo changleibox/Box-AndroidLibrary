@@ -20,11 +20,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.izhuo.app.library.IBaseActivity;
 import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
+import net.izhuo.app.library.helper.IAppHelper;
 import net.izhuo.app.library.widget.IOSDialog;
 
 import java.lang.reflect.Field;
@@ -84,6 +87,7 @@ public final class IActivityCompat {
         if (self != null) {
             self.finish();
         }
+        MobclickAgent.onKillProcess(IAppHelper.getContext());
         android.os.Process.killProcess(android.os.Process.myPid());
     }
 

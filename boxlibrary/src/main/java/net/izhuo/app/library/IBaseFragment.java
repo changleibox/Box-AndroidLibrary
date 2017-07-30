@@ -28,6 +28,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.umeng.analytics.MobclickAgent;
 
 import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
@@ -162,9 +163,16 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(getClass().getSimpleName());
         if (!isHidden) {
             onRefreshUI();
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getClass().getSimpleName());
     }
 
     public boolean onBackPressed() {

@@ -24,6 +24,7 @@ import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.umeng.analytics.MobclickAgent;
 
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
 import net.izhuo.app.library.helper.IFragmentHelper;
@@ -293,7 +294,14 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         onRefreshUI();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

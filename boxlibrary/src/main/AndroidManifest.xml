@@ -40,7 +40,7 @@
             android:value="597d52b5f29d98796d0018e1"/>
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="BoxLibrary"/>
+            android:value="${applicationId}"/>
     </application>
 
 </manifest>
