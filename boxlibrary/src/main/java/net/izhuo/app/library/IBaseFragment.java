@@ -86,16 +86,19 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     public final void onUserCreateViews(Bundle savedInstanceState) {
     }
 
+    @Nullable
     @Override
     public Application getApplication() {
         return mHelper.getApplication();
     }
 
+    @Nullable
     @Override
     public Context getApplicationContext() {
         return mHelper.getApplicationContext();
     }
 
+    @Nullable
     @Override
     public ApplicationInfo getApplicationInfo() {
         return mHelper.getApplicationInfo();
@@ -191,21 +194,25 @@ public abstract class IBaseFragment extends Fragment implements IContext {
         return mHelper.getText(textView);
     }
 
+    @Nullable
     @Override
     public IProgress showLoad() {
         return mHelper.showLoad();
     }
 
+    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme, CharSequence message) {
         return mHelper.showLoad(theme, message);
     }
 
+    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme, int messageResId) {
         return mHelper.showLoad(theme, messageResId);
     }
 
+    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme) {
         return mHelper.showLoad(theme);
