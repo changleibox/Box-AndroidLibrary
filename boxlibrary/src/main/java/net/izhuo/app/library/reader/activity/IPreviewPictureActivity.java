@@ -64,11 +64,11 @@ public final class IPreviewPictureActivity extends IBaseActivity implements OnPa
     @Override
     public void initViews(Bundle savedInstanceState) {
         mViewPager = (ViewPager) findViewById(R.id.box_vp_picture);
-        mVPAdapter = new IVPAdapter(mContext);
+        mVPAdapter = new IVPAdapter(this);
         mTvCount = (TextView) findViewById(R.id.box_tv_count);
         mBtnSelect = (Button) findViewById(R.id.box_btn_select);
-        mUnSelectDrawable = IViewDrawable.getDrawable(mContext, R.drawable.box_img_unchecked);
-        mSelectDrawable = IViewDrawable.getDrawable(mContext, R.drawable.box_img_checked);
+        mUnSelectDrawable = IViewDrawable.getDrawable(this, R.drawable.box_img_unchecked);
+        mSelectDrawable = IViewDrawable.getDrawable(this, R.drawable.box_img_checked);
     }
 
     @SuppressWarnings("deprecation")

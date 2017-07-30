@@ -467,18 +467,20 @@ public abstract class IBaseFragment extends Fragment implements IContext {
         }
     }
 
+    @SuppressWarnings("MissingPermission")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
     @Override
-    public final void intentForPicture(List<String> datas, int maxCount) {
-        IImageChooser.intentForPicture(this, datas, maxCount);
+    public final void startActivityForPicture(List<String> datas, int maxCount) {
+        IImageChooser.startActivityForPicture(this, datas, maxCount);
     }
 
+    @SuppressWarnings("MissingPermission")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
     @Override
-    public final void intentForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
-        IImageChooser.intentForPicture(this, type, totalImages, selectImages, selectIndex, maxSelectCount);
+    public final void startActivityForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
+        IImageChooser.startActivityForPicture(this, type, totalImages, selectImages, selectIndex, maxSelectCount);
     }
 
     @Override

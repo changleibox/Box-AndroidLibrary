@@ -10,6 +10,7 @@ import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.webkit.WebView;
@@ -20,6 +21,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import net.izhuo.app.library.IBaseContext;
 import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.reader.picture.IOpenType;
+import net.izhuo.app.library.util.ILogCompat;
 import net.izhuo.app.library.widget.IOSDialog;
 import net.izhuo.app.library.widget.IProgress;
 
@@ -33,9 +35,12 @@ import java.util.List;
 
 public class IContextHelper implements IBaseContext {
 
+    private static String TAG;
+
     private IContext mContext;
 
-    public IContextHelper(IContext context) {
+    public IContextHelper(@NonNull IContext context) {
+        TAG = context.getClass().getSimpleName();
         this.mContext = context;
     }
 
@@ -135,28 +140,28 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public void i(Object msg) {
-
+    public final void i(Object msg) {
+        ILogCompat.i(TAG, msg);
     }
 
     @Override
-    public void d(Object msg) {
-
+    public final void d(Object msg) {
+        ILogCompat.d(TAG, msg);
     }
 
     @Override
-    public void e(Object msg) {
-
+    public final void e(Object msg) {
+        ILogCompat.e(TAG, msg);
     }
 
     @Override
-    public void v(Object msg) {
-
+    public final void v(Object msg) {
+        ILogCompat.v(TAG, msg);
     }
 
     @Override
-    public void w(Object msg) {
-
+    public final void w(Object msg) {
+        ILogCompat.w(TAG, msg);
     }
 
     @Override
@@ -180,12 +185,12 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public void intentForPicture(List<String> datas, @IntRange(from = 1) int maxCount) {
+    public void startActivityForPicture(List<String> datas, @IntRange(from = 1) int maxCount) {
 
     }
 
     @Override
-    public void intentForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
+    public void startActivityForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
 
     }
 

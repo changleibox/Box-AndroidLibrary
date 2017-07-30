@@ -128,7 +128,7 @@ public interface IBaseContext {
      * @param datas    已经选中的图片，类行为List<String>，如果没有则穿null
      * @param maxCount 需要选择的最多图片数量
      */
-    void intentForPicture(List<String> datas, @IntRange(from = 1) int maxCount);
+    void startActivityForPicture(List<String> datas, @IntRange(from = 1) int maxCount);
 
     /**
      * 跳转到查看图片页面
@@ -139,7 +139,7 @@ public interface IBaseContext {
      * @param selectIndex    当前查看的图片的索引
      * @param maxSelectCount 总的需要选择的图片数量，选择预览时使用，查看时传0
      */
-    void intentForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount);
+    void startActivityForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount);
 
     void setWebViewCommonAttribute(WebView webView);
 

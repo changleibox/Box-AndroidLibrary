@@ -7,14 +7,14 @@
 
     <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
     <!-- izhuoBase lable text -->
-    <string name="box_lable_spread">%s Sheet</string>
-    <string name="box_lable_complete_spread">Complete(%1$s/%2$s)</string>
+    <string name="box_lable_spread">%1$d Sheet</string>
+    <string name="box_lable_complete_spread">Complete(%1$d/%2$d)</string>
     <string name="box_lable_no_sdcard">Memory card not found!</string>
     <string name="box_lable_loading">Loading……</string>
     <string name="box_lable_no_picture">No pictures found!</string>
     <string name="box_lable_picture">Picture</string>
     <string name="box_lable_select">Choice</string>
-    <string name="box_lable_preview">Preview(%s)</string>
+    <string name="box_lable_preview">Preview(%1$d)</string>
     <string name="box_lable_hot_city">Hot</string>
     <string name="box_lable_hot">Hot</string>
     <string name="box_lable_prompt">Prompt</string>
@@ -48,7 +48,7 @@
     <string name="box_btn_photo_album">Album</string>
 
     <!-- izhuoBase toast text -->
-    <string name="box_toast_max_select_picture">You can choose %s of the most!</string>
+    <string name="box_toast_max_select_picture">You can choose %1$d of the most!</string>
     <string name="box_toast_exit_prompt">Press the return key to exit</string>
     <string name="box_toast_net_exception">Network exception, please check the network!</string>
     <string name="box_toast_net_connect_timeout">Request timeout, please try again later!</string>

@@ -7,7 +7,9 @@ package net.izhuo.app.library.reader.picture;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView.LayoutParams;
@@ -110,7 +112,10 @@ public class IMyAdapter extends ICommonAdapter<String> {
                         }
                         newDatas.add(mDirPath + "/" + string);
                     }
-                    mActivity.intentForPicture(IOpenType.Type.EDIT,
+                    if (ActivityCompat.checkSelfPermission(mActivity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    mActivity.startActivityForPicture(IOpenType.Type.EDIT,
                             newDatas, getSelectedImages(), position - 1, getMaxSelectCount());
                 }
             });

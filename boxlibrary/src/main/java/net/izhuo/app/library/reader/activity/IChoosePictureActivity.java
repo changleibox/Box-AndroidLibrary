@@ -4,9 +4,11 @@
 
 package net.izhuo.app.library.reader.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -201,7 +204,7 @@ public final class IChoosePictureActivity extends IBaseActivity implements
             showText(R.string.box_lable_no_sdcard);
             return;
         }
-        // showLoad(mContext);
+        // showLoad(context);
 
         new Thread(new Runnable() {
             @Override
@@ -314,10 +317,10 @@ public final class IChoosePictureActivity extends IBaseActivity implements
             paths.add(path);
         }
         paths.add(0, CAMERA);
-        /**
+        /*
          * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
          */
-        mAdapter = new IMyAdapter(mContext, paths, R.layout.box_item_gride, mImgDir.getAbsolutePath());
+        mAdapter = new IMyAdapter(this, paths, R.layout.box_item_gride, mImgDir.getAbsolutePath());
         mAdapter.setSelectedImages(mSelectImages);
         mAdapter.setCallback(this);
         mAdapter.setMaxSelectCount(MAX_COUNT);
@@ -340,17 +343,16 @@ public final class IChoosePictureActivity extends IBaseActivity implements
             paths.add(path);
         }
         paths.add(0, CAMERA);
-        /**
+        /*
          * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
          */
-        mAdapter = new IMyAdapter(mContext, paths, R.layout.box_item_gride, mImgDir.getAbsolutePath());
+        mAdapter = new IMyAdapter(this, paths, R.layout.box_item_gride, mImgDir.getAbsolutePath());
         mAdapter.setSelectedImages(mSelectImages);
         mAdapter.setMaxSelectCount(MAX_COUNT);
         mAdapter.setCallback(this);
         mGirdView.setAdapter(mAdapter);
         // mAdapter.notifyDataSetChanged();
-        mBtnPreview.setText(getString(R.string.box_lable_spread,
-                floder.getCount()));
+        mBtnPreview.setText(getString(R.string.box_lable_spread, floder.getCount()));
         mChooseDir.setText(floder.getName());
         mListImageDirPopupWindow.dismiss();
     }
@@ -391,7 +393,10 @@ public final class IChoosePictureActivity extends IBaseActivity implements
             getWindow().setAttributes(lp);
         } else if (v.getId() == R.id.box_btn_preview) {
             List<String> newDatas = mAdapter.getSelectedImages();
-            intentForPicture(IOpenType.Type.EDIT, newDatas, newDatas, 0, MAX_COUNT);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+            startActivityForPicture(IOpenType.Type.EDIT, newDatas, newDatas, 0, MAX_COUNT);
         }
     }
 
@@ -449,7 +454,10 @@ public final class IChoosePictureActivity extends IBaseActivity implements
                         List<String> newDatas = new ArrayList<>();
                         newDatas.addAll(mSelectImages);
                         newDatas.add(getAbsoluteImagePath(data.getData()));
-                        intentForPicture(IOpenType.Type.EXAMINE, newDatas, newDatas, 0, MAX_COUNT);
+                        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivityForPicture(IOpenType.Type.EXAMINE, newDatas, newDatas, 0, MAX_COUNT);
                     }
                 }).start();
             }

@@ -31,7 +31,7 @@ public class IImageChooser {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
-    public static void intentForPicture(IContext iContext, List<String> datas, @IntRange(from = 1) int maxCount) {
+    public static void startActivityForPicture(IContext iContext, List<String> datas, @IntRange(from = 1) int maxCount) {
         if (maxCount < 1) {
             throw new IllegalAccessError("maxCount min is 1!");
         }
@@ -50,7 +50,7 @@ public class IImageChooser {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
-    public static void intentForPicture(IContext iContext, IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
+    public static void startActivityForPicture(IContext iContext, IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
         Bundle bundle = new Bundle();
         bundle.putInt(IOpenType.OPEN_TYPE, type.toInteger());
         bundle.putString(IConstants.INTENT_DATA, IJsonDecoder.objectToJson(totalImages));
