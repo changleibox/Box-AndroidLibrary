@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import net.izhuo.app.library.IContext;
-import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IAppCompatActivity;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants.IRequestCode;
 import net.izhuo.app.library.reader.activity.IChoosePictureActivity;
@@ -46,7 +46,7 @@ public class IMyAdapter extends ICommonAdapter<String> {
     private Callback mCallback;
     private int mMaxSelectCount = Integer.MAX_VALUE;
     private LayoutParams mParams;
-    private IBaseActivity mActivity;
+    private IAppCompatActivity mActivity;
     private int itemWidth;
 
     public IMyAdapter(Context context, List<String> datas, int itemLayoutId, String dirPath) {

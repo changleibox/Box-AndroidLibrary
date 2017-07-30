@@ -98,8 +98,8 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 import net.izhuo.app.library.BuildConfig;
-import net.izhuo.app.library.IBaseActivity;
-import net.izhuo.app.library.IBaseFragment;
+import net.izhuo.app.library.IAppCompatActivity;
+import net.izhuo.app.library.IFragment;
 import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
@@ -941,7 +941,7 @@ public class IAppUtils {
     }
 
     @SuppressWarnings("MissingPermission")
-    public static void call(String phone, IBaseActivity context, int requestCode) {
+    public static void call(String phone, IAppCompatActivity context, int requestCode) {
         if (IPermissionCompat.checkSelfPermission((IContext) context, requestCode, Manifest.permission.CALL_PHONE)) {
             Intent intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel:" + phone.replaceAll("-", "")));
@@ -949,7 +949,7 @@ public class IAppUtils {
         }
     }
 
-    public static void startWechat(IBaseActivity activity) {
+    public static void startWechat(IAppCompatActivity activity) {
         try {
             Intent intent = new Intent();
             ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");
@@ -1140,7 +1140,7 @@ public class IAppUtils {
      * @throws OperationApplicationException
      * @throws RemoteException
      */
-    public static void addContacts(final IBaseActivity context, final String avatar,
+    public static void addContacts(final IAppCompatActivity context, final String avatar,
                                    final String name, final String mobile, final String email,
                                    final CommonCallback<String> callback, int requestCode) {
         if (!IPermissionCompat.checkSelfPermission((IContext) context, requestCode, Manifest.permission.WRITE_CONTACTS)) {
@@ -1328,7 +1328,7 @@ public class IAppUtils {
      * @param baseFragment 需要设置的activity
      * @param colorResId   状态栏颜色值资源ID
      */
-    public static void setStatusBarColor(IBaseFragment baseFragment, @ColorRes int colorResId) {
+    public static void setStatusBarColor(IFragment baseFragment, @ColorRes int colorResId) {
         setStatusBarColor(baseFragment, colorResId, true);
     }
 
@@ -1340,7 +1340,7 @@ public class IAppUtils {
      */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("deprecation")
-    public static void setStatusBarColor(IBaseFragment baseFragment, @ColorRes int colorResId, boolean fitSystemWindows) {
+    public static void setStatusBarColor(IFragment baseFragment, @ColorRes int colorResId, boolean fitSystemWindows) {
         if (isCanSetStatusBarColor() && baseFragment != null && baseFragment.getActivity() != null) {
             FragmentActivity activity = baseFragment.getActivity();
 

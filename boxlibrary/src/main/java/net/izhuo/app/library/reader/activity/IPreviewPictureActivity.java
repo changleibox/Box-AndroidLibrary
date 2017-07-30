@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
 
-import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IAppCompatActivity;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IKey;
@@ -36,7 +36,7 @@ import java.util.List;
  *         <p>
  *         2015年2月14日
  */
-public final class IPreviewPictureActivity extends IBaseActivity implements OnPageChangeListener, OnClickListener {
+public final class IPreviewPictureActivity extends IAppCompatActivity implements OnPageChangeListener, OnClickListener {
 
     public static final int VIEW_PAGER_MARGIN = 20;
 

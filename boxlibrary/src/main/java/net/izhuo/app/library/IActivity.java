@@ -17,7 +17,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
@@ -40,11 +40,11 @@ import java.util.List;
  * Activity基类
  */
 @SuppressWarnings({"unused", "deprecation"})
-public abstract class IBaseActivity extends AppCompatActivity implements IContext {
+public abstract class IActivity extends Activity implements IContext {
 
     private IContextHelper mHelper;
 
-    public IBaseActivity() {
+    public IActivity() {
         mHelper = new IContextHelper(this);
     }
 
@@ -115,7 +115,12 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public IFragmentHelper getFragmentHelper() {
-        return mHelper.getFragmentHelper();
+        throw new NullPointerException("不能调用这个方法！");
+    }
+
+    @Override
+    public FragmentManager getSupportFragmentManager() {
+        throw new NullPointerException("不能调用这个方法！");
     }
 
     public final int getWidth() {

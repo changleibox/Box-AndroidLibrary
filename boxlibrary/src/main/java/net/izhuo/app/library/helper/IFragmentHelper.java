@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import net.izhuo.app.library.IBaseFragment;
+import net.izhuo.app.library.IFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,26 +28,26 @@ public class IFragmentHelper {
     private int mCurrentTabIndex = -1;
     private FragmentManager mFragmentManager;
 
-    private List<IBaseFragment> mFragments;
+    private List<IFragment> mFragments;
 
     public IFragmentHelper(@NonNull FragmentManager fragmentManager) {
         this.mFragmentManager = fragmentManager;
         this.mFragments = new ArrayList<>();
     }
 
-    public IBaseFragment getFragment(int position) {
+    public IFragment getFragment(int position) {
         if (position >= mFragments.size()) {
             return null;
         }
         return mFragments.get(position);
     }
 
-    public void addFragments(IBaseFragment fragment) {
+    public void addFragments(IFragment fragment) {
         fragment.setPage(mFragments.size());
         mFragments.add(fragment);
     }
 
-    public void removeFragment(IBaseFragment fragment) {
+    public void removeFragment(IFragment fragment) {
         mFragments.remove(fragment);
         for (int i = 0; i < mFragments.size(); i++) {
             mFragments.get(i).setPage(i);
@@ -55,11 +55,11 @@ public class IFragmentHelper {
     }
 
     @SafeVarargs
-    public final <T extends IBaseFragment> void setFragments(T... fragments) {
+    public final <T extends IFragment> void setFragments(T... fragments) {
         setFragments(Arrays.asList(fragments));
     }
 
-    public <T extends IBaseFragment> void setFragments(List<T> fragments) {
+    public <T extends IFragment> void setFragments(List<T> fragments) {
         mFragments.clear();
         for (int i = 0; i < fragments.size(); i++) {
             T fragment = fragments.get(i);
@@ -68,15 +68,15 @@ public class IFragmentHelper {
     }
 
     @Nullable
-    public IBaseFragment showFragment(@IdRes int container, int position) {
-        IBaseFragment fragment = getFragment(position);
+    public IFragment showFragment(@IdRes int container, int position) {
+        IFragment fragment = getFragment(position);
         if (fragment == null) {
             return null;
         }
         return showFragment(container, fragment);
     }
 
-    public IBaseFragment showFragment(@IdRes int container, @NonNull IBaseFragment fragment) {
+    public IFragment showFragment(@IdRes int container, @NonNull IFragment fragment) {
         if (!mFragments.contains(fragment)) {
             mFragments.add(fragment.setPage(mFragments.size()));
         }

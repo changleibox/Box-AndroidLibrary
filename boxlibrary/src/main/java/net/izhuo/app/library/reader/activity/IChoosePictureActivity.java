@@ -33,7 +33,7 @@ import android.widget.RelativeLayout;
 
 import com.google.gson.reflect.TypeToken;
 
-import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IAppCompatActivity;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants.IKey;
 import net.izhuo.app.library.common.IConstants.IRequestCode;
@@ -70,7 +70,7 @@ import java.util.List;
  * <p>
  * 复审人：Box
  */
-public final class IChoosePictureActivity extends IBaseActivity implements
+public final class IChoosePictureActivity extends IAppCompatActivity implements
         OnImageDirSelected, OnClickListener, IMyAdapter.Callback {
 
     public static final String CAMERA = "CAMERA";

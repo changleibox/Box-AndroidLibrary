@@ -6,25 +6,19 @@ package net.izhuo.app.library;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.Application;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.support.annotation.CallSuper;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -34,38 +28,31 @@ import net.izhuo.app.library.helper.IContextHelper;
 import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
 import net.izhuo.app.library.util.IIntentCompat;
+import net.izhuo.app.library.util.IProgressCompat;
 import net.izhuo.app.library.widget.IOSDialog;
 import net.izhuo.app.library.widget.IProgress;
 
 import java.util.List;
 
 /**
- * Created by Changlei on 15/3/2.
+ * Created by Box on 15/1/12.
  * <p>
- * Fragment基类
+ * Activity基类
  */
-@SuppressWarnings("unused")
-public abstract class IBaseFragment extends Fragment implements IContext {
-
-    private Fragment mFragment;
-    private int mPage;
+@SuppressWarnings({"unused", "deprecation"})
+public abstract class IAppCompatActivity extends AppCompatActivity implements IContext {
 
     private IContextHelper mHelper;
 
-    public IBaseFragment() {
+    public IAppCompatActivity() {
         mHelper = new IContextHelper(this);
     }
 
     @CallSuper
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View containerView = mHelper.getContainerView(container, savedInstanceState);
-        if (containerView != null) {
-            return containerView;
-        }
-
-        return super.onCreateView(inflater, container, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mHelper.onCreate(savedInstanceState);
     }
 
     @Override
@@ -73,110 +60,8 @@ public abstract class IBaseFragment extends Fragment implements IContext {
         return false;
     }
 
-    @CallSuper
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mHelper.onCreate(savedInstanceState);
-        mHelper.setContentView(getView());
-        mHelper.onContentChanged();
-    }
-
-    @Override
-    public final void onUserCreateViews(Bundle savedInstanceState) {
-    }
-
-    @Nullable
-    @Override
-    public Application getApplication() {
-        return mHelper.getApplication();
-    }
-
-    @Nullable
-    @Override
-    public Context getApplicationContext() {
-        return mHelper.getApplicationContext();
-    }
-
-    @Nullable
-    @Override
-    public ApplicationInfo getApplicationInfo() {
-        return mHelper.getApplicationInfo();
-    }
-
-    @Override
-    public IFragmentHelper getFragmentHelper() {
-        return mHelper.getFragmentHelper();
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            onRefreshUI();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mHelper.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mHelper.onPause();
-    }
-
-    public boolean onBackPressed() {
-        return mHelper.onBackPressed();
-    }
-
-    public final Fragment getVisibaleFragment() {
-        return mFragment;
-    }
-
-    public final void setVisibaleFragment(Fragment fragment) {
-        this.mFragment = fragment;
-    }
-
-    /**
-     * @return the mPage
-     */
-    public final int getPage() {
-        return mPage;
-    }
-
-    /**
-     * @param page the page to set
-     */
-    public final IBaseFragment setPage(int page) {
-        this.mPage = page;
-        return this;
-    }
-
     @Override
     public void onRefreshUI() {
-    }
-
-    @Nullable
-    @Override
-    public final <T extends View> T findViewById(@IdRes int id) {
-        return mHelper.findViewById(id);
-    }
-
-    @Override
-    public void finish() {
-        FragmentActivity activity = getActivity();
-        if (activity != null) {
-            activity.finish();
-        }
-    }
-
-    @Override
-    public final FragmentManager getSupportFragmentManager() {
-        return getFragmentManager();
     }
 
     @Override
@@ -189,30 +74,83 @@ public abstract class IBaseFragment extends Fragment implements IContext {
         return mHelper.getOptions(radius, defImage);
     }
 
+    public final DisplayImageOptions getOptions(int radius) {
+        return mHelper.getOptions(radius);
+    }
+
+    @Override
+    public final void setContentView(int layoutResID) {
+        mHelper.setContentView(layoutResID);
+    }
+
+    @Override
+    public final void setContentView(View contentView) {
+        super.setContentView(contentView);
+        mHelper.setContentView(contentView);
+    }
+
+    public final View getContentView() {
+        return mHelper.getContentView();
+    }
+
+    @Override
+    public void onContentChanged() {
+        mHelper.onContentChanged();
+    }
+
     @Override
     public final String getText(TextView textView) {
         return mHelper.getText(textView);
     }
 
-    @Nullable
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public Activity getActivity() {
+        return this;
+    }
+
+    @Override
+    public IFragmentHelper getFragmentHelper() {
+        return mHelper.getFragmentHelper();
+    }
+
+    public final int getWidth() {
+        return mHelper.getWidth();
+    }
+
+    public final int getHeight() {
+        return mHelper.getHeight();
+    }
+
+    @Override
+    public IProgress showLoad(CharSequence message) {
+        return IProgressCompat.showLoad(this, message);
+    }
+
+    @Override
+    public IProgress showLoad(int messageResId) {
+        return mHelper.showLoad(messageResId);
+    }
+
     @Override
     public IProgress showLoad() {
         return mHelper.showLoad();
     }
 
-    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme, CharSequence message) {
         return mHelper.showLoad(theme, message);
     }
 
-    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme, int messageResId) {
         return mHelper.showLoad(theme, messageResId);
     }
 
-    @Nullable
     @Override
     public IProgress showLoad(IProgress.Theme theme) {
         return mHelper.showLoad(theme);
@@ -221,6 +159,46 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     @Override
     public void loadDismiss() {
         mHelper.loadDismiss();
+    }
+
+    @Deprecated
+    public final IContext startActivityForResult(Class<?> cls, String data, int type, int requestCode) {
+        return IIntentCompat.startActivityForResult(this, cls, data, type, requestCode);
+    }
+
+    @Deprecated
+    public final IContext startActivityDataForResult(Class<?> cls, String data, int requestCode) {
+        return IIntentCompat.startActivityDataForResult(this, cls, data, requestCode);
+    }
+
+    @Deprecated
+    public final IContext startActivityTypeForResult(Class<?> cls, int type, int requestCode) {
+        return IIntentCompat.startActivityTypeForResult(this, cls, type, requestCode);
+    }
+
+    @Deprecated
+    public final IContext startActivity(Class<?> cls, String data, int type) {
+        return IIntentCompat.startActivity(this, cls, data, type);
+    }
+
+    @Deprecated
+    public final IContext startActivityData(Class<?> cls, String data) {
+        return IIntentCompat.startActivityData(this, cls, data);
+    }
+
+    @Deprecated
+    public final IContext startActivityType(Class<?> cls, int type) {
+        return IIntentCompat.startActivityType(this, cls, type);
+    }
+
+    @Deprecated
+    public final String getIntentData() {
+        return IIntentCompat.getIntentData(this);
+    }
+
+    @Deprecated
+    public final int getIntentType() {
+        return IIntentCompat.getIntentType(this);
     }
 
     @Override
@@ -245,12 +223,12 @@ public abstract class IBaseFragment extends Fragment implements IContext {
 
     @Override
     public void startActivity(Intent intent, Bundle bundle) {
-        IIntentCompat.startActivity(this, intent, bundle);
+        IIntentCompat.startActivity((IContext) this, intent, bundle);
     }
 
     @Override
     public void startActivity(Intent intent) {
-        IIntentCompat.startActivity(this, intent);
+        IIntentCompat.startActivity((IContext) this, intent);
     }
 
     @Override
@@ -266,6 +244,24 @@ public abstract class IBaseFragment extends Fragment implements IContext {
     @Override
     public final Bundle getBundle() {
         return mHelper.getBundle();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mHelper.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mHelper.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHelper.onDestroy();
     }
 
     @Override
@@ -361,7 +357,7 @@ public abstract class IBaseFragment extends Fragment implements IContext {
 
     @CallSuper
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mHelper.onActivityResult(requestCode, resultCode, data);
     }

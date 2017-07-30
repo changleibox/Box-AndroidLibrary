@@ -16,7 +16,7 @@ import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.Window;
 import android.view.WindowManager;
 
-import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IAppCompatActivity;
 import net.izhuo.app.library.R;
 
 /**
@@ -35,10 +35,10 @@ public class IKeyBoradDialog extends AppCompatDialog {
     private int mAmountY, mScrollY;
     private View mRootView;
 
-    private IBaseActivity mBaseActivity;
+    private IAppCompatActivity mBaseActivity;
 
     @SuppressLint("InflateParams")
-    public IKeyBoradDialog(IBaseActivity context) {
+    public IKeyBoradDialog(IAppCompatActivity context) {
         super(context, R.style.Box_KeyBorad_Dialog);
         mBaseActivity = context;
 
@@ -50,7 +50,7 @@ public class IKeyBoradDialog extends AppCompatDialog {
      * @param cancelable
      * @param cancelListener
      */
-    private IKeyBoradDialog(IBaseActivity context, boolean cancelable, OnCancelListener cancelListener) {
+    private IKeyBoradDialog(IAppCompatActivity context, boolean cancelable, OnCancelListener cancelListener) {
         this(context);
         super.setCancelable(cancelable);
         super.setOnCancelListener(cancelListener);

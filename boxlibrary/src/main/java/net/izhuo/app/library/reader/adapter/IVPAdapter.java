@@ -19,7 +19,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
-import net.izhuo.app.library.IBaseActivity;
+import net.izhuo.app.library.IAppCompatActivity;
 import net.izhuo.app.library.common.IConstants.IKey;
 import net.izhuo.app.library.util.IImageLoaderCompat;
 import net.izhuo.app.library.widget.IPhotoView;
@@ -60,7 +60,7 @@ public class IVPAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
-        final IBaseActivity activity = ((IBaseActivity) mContext);
+        final IAppCompatActivity activity = ((IAppCompatActivity) mContext);
         final String image = mImages.get(position);
         // System.out.println(image);
         IPhotoView imageView = new IPhotoView(mContext);
