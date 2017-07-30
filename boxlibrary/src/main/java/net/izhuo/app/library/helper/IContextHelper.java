@@ -6,7 +6,6 @@ package net.izhuo.app.library.helper;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -91,42 +90,22 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IContext intentForResult(Class<?> cls, Bundle bundle, int requestCode) {
+    public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
         return null;
     }
 
     @Override
-    public IContext intentForResult(Class<?> cls, int requestCode) {
+    public IContext startActivityForResult(Class<?> cls, int requestCode) {
         return null;
     }
 
     @Override
-    public IContext intentForResult(Intent intent, Bundle bundle, int requestCode) {
+    public IContext startActivity(Class<?> cls, Bundle bundle) {
         return null;
     }
 
     @Override
-    public IContext intentForResult(Intent intent, int requestCode) {
-        return null;
-    }
-
-    @Override
-    public IContext intent(Class<?> cls, Bundle bundle) {
-        return null;
-    }
-
-    @Override
-    public IContext intent(Class<?> cls) {
-        return null;
-    }
-
-    @Override
-    public IContext intent(Intent intent, Bundle bundle) {
-        return null;
-    }
-
-    @Override
-    public IContext intent(Intent intent) {
+    public IContext startActivity(Class<?> cls) {
         return null;
     }
 

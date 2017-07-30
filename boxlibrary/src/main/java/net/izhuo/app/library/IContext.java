@@ -6,6 +6,7 @@ package net.izhuo.app.library;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -51,6 +52,14 @@ public interface IContext extends IBaseContext {
     void onRefreshUI();
 
     boolean onSetContentViewBefore(Bundle savedInstanceState);
+
+    void startActivityForResult(Intent intent, Bundle bundle, int requestCode);
+
+    void startActivityForResult(Intent intent, int requestCode);
+
+    void startActivity(Intent intent, Bundle bundle);
+
+    void startActivity(Intent intent);
 
     FragmentManager getSupportFragmentManager();
 

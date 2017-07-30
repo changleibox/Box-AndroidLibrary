@@ -21,13 +21,13 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import net.izhuo.app.library.IBaseContext.OnActivityResultCallback;
 import net.izhuo.app.library.IContext;
-import net.izhuo.app.library.IContext.OnActivityResultCallback;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants.IRequestCode;
+import net.izhuo.app.library.util.IAppUtils;
 import net.izhuo.app.library.util.IPermissionCompat;
 import net.izhuo.app.library.util.IToastCompat;
-import net.izhuo.app.library.util.IAppUtils;
 
 import java.io.File;
 
@@ -102,7 +102,7 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
             intentPic.putExtra("noFaceDetection", false);
             intentPic.putExtra("scale", true);
             intentPic.putExtra("output", Uri.fromFile(mSdcardTempFile));
-            mIContext.intentForResult(intentPic, REQUEST_CODE_CROP);
+            mIContext.startActivityForResult(intentPic, REQUEST_CODE_CROP);
             if (mStateListener != null) {
                 mStateListener.onStartZoom();
             }
@@ -229,7 +229,7 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
         Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intentImage.addCategory(Intent.CATEGORY_DEFAULT);
         intentImage.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mSdcardTempFile));
-        mIContext.intentForResult(intentImage, REQUEST_CODE_CAMERA);
+        mIContext.startActivityForResult(intentImage, REQUEST_CODE_CAMERA);
     }
 
     private void openPicture() {
@@ -239,7 +239,7 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
         }
         Intent intentPick = new Intent(Intent.ACTION_PICK);
         intentPick.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-        mIContext.intentForResult(intentPick, REQUEST_CODE_PICTURE);
+        mIContext.startActivityForResult(intentPick, REQUEST_CODE_PICTURE);
     }
 
     /**

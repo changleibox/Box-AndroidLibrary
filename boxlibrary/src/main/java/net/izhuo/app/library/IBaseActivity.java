@@ -207,33 +207,33 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     }
 
     @Deprecated
-    public final IContext intentForResult(Class<?> cls, String data, int type, int requestCode) {
-        return IIntentCompat.intentForResult(this, cls, data, type, requestCode);
+    public final IContext startActivityForResult(Class<?> cls, String data, int type, int requestCode) {
+        return IIntentCompat.startActivityForResult(this, cls, data, type, requestCode);
     }
 
     @Deprecated
     public final IContext intentDataForResult(Class<?> cls, String data, int requestCode) {
-        return IIntentCompat.intentDataForResult(this, cls, data, requestCode);
+        return IIntentCompat.startActivityDataForResult(this, cls, data, requestCode);
     }
 
     @Deprecated
     public final IContext intentTypeForResult(Class<?> cls, int type, int requestCode) {
-        return IIntentCompat.intentTypeForResult(this, cls, type, requestCode);
+        return IIntentCompat.startActivityTypeForResult(this, cls, type, requestCode);
     }
 
     @Deprecated
-    public final IContext intent(Class<?> cls, String data, int type) {
-        return IIntentCompat.intent(this, cls, data, type);
+    public final IContext startActivity(Class<?> cls, String data, int type) {
+        return IIntentCompat.startActivity(this, cls, data, type);
     }
 
     @Deprecated
     public final IContext intentData(Class<?> cls, String data) {
-        return IIntentCompat.intentData(this, cls, data);
+        return IIntentCompat.startActivityData(this, cls, data);
     }
 
     @Deprecated
     public final IContext intentType(Class<?> cls, int type) {
-        return IIntentCompat.intentType(this, cls, type);
+        return IIntentCompat.startActivityType(this, cls, type);
     }
 
     @Deprecated
@@ -247,43 +247,43 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     }
 
     @Override
-    public IContext intentForResult(Intent intent, Bundle bundle, int requestCode) {
-        return IIntentCompat.intentForResult((IContext) this, intent, bundle, requestCode);
+    public void startActivityForResult(Intent intent, Bundle bundle, int requestCode) {
+        IIntentCompat.startActivityForResult((IContext) this, intent, bundle, requestCode);
     }
 
     @Override
-    public IContext intentForResult(Intent intent, int requestCode) {
-        return IIntentCompat.intentForResult((IContext) this, intent, requestCode);
+    public void startActivityForResult(Intent intent, int requestCode) {
+        IIntentCompat.startActivityForResult((IContext) this, intent, requestCode);
     }
 
     @Override
-    public IContext intentForResult(Class<?> cls, Bundle bundle, int requestCode) {
-        return IIntentCompat.intentForResult((IContext) this, cls, bundle, requestCode);
+    public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
+        return IIntentCompat.startActivityForResult((IContext) this, cls, bundle, requestCode);
     }
 
     @Override
-    public final IContext intentForResult(Class<?> cls, int requestCode) {
-        return IIntentCompat.intentForResult((IContext) this, cls, requestCode);
+    public final IContext startActivityForResult(Class<?> cls, int requestCode) {
+        return IIntentCompat.startActivityForResult((IContext) this, cls, requestCode);
     }
 
     @Override
-    public IContext intent(Intent intent, Bundle bundle) {
-        return IIntentCompat.intent((IContext) this, intent, bundle);
+    public void startActivity(Intent intent, Bundle bundle) {
+        IIntentCompat.startActivity((IContext) this, intent, bundle);
     }
 
     @Override
-    public IContext intent(Intent intent) {
-        return IIntentCompat.intent((IContext) this, intent);
+    public void startActivity(Intent intent) {
+        IIntentCompat.startActivity((IContext) this, intent);
     }
 
     @Override
-    public IContext intent(Class<?> cls, Bundle bundle) {
-        return IIntentCompat.intent((IContext) this, cls, bundle);
+    public IContext startActivity(Class<?> cls, Bundle bundle) {
+        return IIntentCompat.startActivity((IContext) this, cls, bundle);
     }
 
     @Override
-    public final IContext intent(Class<?> cls) {
-        return IIntentCompat.intent((IContext) this, cls);
+    public final IContext startActivity(Class<?> cls) {
+        return IIntentCompat.startActivity((IContext) this, cls);
     }
 
     @Override

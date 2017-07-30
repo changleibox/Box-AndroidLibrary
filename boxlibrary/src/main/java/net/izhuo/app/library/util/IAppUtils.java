@@ -1046,7 +1046,7 @@ public class IAppUtils {
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
         String title = iContext.getContext().getString(R.string.box_lable_choose_file);
-        iContext.intentForResult(Intent.createChooser(intent, title), IRequestCode.REQUEST_CHOOSE_FILE);
+        iContext.startActivityForResult(Intent.createChooser(intent, title), IRequestCode.REQUEST_CHOOSE_FILE);
     }
 
     @TargetApi(19)

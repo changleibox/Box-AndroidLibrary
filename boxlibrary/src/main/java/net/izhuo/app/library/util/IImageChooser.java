@@ -41,7 +41,7 @@ public class IImageChooser {
         Bundle bundle = new Bundle();
         bundle.putString(IConstants.INTENT_DATA, IJsonDecoder.objectToJson(datas));
         bundle.putInt(IConstants.INTENT_TYPE, maxCount);
-        iContext.intentForResult(IChoosePictureActivity.class, bundle, IConstants.IRequestCode.REQUSET_PICTURE);
+        iContext.startActivityForResult(IChoosePictureActivity.class, bundle, IConstants.IRequestCode.REQUSET_PICTURE);
         Activity activity = iContext.getActivity();
         if (activity != null) {
             activity.overridePendingTransition(R.anim.box_anim_activity_show, R.anim.box_anim_menuhide);
@@ -57,7 +57,7 @@ public class IImageChooser {
         bundle.putInt(IConstants.INTENT_TYPE, selectIndex);
         bundle.putString(IConstants.INTENT_DATA_ADDITION, IJsonDecoder.objectToJson(selectImages));
         bundle.putInt(IConstants.INTENT_TYPE_ADDITION, maxSelectCount);
-        iContext.intentForResult(IPreviewPictureActivity.class, bundle, IConstants.IRequestCode.REQUSET_LOOK);
+        iContext.startActivityForResult(IPreviewPictureActivity.class, bundle, IConstants.IRequestCode.REQUSET_LOOK);
         Activity activity = iContext.getActivity();
         if (activity != null) {
             activity.overridePendingTransition(R.anim.box_anim_activity_show, R.anim.box_anim_menuhide);

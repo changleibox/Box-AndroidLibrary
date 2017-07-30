@@ -86,21 +86,13 @@ public interface IBaseContext {
      */
     void loadDismiss();
 
-    IContext intentForResult(Class<?> cls, Bundle bundle, int requestCode);
+    IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode);
 
-    IContext intentForResult(Class<?> cls, int requestCode);
+    IContext startActivityForResult(Class<?> cls, int requestCode);
 
-    IContext intentForResult(Intent intent, Bundle bundle, int requestCode);
+    IContext startActivity(Class<?> cls, Bundle bundle);
 
-    IContext intentForResult(Intent intent, int requestCode);
-
-    IContext intent(Class<?> cls, Bundle bundle);
-
-    IContext intent(Class<?> cls);
-
-    IContext intent(Intent intent, Bundle bundle);
-
-    IContext intent(Intent intent);
+    IContext startActivity(Class<?> cls);
 
     Bundle getBundle();
 
