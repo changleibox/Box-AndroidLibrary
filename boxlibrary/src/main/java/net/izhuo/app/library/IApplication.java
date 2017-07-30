@@ -6,6 +6,9 @@ package net.izhuo.app.library;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.MobclickAgent.EScenarioType;
+
 /**
  * Created by Box on 16/12/3.
  * <p>
@@ -19,6 +22,8 @@ public class IApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        MobclickAgent.setScenarioType(this, EScenarioType.E_UM_NORMAL);
     }
 
     public static IApplication getInstance() {

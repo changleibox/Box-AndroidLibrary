@@ -45,6 +45,9 @@ allprojects {
             links "http://docs.oracle.com/javase/7/docs/api"
         }
     }
+    repositories {
+        mavenCentral()
+    }
 }
 
 dependencies {
@@ -62,6 +65,8 @@ dependencies {
     // daimajia.slider 主要实现绚丽的轮播图
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.slider:library:1.1.5@aar'
+    // Umeng统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }
 
 task sourcesJar(type: Jar) {
@@ -108,7 +113,7 @@ def siteUrl = 'https://github.com/changleibox/Box-AndroidLibrary' // 项目的�
 def gitUrl = 'https://github.com/changleibox/Box-AndroidLibrary.git' // Git仓库的url
 
 group = "me.box.library" // Maven Group ID for the artifact，一般填你唯一的包名
-version = "1.2.6" // This is the library version used when deploying the artifact
+version = "1.2.7" // This is the library version used when deploying the artifact
 
 install {
     repositories.mavenInstaller {
