@@ -18,25 +18,17 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.umeng.analytics.MobclickAgent;
 
-import net.izhuo.app.library.common.IConstants.IActivityCaches;
+import net.izhuo.app.library.helper.IContextHelper;
 import net.izhuo.app.library.helper.IFragmentHelper;
 import net.izhuo.app.library.reader.picture.IOpenType;
-import net.izhuo.app.library.util.IActivityCompat;
-import net.izhuo.app.library.util.IImageChooser;
-import net.izhuo.app.library.util.IImageLoaderCompat;
 import net.izhuo.app.library.util.IIntentCompat;
-import net.izhuo.app.library.util.ILogCompat;
 import net.izhuo.app.library.util.IProgressCompat;
-import net.izhuo.app.library.util.IToastCompat;
-import net.izhuo.app.library.util.IWebViewChooseFile;
 import net.izhuo.app.library.widget.IOSDialog;
 import net.izhuo.app.library.widget.IProgress;
 
@@ -50,37 +42,17 @@ import java.util.List;
 @SuppressWarnings({"unused", "deprecation"})
 public abstract class IBaseActivity extends AppCompatActivity implements IContext {
 
-    private OnRequestPermissionsResultCallback mRequestPermissionsResultCallback;
-    private OnActivityResultCallback mActivityResultCallback;
-    private Context mContext;
+    private IContextHelper mHelper;
 
-    private String mTag;
-    private View mContentView;
-
-    private Bundle mSavedInstanceState;
-    private IFragmentHelper mFragmentHelper;
+    public IBaseActivity() {
+        mHelper = new IContextHelper(this);
+    }
 
     @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSavedInstanceState = savedInstanceState;
-        mTag = getClass().getSimpleName();
-        mContext = this;
-
-        IActivityCaches.putActivity(this);
-
-        boolean isContinue = onSetContentViewBefore(savedInstanceState);
-        if (!isContinue) {
-            Object containerLayout = getContainerLayout();
-            if (containerLayout != null) {
-                if (containerLayout instanceof Integer) {
-                    setContentView((Integer) containerLayout);
-                } else if (containerLayout instanceof View) {
-                    setContentView((View) containerLayout);
-                }
-            }
-        }
+        mHelper.onCreate(savedInstanceState);
     }
 
     @Override
@@ -94,59 +66,46 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
-        return IImageLoaderCompat.getOptions(radius, loadingImage, emptyUriImage, failImage);
+        return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
     }
 
     @Override
     public final DisplayImageOptions getOptions(int radius, int defImage) {
-        return IImageLoaderCompat.getOptions(radius, defImage);
+        return mHelper.getOptions(radius, defImage);
     }
 
     public final DisplayImageOptions getOptions(int radius) {
-        return IImageLoaderCompat.getOptions(radius);
+        return mHelper.getOptions(radius);
     }
 
     @Override
     public final void setContentView(int layoutResID) {
-        setContentView(LayoutInflater.from(mContext).inflate(layoutResID, null));
+        mHelper.setContentView(layoutResID);
     }
 
     @Override
     public final void setContentView(View contentView) {
         super.setContentView(contentView);
-        try {
-            IActivityCompat.autoInjectAllField(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mContentView = contentView;
-
-        onUserCreateViews(mSavedInstanceState);
+        mHelper.setContentView(contentView);
     }
 
     public final View getContentView() {
-        return mContentView;
+        return mHelper.getContentView();
     }
 
     @Override
     public void onContentChanged() {
-        initViews(mSavedInstanceState);
-        initDatas(mSavedInstanceState);
-        initListeners(mSavedInstanceState);
+        mHelper.onContentChanged();
     }
 
     @Override
     public final String getText(TextView textView) {
-        if (textView != null) {
-            return textView.getText().toString();
-        } else {
-            return "";
-        }
+        return mHelper.getText(textView);
     }
 
     @Override
     public Context getContext() {
-        return mContext;
+        return this;
     }
 
     @Override
@@ -156,18 +115,15 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public IFragmentHelper getFragmentHelper() {
-        if (mFragmentHelper == null) {
-            mFragmentHelper = new IFragmentHelper(getSupportFragmentManager());
-        }
-        return mFragmentHelper;
+        return mHelper.getFragmentHelper();
     }
 
     public final int getWidth() {
-        return IActivityCompat.getWidth(this);
+        return mHelper.getWidth();
     }
 
     public final int getHeight() {
-        return IActivityCompat.getHeight(this);
+        return mHelper.getHeight();
     }
 
     @Override
@@ -177,32 +133,32 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public IProgress showLoad(int messageResId) {
-        return IProgressCompat.showLoad(this, messageResId);
+        return mHelper.showLoad(messageResId);
     }
 
     @Override
     public IProgress showLoad() {
-        return IProgressCompat.showLoad(this);
+        return mHelper.showLoad();
     }
 
     @Override
     public IProgress showLoad(IProgress.Theme theme, CharSequence message) {
-        return IProgressCompat.showLoad(this, theme, message);
+        return mHelper.showLoad(theme, message);
     }
 
     @Override
     public IProgress showLoad(IProgress.Theme theme, int messageResId) {
-        return IProgressCompat.showLoad(this, theme, messageResId);
+        return mHelper.showLoad(theme, messageResId);
     }
 
     @Override
     public IProgress showLoad(IProgress.Theme theme) {
-        return IProgressCompat.showLoad(this, theme);
+        return mHelper.showLoad(theme);
     }
 
     @Override
     public void loadDismiss() {
-        IProgressCompat.loadDismiss(this);
+        mHelper.loadDismiss();
     }
 
     @Deprecated
@@ -211,12 +167,12 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     }
 
     @Deprecated
-    public final IContext intentDataForResult(Class<?> cls, String data, int requestCode) {
+    public final IContext startActivityDataForResult(Class<?> cls, String data, int requestCode) {
         return IIntentCompat.startActivityDataForResult(this, cls, data, requestCode);
     }
 
     @Deprecated
-    public final IContext intentTypeForResult(Class<?> cls, int type, int requestCode) {
+    public final IContext startActivityTypeForResult(Class<?> cls, int type, int requestCode) {
         return IIntentCompat.startActivityTypeForResult(this, cls, type, requestCode);
     }
 
@@ -226,12 +182,12 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     }
 
     @Deprecated
-    public final IContext intentData(Class<?> cls, String data) {
+    public final IContext startActivityData(Class<?> cls, String data) {
         return IIntentCompat.startActivityData(this, cls, data);
     }
 
     @Deprecated
-    public final IContext intentType(Class<?> cls, int type) {
+    public final IContext startActivityType(Class<?> cls, int type) {
         return IIntentCompat.startActivityType(this, cls, type);
     }
 
@@ -257,12 +213,12 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
-        return IIntentCompat.startActivityForResult((IContext) this, cls, bundle, requestCode);
+        return mHelper.startActivityForResult(cls, bundle, requestCode);
     }
 
     @Override
     public final IContext startActivityForResult(Class<?> cls, int requestCode) {
-        return IIntentCompat.startActivityForResult((IContext) this, cls, requestCode);
+        return mHelper.startActivityForResult(cls, requestCode);
     }
 
     @Override
@@ -277,106 +233,105 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public IContext startActivity(Class<?> cls, Bundle bundle) {
-        return IIntentCompat.startActivity((IContext) this, cls, bundle);
+        return mHelper.startActivity(cls, bundle);
     }
 
     @Override
     public final IContext startActivity(Class<?> cls) {
-        return IIntentCompat.startActivity((IContext) this, cls);
+        return mHelper.startActivity(cls);
     }
 
     @Override
     public final Bundle getBundle() {
-        return IIntentCompat.getBundle((IContext) this);
+        return mHelper.getBundle();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
-        onRefreshUI();
+        mHelper.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+        mHelper.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        IActivityCaches.removeActivity(this);
         super.onDestroy();
+        mHelper.onDestroy();
     }
 
     @Override
     public final Object showText(CharSequence text) {
-        return IToastCompat.showText(mContext, text);
+        return mHelper.showText(text);
     }
 
     @Override
     public final Object showText(int res) {
-        return IToastCompat.showText(mContext, res);
+        return mHelper.showText(res);
     }
 
     @Override
     public final Object showText(int res, Object... formatArgs) {
-        return IToastCompat.showText(mContext, res, formatArgs);
+        return mHelper.showText(res, formatArgs);
     }
 
     @Override
     public final IOSDialog showTextDialog(String title, String message, IOSDialog.OnClickListener l) {
-        return IActivityCompat.showTextDialog(this, title, message, l);
+        return mHelper.showTextDialog(title, message, l);
     }
 
     @Override
     public final void i(Object msg) {
-        ILogCompat.i(mTag, msg);
+        mHelper.i(msg);
     }
 
     @Override
     public final void d(Object msg) {
-        ILogCompat.d(mTag, msg);
+        mHelper.d(msg);
     }
 
     @Override
     public final void e(Object msg) {
-        ILogCompat.e(mTag, msg);
+        mHelper.e(msg);
     }
 
     @Override
     public final void v(Object msg) {
-        ILogCompat.v(mTag, msg);
+        mHelper.v(msg);
     }
 
     @Override
     public final void w(Object msg) {
-        ILogCompat.w(mTag, msg);
+        mHelper.w(msg);
     }
 
     @Override
     public final void exitApplication() {
-        IActivityCompat.exitApplication(this);
+        mHelper.exitApplication();
     }
 
     @Override
     public final IContext showExitText() {
-        return IActivityCompat.buildExit().showExitText(this);
+        return mHelper.showExitText();
     }
 
     @Override
     public final IContext showExitText(final Callback callback) {
-        return IActivityCompat.buildExit().showExitText(this, callback);
+        return mHelper.showExitText(callback);
     }
 
     @Override
     public final void hideKeyboard() {
-        IActivityCompat.hideKeyboard(this);
+        mHelper.hideKeyboard();
     }
 
     @Override
     public final void showKeyboard() {
-        IActivityCompat.showKeyboard(this);
+        mHelper.showKeyboard();
     }
 
     @SuppressWarnings("MissingPermission")
@@ -384,7 +339,7 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
     @Override
     public final void startActivityForPicture(List<String> datas, int maxCount) {
-        IImageChooser.startActivityForPicture(this, datas, maxCount);
+        mHelper.startActivityForPicture(datas, maxCount);
     }
 
     @SuppressWarnings("MissingPermission")
@@ -392,31 +347,36 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
     @RequiresPermission(allOf = {Manifest.permission.READ_EXTERNAL_STORAGE})
     @Override
     public final void startActivityForPicture(IOpenType.Type type, List<String> totalImages, List<String> selectImages, int selectIndex, int maxSelectCount) {
-        IImageChooser.startActivityForPicture(this, type, totalImages, selectImages, selectIndex, maxSelectCount);
+        mHelper.startActivityForPicture(type, totalImages, selectImages, selectIndex, maxSelectCount);
     }
 
     @Override
     public final void setWebViewCommonAttribute(WebView webView) {
-        IWebViewChooseFile.getInstance(this).setWebViewCommonAttribute(webView);
+        mHelper.setWebViewCommonAttribute(webView);
     }
 
     @CallSuper
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        IActivityCompat.onActivityResult(this, requestCode, resultCode, data);
-        if (mActivityResultCallback != null) {
-            mActivityResultCallback.onActivityResult(requestCode, resultCode, data);
-        }
+        mHelper.onActivityResult(requestCode, resultCode, data);
     }
 
     @CallSuper
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (mRequestPermissionsResultCallback != null) {
-            mRequestPermissionsResultCallback.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
+        mHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void setOnActivityResultCallback(OnActivityResultCallback callback) {
+        mHelper.setOnActivityResultCallback(callback);
+    }
+
+    @Override
+    public void setOnRequestPermissionsResultCallback(OnRequestPermissionsResultCallback callback) {
+        mHelper.setOnRequestPermissionsResultCallback(callback);
     }
 
     @Override
@@ -425,15 +385,5 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
 
     @Override
     public void onFileChooseCallback(@Nullable String filePath) {
-    }
-
-    @Override
-    public void setOnActivityResultCallback(OnActivityResultCallback callback) {
-        mActivityResultCallback = callback;
-    }
-
-    @Override
-    public void setOnRequestPermissionsResultCallback(OnRequestPermissionsResultCallback callback) {
-        mRequestPermissionsResultCallback = callback;
     }
 }

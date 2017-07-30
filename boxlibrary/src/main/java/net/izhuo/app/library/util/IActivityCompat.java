@@ -22,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.umeng.analytics.MobclickAgent;
 
-import net.izhuo.app.library.IBaseActivity;
 import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
@@ -192,14 +191,14 @@ public final class IActivityCompat {
             return instance;
         }
 
-        public final IBaseActivity showExitText(IBaseActivity baseActivity) {
+        public final Activity showExitText(Activity baseActivity) {
             return showExitText(baseActivity, null);
         }
 
-        public final IBaseActivity showExitText(IBaseActivity iContext, final Handler.Callback callback) {
+        public final Activity showExitText(Activity iContext, final Handler.Callback callback) {
             if (mTime == 0) {
                 mTime++;
-                iContext.showText(R.string.box_toast_exit_prompt);
+                IToastCompat.showText(iContext, R.string.box_toast_exit_prompt);
                 mCountDownTimer.start();
             } else {
                 if (callback == null) {

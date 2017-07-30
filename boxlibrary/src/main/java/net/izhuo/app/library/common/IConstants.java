@@ -28,6 +28,7 @@ import java.util.Map;
 public final class IConstants {
 
     public static boolean DEBUG = true;
+    public static final String EMPTY = "";
 
     public static void setDebugMode(boolean debugMode) {
         DEBUG = debugMode;

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.IdRes;
 import android.support.annotation.IntRange;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.view.View;
@@ -143,7 +144,7 @@ public interface IBaseContext {
 
     void setWebViewCommonAttribute(WebView webView);
 
-    View findViewById(int id);
+    <T extends View> T findViewById(@IdRes int id);
 
     void exitApplication();
 
