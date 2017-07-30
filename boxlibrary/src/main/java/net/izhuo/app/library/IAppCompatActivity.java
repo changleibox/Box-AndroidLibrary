@@ -65,28 +65,14 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
-        return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
-    }
-
-    @Override
-    public final DisplayImageOptions getOptions(int radius, int defImage) {
-        return mHelper.getOptions(radius, defImage);
-    }
-
-    public final DisplayImageOptions getOptions(int radius) {
-        return mHelper.getOptions(radius);
-    }
-
-    @Override
-    public final void setContentView(int layoutResID) {
+    public void setContentView(int layoutResID) {
         mHelper.setContentView(layoutResID);
     }
 
     @Override
-    public final void setContentView(View contentView) {
-        super.setContentView(contentView);
+    public void setContentView(View contentView) {
         mHelper.setContentView(contentView);
+        super.setContentView(contentView);
     }
 
     public final View getContentView() {
@@ -102,6 +88,20 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
     @Override
     public View findViewById(@IdRes int id) {
         return super.findViewById(id);
+    }
+
+    @Override
+    public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
+        return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
+    }
+
+    @Override
+    public final DisplayImageOptions getOptions(int radius, int defImage) {
+        return mHelper.getOptions(radius, defImage);
+    }
+
+    public final DisplayImageOptions getOptions(int radius) {
+        return mHelper.getOptions(radius);
     }
 
     @Override

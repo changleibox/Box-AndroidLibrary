@@ -65,6 +65,26 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
     }
 
     @Override
+    public void setContentView(int layoutResID) {
+        mHelper.setContentView(layoutResID);
+    }
+
+    @Override
+    public void setContentView(View contentView) {
+        mHelper.setContentView(contentView);
+        super.setContentView(contentView);
+    }
+
+    public final View getContentView() {
+        return mHelper.getContentView();
+    }
+
+    @Override
+    public void onContentChanged() {
+        mHelper.onContentChanged();
+    }
+
+    @Override
     public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
         return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
     }
@@ -76,26 +96,6 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
 
     public final DisplayImageOptions getOptions(int radius) {
         return mHelper.getOptions(radius);
-    }
-
-    @Override
-    public final void setContentView(int layoutResID) {
-        mHelper.setContentView(layoutResID);
-    }
-
-    @Override
-    public final void setContentView(View contentView) {
-        super.setContentView(contentView);
-        mHelper.setContentView(contentView);
-    }
-
-    public final View getContentView() {
-        return mHelper.getContentView();
-    }
-
-    @Override
-    public void onContentChanged() {
-        mHelper.onContentChanged();
     }
 
     @Override

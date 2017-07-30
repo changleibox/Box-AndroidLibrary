@@ -21,7 +21,6 @@ import android.support.annotation.RequiresPermission;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -83,7 +82,7 @@ public class IContextHelper implements IBaseContext {
 
         View containerView = getContainerView(getFrameViewGroup(), savedInstanceState);
         if (containerView != null) {
-            setContentView(containerView);
+            activity.setContentView(containerView);
         }
     }
 
@@ -95,7 +94,7 @@ public class IContextHelper implements IBaseContext {
             Object containerLayout = mContext.getContainerLayout();
             if (containerLayout != null) {
                 if (containerLayout instanceof Integer) {
-                    containerView = LayoutInflater.from(getActivity()).inflate((int) containerLayout, container, false);
+                    containerView = IAppHelper.inflate((int) containerLayout, container, false);
                 } else if (containerLayout instanceof View) {
                     containerView = (View) containerLayout;
                 }
@@ -109,8 +108,7 @@ public class IContextHelper implements IBaseContext {
         if (activity == null) {
             return;
         }
-        getActivity().setContentView(LayoutInflater
-                .from(activity).inflate(layoutResID, getFrameViewGroup(), false));
+        activity.setContentView(IAppHelper.inflate(layoutResID, getFrameViewGroup(), false));
     }
 
     public final void setContentView(View contentView) {
