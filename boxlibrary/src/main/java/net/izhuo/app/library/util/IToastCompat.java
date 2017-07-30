@@ -5,6 +5,7 @@
 package net.izhuo.app.library.util;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -14,11 +15,16 @@ import android.widget.Toast;
 @SuppressWarnings("unused")
 public class IToastCompat {
 
+    @IntDef({Toast.LENGTH_SHORT, Toast.LENGTH_LONG})
+    private @interface Duration {
+    }
+
     private static Toast mToast;
+    private static int DEFAULT_DURATION = Toast.LENGTH_SHORT;
 
     private static OnCreateToastListener mCreateToastListener;
 
-    public static Object showText(Context context, CharSequence text) {
+    public static Object showText(Context context, CharSequence text, @Duration int duration) {
         if (TextUtils.isEmpty(text)) {
             return null;
         }
@@ -27,12 +33,16 @@ public class IToastCompat {
             return o;
         }
         if (mToast == null) {
-            mToast = Toast.makeText(context, text, Toast.LENGTH_LONG);
+            mToast = Toast.makeText(context.getApplicationContext(), text, duration);
         } else {
             mToast.setText(text);
         }
         mToast.show();
         return mToast;
+    }
+
+    public static Object showText(Context context, CharSequence text) {
+        return showText(context, text, DEFAULT_DURATION);
     }
 
     public static Object showText(Context context, int res) {
@@ -41,6 +51,10 @@ public class IToastCompat {
 
     public static Object showText(Context context, int res, Object... formatArgs) {
         return showText(context, context.getString(res, formatArgs));
+    }
+
+    public static void setDefaultDuration(int defaultDuration) {
+        DEFAULT_DURATION = defaultDuration;
     }
 
     /**
