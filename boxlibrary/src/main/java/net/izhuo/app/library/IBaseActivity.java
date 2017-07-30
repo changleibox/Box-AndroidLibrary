@@ -122,14 +122,17 @@ public abstract class IBaseActivity extends AppCompatActivity implements IContex
         mContentView = contentView;
 
         onUserCreateViews(mSavedInstanceState);
-
-        initViews(mSavedInstanceState);
-        initDatas(mSavedInstanceState);
-        initListeners(mSavedInstanceState);
     }
 
     public final View getContentView() {
         return mContentView;
+    }
+
+    @Override
+    public void onContentChanged() {
+        initViews(mSavedInstanceState);
+        initDatas(mSavedInstanceState);
+        initListeners(mSavedInstanceState);
     }
 
     @Override
