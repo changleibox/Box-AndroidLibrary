@@ -57,7 +57,7 @@ public interface IContext extends IBaseContext {
 
     void startActivityForResult(Intent intent, int requestCode);
 
-    void startActivity(Intent intent, Bundle bundle);
+    void startActivity(Intent intent, Bundle options);
 
     void startActivity(Intent intent);
 

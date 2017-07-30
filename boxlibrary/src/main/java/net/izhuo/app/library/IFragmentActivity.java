@@ -207,11 +207,6 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        IIntentCompat.startActivityForResult((IContext) this, intent, requestCode);
-    }
-
-    @Override
     public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
         return mHelper.startActivityForResult(cls, bundle, requestCode);
     }
@@ -219,16 +214,6 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
     @Override
     public final IContext startActivityForResult(Class<?> cls, int requestCode) {
         return mHelper.startActivityForResult(cls, requestCode);
-    }
-
-    @Override
-    public void startActivity(Intent intent, Bundle bundle) {
-        IIntentCompat.startActivity((IContext) this, intent, bundle);
-    }
-
-    @Override
-    public void startActivity(Intent intent) {
-        IIntentCompat.startActivity((IContext) this, intent);
     }
 
     @Override
