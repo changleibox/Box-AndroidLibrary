@@ -464,7 +464,7 @@ public class IContextHelper implements IBaseContext {
     @Nullable
     private Activity getActivity() {
         Activity activity = mContext.getActivity();
-        if (activity == null || activity.isFinishing()) {
+        if (activity == null) {
             return null;
         }
         FragmentManager fragmentManager = getFragmentManager();
