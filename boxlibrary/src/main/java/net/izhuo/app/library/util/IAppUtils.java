@@ -1745,4 +1745,44 @@ public class IAppUtils {
         }).start();
     }
 
+    public static void openPicture(Activity activity, int requestCode) {
+        if (!IAppUtils.isExistSD()) {
+            IToastCompat.showText(activity, R.string.box_lable_no_sdcard);
+            return;
+        }
+        Intent intentPick = new Intent(Intent.ACTION_PICK);
+        intentPick.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+        activity.startActivityForResult(intentPick, requestCode);
+    }
+
+    public static String getCachePath(Context context) {
+        String cachePath;
+        File externalCacheDir;
+        if (IAppUtils.isExistSD() && (externalCacheDir = context.getExternalCacheDir()) != null) {
+            //外部存储可用
+            cachePath = externalCacheDir.getPath();
+        } else {
+            //外部存储不可用
+            cachePath = context.getCacheDir().getPath();
+        }
+        return cachePath;
+    }
+
+    /**
+     * 获取左右或上下边距
+     *
+     * @param rowColCount 行列总数
+     * @param rowCol      第几行或者第几列
+     * @param hasBorder   是否有边框
+     * @return 边距比例
+     */
+    public static float[] getLeftRightOrTopBottomMargin(final int rowColCount, final int rowCol, final boolean hasBorder) {
+        return new float[]{hasBorder ? (float) (rowColCount - rowCol) / rowColCount : (float) rowCol / rowColCount,
+                hasBorder ? (float) (rowCol + 1) / rowColCount : (float) (rowColCount - 1 - rowCol) / rowColCount};
+    }
+
+    public static boolean isNetPath(String path) {
+        return path != null && (path.startsWith(IConstants.IKey.HTTP_HEAD) || path.startsWith(IConstants.IKey.HTTPS_HEAD));
+    }
+
 }

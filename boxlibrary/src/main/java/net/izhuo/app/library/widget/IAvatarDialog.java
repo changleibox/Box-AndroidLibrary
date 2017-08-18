@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v7.app.AppCompatDialog;
@@ -90,6 +89,12 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
      */
     private void startPhotoZoom(Uri uri) {
         try {
+            if (mStateListener != null) {
+                boolean startZoom = mStateListener.onStartZoom(uri);
+                if (startZoom) {
+                    return;
+                }
+            }
             Intent intentPic = new Intent("com.android.camera.action.CROP");
             intentPic.setDataAndType(uri, "image/*");
             intentPic.putExtra("crop", "true");
@@ -103,9 +108,6 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
             intentPic.putExtra("scale", true);
             intentPic.putExtra("output", Uri.fromFile(mSdcardTempFile));
             mIContext.startActivityForResult(intentPic, REQUEST_CODE_CROP);
-            if (mStateListener != null) {
-                mStateListener.onStartZoom();
-            }
         } catch (Exception ex) {
             if (mStateListener != null) {
                 mStateListener.onGetCallback();
@@ -126,6 +128,10 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
         }
     }
 
+    public void onCropResult(int resultCode, Intent data) {
+        getStartPhotoZoom(REQUEST_CODE_CROP, resultCode, data);
+    }
+
     public interface OnSaveListener {
         void onSave(String path);
     }
@@ -133,7 +139,7 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
     public interface OnStateListener {
         void onStartGet();
 
-        void onStartZoom();
+        boolean onStartZoom(Uri uri);
 
         void onGetCallback();
     }
@@ -176,13 +182,13 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
                         Manifest.permission.CAMERA)) {
                     return;
                 }
-                openCamera();
+                IAppUtils.openCamera(mIContext.getActivity(), REQUEST_CODE_CAMERA, false, mSdcardTempFile);
             } else if (id == R.id.box_btn_photo) {
                 if (!IPermissionCompat.checkSelfPermission(mIContext, IRequestCode.REQUEST_PERMISSION_SDCARD,
                         Manifest.permission.READ_EXTERNAL_STORAGE)) {
                     return;
                 }
-                openPicture();
+                IAppUtils.openPicture(mIContext.getActivity(), REQUEST_CODE_PICTURE);
             }
 
             if (mStateListener != null) {
@@ -209,6 +215,7 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
         getStartPhotoZoom(requestCode, resultCode, data);
     }
 
+    @SuppressWarnings("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode != IRequestCode.REQUEST_PERMISSION_SDCARD && requestCode != IRequestCode.REQUEST_PERMISSION_CAMERA) {
@@ -219,27 +226,10 @@ public class IAvatarDialog extends AppCompatDialog implements OnClickListener, O
             return;
         }
         if (requestCode == IRequestCode.REQUEST_PERMISSION_CAMERA) {
-            openCamera();
+            IAppUtils.openCamera(mIContext.getActivity(), REQUEST_CODE_CAMERA, false, mSdcardTempFile);
         } else {
-            openPicture();
+            IAppUtils.openPicture(mIContext.getActivity(), REQUEST_CODE_PICTURE);
         }
-    }
-
-    private void openCamera() {
-        Intent intentImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intentImage.addCategory(Intent.CATEGORY_DEFAULT);
-        intentImage.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mSdcardTempFile));
-        mIContext.startActivityForResult(intentImage, REQUEST_CODE_CAMERA);
-    }
-
-    private void openPicture() {
-        if (!IAppUtils.isExistSD()) {
-            showToast(R.string.box_lable_no_sdcard);
-            return;
-        }
-        Intent intentPick = new Intent(Intent.ACTION_PICK);
-        intentPick.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
-        mIContext.startActivityForResult(intentPick, REQUEST_CODE_PICTURE);
     }
 
     /**
