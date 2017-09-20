@@ -25,7 +25,7 @@ public class IIntentCompat {
     public static final int DEF_INTENT_TYPE = -1;
 
     @Deprecated
-    public static IContext startActivityForResult(IContext iContext, Class<?> cls, String data, int type, int requestCode) {
+    public static <T extends Activity> IContext startActivityForResult(IContext iContext, Class<T> cls, String data, int type, int requestCode) {
         Bundle bundle = new Bundle();
         if (data != null) {
             bundle.putString(IConstants.INTENT_DATA, data);
@@ -35,17 +35,17 @@ public class IIntentCompat {
     }
 
     @Deprecated
-    public static IContext startActivityDataForResult(IContext iContext, Class<?> cls, String data, int requestCode) {
+    public static <T extends Activity> IContext startActivityDataForResult(IContext iContext, Class<T> cls, String data, int requestCode) {
         return startActivityForResult(iContext, cls, data, DEF_INTENT_TYPE, requestCode);
     }
 
     @Deprecated
-    public static IContext startActivityTypeForResult(IContext iContext, Class<?> cls, int type, int requestCode) {
+    public static <T extends Activity> IContext startActivityTypeForResult(IContext iContext, Class<T> cls, int type, int requestCode) {
         return startActivityForResult(iContext, cls, null, type, requestCode);
     }
 
     @Deprecated
-    public static IContext startActivity(IContext iContext, Class<?> cls, String data, int type) {
+    public static <T extends Activity> IContext startActivity(IContext iContext, Class<T> cls, String data, int type) {
         Bundle bundle = new Bundle();
         if (data != null) {
             bundle.putString(IConstants.INTENT_DATA, data);
@@ -55,12 +55,12 @@ public class IIntentCompat {
     }
 
     @Deprecated
-    public static IContext startActivityData(IContext iContext, Class<?> cls, String data) {
+    public static <T extends Activity> IContext startActivityData(IContext iContext, Class<T> cls, String data) {
         return startActivity(iContext, cls, data, DEF_INTENT_TYPE);
     }
 
     @Deprecated
-    public static IContext startActivityType(IContext iContext, Class<?> cls, int type) {
+    public static <T extends Activity> IContext startActivityType(IContext iContext, Class<T> cls, int type) {
         return startActivity(iContext, cls, null, type);
     }
 
@@ -78,11 +78,11 @@ public class IIntentCompat {
         return startActivityForResult(fragment, intent, null, requestCode);
     }
 
-    public static Fragment startActivityForResult(Fragment fragment, Class<?> cls, Bundle bundle, int requestCode) {
+    public static <T extends Activity> Fragment startActivityForResult(Fragment fragment, Class<T> cls, Bundle bundle, int requestCode) {
         return startActivityForResult(fragment, new Intent(fragment.getContext(), cls), bundle, requestCode);
     }
 
-    public static Fragment startActivityForResult(Fragment fragment, Class<?> cls, int requestCode) {
+    public static <T extends Activity> Fragment startActivityForResult(Fragment fragment, Class<T> cls, int requestCode) {
         return startActivityForResult(fragment, cls, null, requestCode);
     }
 
@@ -90,11 +90,11 @@ public class IIntentCompat {
         return startActivityForResult(activity, intent, null, requestCode);
     }
 
-    public static Activity startActivityForResult(Activity activity, Class<?> cls, Bundle bundle, int requestCode) {
+    public static <T extends Activity> Activity startActivityForResult(Activity activity, Class<T> cls, Bundle bundle, int requestCode) {
         return startActivityForResult(activity, new Intent(activity.getApplicationContext(), cls), bundle, requestCode);
     }
 
-    public static Activity startActivityForResult(Activity activity, Class<?> cls, int requestCode) {
+    public static <T extends Activity> Activity startActivityForResult(Activity activity, Class<T> cls, int requestCode) {
         return startActivityForResult(activity, cls, null, requestCode);
     }
 
@@ -102,15 +102,15 @@ public class IIntentCompat {
         return startActivityForResult(iContext, intent, null, requestCode);
     }
 
-    public static IContext startActivityForResult(IContext iContext, Class<?> cls, Bundle bundle, int requestCode) {
+    public static <T extends Activity> IContext startActivityForResult(IContext iContext, Class<T> cls, Bundle bundle, int requestCode) {
         return startActivityForResult(iContext, new Intent(iContext.getApplicationContext(), cls), bundle, requestCode);
     }
 
-    public static IContext startActivityForResult(IContext iContext, Class<?> cls, Bundle bundle, int requestCode, Bundle options) {
+    public static <T extends Activity> IContext startActivityForResult(IContext iContext, Class<T> cls, Bundle bundle, int requestCode, Bundle options) {
         return startActivityForResult(iContext, new Intent(iContext.getApplicationContext(), cls), bundle, requestCode, options);
     }
 
-    public static IContext startActivityForResult(IContext iContext, Class<?> cls, int requestCode) {
+    public static <T extends Activity> IContext startActivityForResult(IContext iContext, Class<T> cls, int requestCode) {
         return startActivityForResult(iContext, cls, null, requestCode);
     }
 
@@ -118,11 +118,11 @@ public class IIntentCompat {
         return startActivity(iContext, intent, null);
     }
 
-    public static IContext startActivity(IContext iContext, Class<?> cls, Bundle bundle) {
+    public static <T extends Activity> IContext startActivity(IContext iContext, Class<T> cls, Bundle bundle) {
         return startActivity(iContext, new Intent(iContext.getApplicationContext(), cls), bundle);
     }
 
-    public static IContext startActivity(IContext iContext, Class<?> cls) {
+    public static <T extends Activity> IContext startActivity(IContext iContext, Class<T> cls) {
         return startActivity(iContext, cls, null);
     }
 
@@ -130,11 +130,11 @@ public class IIntentCompat {
         return startActivity(context, intent, null);
     }
 
-    public static Context startActivity(Context context, Class<?> cls, Bundle bundle) {
+    public static <T extends Activity> Context startActivity(Context context, Class<T> cls, Bundle bundle) {
         return startActivity(context, new Intent(context.getApplicationContext(), cls), bundle);
     }
 
-    public static Context startActivity(Context context, Class<?> cls) {
+    public static <T extends Activity> Context startActivity(Context context, Class<T> cls) {
         return startActivity(context, cls, null);
     }
 
@@ -197,11 +197,11 @@ public class IIntentCompat {
         return context;
     }
 
-    public static Context startActivity(Activity activity, Class<?> cls, Bundle options) {
+    public static <T extends Activity> Context startActivity(Activity activity, Class<T> cls, Bundle options) {
         return startActivity(activity, new Intent(activity, cls), null, options);
     }
 
-    public static Context startActivity(Activity activity, Class<?> cls, Bundle bundle, Bundle options) {
+    public static <T extends Activity> Context startActivity(Activity activity, Class<T> cls, Bundle bundle, Bundle options) {
         return startActivity(activity, new Intent(activity, cls), bundle, options);
     }
 

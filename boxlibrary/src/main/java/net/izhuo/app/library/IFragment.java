@@ -6,6 +6,7 @@ package net.izhuo.app.library;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +15,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.support.annotation.CallSuper;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -180,12 +183,12 @@ public abstract class IFragment extends Fragment implements IContext {
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int loadingImage, @DrawableRes int emptyUriImage, @DrawableRes int failImage) {
         return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int defImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int defImage) {
         return mHelper.getOptions(radius, defImage);
     }
 
@@ -200,7 +203,7 @@ public abstract class IFragment extends Fragment implements IContext {
     }
 
     @Override
-    public IProgress showLoad(int messageResId) {
+    public IProgress showLoad(@StringRes int messageResId) {
         return mHelper.showLoad(messageResId);
     }
 
@@ -218,7 +221,7 @@ public abstract class IFragment extends Fragment implements IContext {
 
     @Nullable
     @Override
-    public IProgress showLoad(IProgress.Theme theme, int messageResId) {
+    public IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId) {
         return mHelper.showLoad(theme, messageResId);
     }
 
@@ -239,22 +242,22 @@ public abstract class IFragment extends Fragment implements IContext {
     }
 
     @Override
-    public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
+    public <T extends Activity> IContext startActivityForResult(Class<T> cls, Bundle bundle, int requestCode) {
         return mHelper.startActivityForResult(cls, bundle, requestCode);
     }
 
     @Override
-    public final IContext startActivityForResult(Class<?> cls, int requestCode) {
+    public final <T extends Activity> IContext startActivityForResult(Class<T> cls, int requestCode) {
         return mHelper.startActivityForResult(cls, requestCode);
     }
 
     @Override
-    public IContext startActivity(Class<?> cls, Bundle bundle) {
+    public <T extends Activity> IContext startActivity(Class<T> cls, Bundle bundle) {
         return mHelper.startActivity(cls, bundle);
     }
 
     @Override
-    public final IContext startActivity(Class<?> cls) {
+    public final <T extends Activity> IContext startActivity(Class<T> cls) {
         return mHelper.startActivity(cls);
     }
 
@@ -269,12 +272,12 @@ public abstract class IFragment extends Fragment implements IContext {
     }
 
     @Override
-    public final Object showText(int res) {
+    public final Object showText(@StringRes int res) {
         return mHelper.showText(res);
     }
 
     @Override
-    public final Object showText(int res, Object... formatArgs) {
+    public final Object showText(@StringRes int res, Object... formatArgs) {
         return mHelper.showText(res, formatArgs);
     }
 

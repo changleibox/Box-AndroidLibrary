@@ -7,6 +7,8 @@ package net.izhuo.app.library.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -33,7 +35,7 @@ public class IProgress extends Dialog {
         this(context, R.style.Box_Translucent_Dialog);
     }
 
-    public IProgress(Context context, int theme) {
+    public IProgress(Context context, @StyleRes int theme) {
         super(context, theme);
         init(context, Theme.Black);
     }
@@ -92,7 +94,7 @@ public class IProgress extends Dialog {
         return this;
     }
 
-    public IProgress setMessage(int resId) {
+    public IProgress setMessage(@StringRes int resId) {
         return setMessage(mContext.getString(resId));
     }
 

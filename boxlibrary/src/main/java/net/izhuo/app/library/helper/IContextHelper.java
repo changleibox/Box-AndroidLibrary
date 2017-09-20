@@ -14,11 +14,13 @@ import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -105,7 +107,7 @@ public class IContextHelper implements IBaseContext {
         return containerView;
     }
 
-    public final void setContentView(int layoutResID) {
+    public final void setContentView(@LayoutRes int layoutResID) {
         Activity activity = getActivity();
         if (activity == null) {
             return;
@@ -192,12 +194,12 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int loadingImage, @DrawableRes int emptyUriImage, @DrawableRes int failImage) {
         return IImageLoaderCompat.getOptions(radius, loadingImage, emptyUriImage, failImage);
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int defImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int defImage) {
         return IImageLoaderCompat.getOptions(radius, defImage);
     }
 
@@ -224,7 +226,7 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(int messageResId) {
+    public IProgress showLoad(@StringRes int messageResId) {
         return IProgressCompat.showLoad(getActivity(), messageResId);
     }
 
@@ -243,7 +245,7 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, int messageResId) {
+    public IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId) {
         Activity activity = getActivity();
         if (activity == null) {
             return null;
@@ -270,22 +272,22 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
+    public <T extends Activity> IContext startActivityForResult(Class<T> cls, Bundle bundle, int requestCode) {
         return IIntentCompat.startActivityForResult(mContext, cls, bundle, requestCode);
     }
 
     @Override
-    public IContext startActivityForResult(Class<?> cls, int requestCode) {
+    public <T extends Activity> IContext startActivityForResult(Class<T> cls, int requestCode) {
         return IIntentCompat.startActivityForResult(mContext, cls, requestCode);
     }
 
     @Override
-    public IContext startActivity(Class<?> cls, Bundle bundle) {
+    public <T extends Activity> IContext startActivity(Class<T> cls, Bundle bundle) {
         return IIntentCompat.startActivity(mContext, cls, bundle);
     }
 
     @Override
-    public IContext startActivity(Class<?> cls) {
+    public <T extends Activity> IContext startActivity(Class<T> cls) {
         return IIntentCompat.startActivity(mContext, cls);
     }
 
@@ -300,12 +302,12 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public final Object showText(int res) {
+    public final Object showText(@StringRes int res) {
         return IToastCompat.showText(getActivity(), res);
     }
 
     @Override
-    public final Object showText(int res, Object... formatArgs) {
+    public final Object showText(@StringRes int res, Object... formatArgs) {
         return IToastCompat.showText(getActivity(), res, formatArgs);
     }
 
@@ -482,7 +484,7 @@ public class IContextHelper implements IBaseContext {
         return mContext.getSupportFragmentManager();
     }
 
-    private  <T extends View> T inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot) {
+    private <T extends View> T inflate(@LayoutRes int resource, @Nullable ViewGroup root, boolean attachToRoot) {
         //noinspection unchecked
         return (T) LayoutInflater.from(getActivity()).inflate(resource, root, attachToRoot);
     }

@@ -13,9 +13,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler.Callback;
 import android.support.annotation.CallSuper;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -65,7 +68,7 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public void setContentView(int layoutResID) {
+    public void setContentView(@LayoutRes int layoutResID) {
         mHelper.setContentView(layoutResID);
     }
 
@@ -85,12 +88,12 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int loadingImage, @DrawableRes int emptyUriImage, @DrawableRes int failImage) {
         return mHelper.getOptions(radius, loadingImage, emptyUriImage, failImage);
     }
 
     @Override
-    public final DisplayImageOptions getOptions(int radius, int defImage) {
+    public final DisplayImageOptions getOptions(int radius, @DrawableRes int defImage) {
         return mHelper.getOptions(radius, defImage);
     }
 
@@ -137,7 +140,7 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public IProgress showLoad(int messageResId) {
+    public IProgress showLoad(@StringRes int messageResId) {
         return mHelper.showLoad(messageResId);
     }
 
@@ -152,7 +155,7 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, int messageResId) {
+    public IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId) {
         return mHelper.showLoad(theme, messageResId);
     }
 
@@ -167,32 +170,32 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Deprecated
-    public final IContext startActivityForResult(Class<?> cls, String data, int type, int requestCode) {
+    public final <T extends Activity> IContext startActivityForResult(Class<T> cls, String data, int type, int requestCode) {
         return IIntentCompat.startActivityForResult(this, cls, data, type, requestCode);
     }
 
     @Deprecated
-    public final IContext startActivityDataForResult(Class<?> cls, String data, int requestCode) {
+    public final <T extends Activity> IContext startActivityDataForResult(Class<T> cls, String data, int requestCode) {
         return IIntentCompat.startActivityDataForResult(this, cls, data, requestCode);
     }
 
     @Deprecated
-    public final IContext startActivityTypeForResult(Class<?> cls, int type, int requestCode) {
+    public final <T extends Activity> IContext startActivityTypeForResult(Class<T> cls, int type, int requestCode) {
         return IIntentCompat.startActivityTypeForResult(this, cls, type, requestCode);
     }
 
     @Deprecated
-    public final IContext startActivity(Class<?> cls, String data, int type) {
+    public final <T extends Activity> IContext startActivity(Class<T> cls, String data, int type) {
         return IIntentCompat.startActivity(this, cls, data, type);
     }
 
     @Deprecated
-    public final IContext startActivityData(Class<?> cls, String data) {
+    public final <T extends Activity> IContext startActivityData(Class<T> cls, String data) {
         return IIntentCompat.startActivityData(this, cls, data);
     }
 
     @Deprecated
-    public final IContext startActivityType(Class<?> cls, int type) {
+    public final <T extends Activity> IContext startActivityType(Class<T> cls, int type) {
         return IIntentCompat.startActivityType(this, cls, type);
     }
 
@@ -212,22 +215,22 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode) {
+    public <T extends Activity> IContext startActivityForResult(Class<T> cls, Bundle bundle, int requestCode) {
         return mHelper.startActivityForResult(cls, bundle, requestCode);
     }
 
     @Override
-    public final IContext startActivityForResult(Class<?> cls, int requestCode) {
+    public final <T extends Activity> IContext startActivityForResult(Class<T> cls, int requestCode) {
         return mHelper.startActivityForResult(cls, requestCode);
     }
 
     @Override
-    public IContext startActivity(Class<?> cls, Bundle bundle) {
+    public <T extends Activity> IContext startActivity(Class<T> cls, Bundle bundle) {
         return mHelper.startActivity(cls, bundle);
     }
 
     @Override
-    public final IContext startActivity(Class<?> cls) {
+    public final <T extends Activity> IContext startActivity(Class<T> cls) {
         return mHelper.startActivity(cls);
     }
 
@@ -260,12 +263,12 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public final Object showText(int res) {
+    public final Object showText(@StringRes int res) {
         return mHelper.showText(res);
     }
 
     @Override
-    public final Object showText(int res, Object... formatArgs) {
+    public final Object showText(@StringRes int res, Object... formatArgs) {
         return mHelper.showText(res, formatArgs);
     }
 

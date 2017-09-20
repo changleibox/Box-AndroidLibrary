@@ -6,6 +6,7 @@ package net.izhuo.app.library.util;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
+import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -45,11 +46,11 @@ public class IToastCompat {
         return showText(context, text, DEFAULT_DURATION);
     }
 
-    public static Object showText(Context context, int res) {
+    public static Object showText(Context context, @StringRes int res) {
         return showText(context, context.getString(res));
     }
 
-    public static Object showText(Context context, int res, Object... formatArgs) {
+    public static Object showText(Context context, @StringRes int res, Object... formatArgs) {
         return showText(context, context.getString(res, formatArgs));
     }
 

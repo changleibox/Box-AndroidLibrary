@@ -4,14 +4,17 @@
 
 package net.izhuo.app.library;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.IntRange;
+import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.view.View;
 import android.webkit.WebView;
@@ -35,9 +38,9 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface IBaseContext {
 
-    DisplayImageOptions getOptions(int radius, int loadingImage, int emptyUriImage, int failImage);
+    DisplayImageOptions getOptions(int radius, @DrawableRes int loadingImage, @DrawableRes int emptyUriImage, @DrawableRes int failImage);
 
-    DisplayImageOptions getOptions(int radius, int defImage);
+    DisplayImageOptions getOptions(int radius, @DrawableRes int defImage);
 
     /**
      * 获取TextView及子控件上的Text
@@ -54,7 +57,7 @@ public interface IBaseContext {
      * <p>
      * {@link #showLoad(CharSequence)} 重载方法
      */
-    IProgress showLoad(int messageResId);
+    IProgress showLoad(@StringRes int messageResId);
 
     /**
      * 显示加载数据条
@@ -73,7 +76,7 @@ public interface IBaseContext {
      * <p>
      * {@link #showLoad(IProgress.Theme, CharSequence)} 重载方法
      */
-    IProgress showLoad(IProgress.Theme theme, int messageResId);
+    IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId);
 
     /**
      * 显示加载数据条
@@ -87,21 +90,21 @@ public interface IBaseContext {
      */
     void loadDismiss();
 
-    IContext startActivityForResult(Class<?> cls, Bundle bundle, int requestCode);
+    <T extends Activity> IContext startActivityForResult(Class<T> cls, Bundle bundle, int requestCode);
 
-    IContext startActivityForResult(Class<?> cls, int requestCode);
+    <T extends Activity> IContext startActivityForResult(Class<T> cls, int requestCode);
 
-    IContext startActivity(Class<?> cls, Bundle bundle);
+    <T extends Activity> IContext startActivity(Class<T> cls, Bundle bundle);
 
-    IContext startActivity(Class<?> cls);
+    <T extends Activity> IContext startActivity(Class<T> cls);
 
     Bundle getBundle();
 
     Object showText(CharSequence text);
 
-    Object showText(int res);
+    Object showText(@StringRes int res);
 
-    Object showText(int res, Object... formatArgs);
+    Object showText(@StringRes int res, Object... formatArgs);
 
     IOSDialog showTextDialog(String title, String message, IOSDialog.OnClickListener l);
 

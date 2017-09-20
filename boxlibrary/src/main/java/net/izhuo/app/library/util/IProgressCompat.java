@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 import net.izhuo.app.library.widget.IProgress;
 
@@ -43,7 +44,7 @@ public class IProgressCompat {
         return progress;
     }
 
-    public static IProgress showLoad(Context context, int messageResId) {
+    public static IProgress showLoad(Context context, @StringRes int messageResId) {
         return showLoad(context, messageResId == -1 ? null : context.getString(messageResId));
     }
 
@@ -59,7 +60,7 @@ public class IProgressCompat {
         return progress;
     }
 
-    public static IProgress showLoad(Context context, IProgress.Theme theme, int messageResId) {
+    public static IProgress showLoad(Context context, IProgress.Theme theme, @StringRes int messageResId) {
         return showLoad(context, theme, messageResId == -1 ? null : context.getString(messageResId));
     }
 
