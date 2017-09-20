@@ -297,17 +297,17 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public final Object showText(CharSequence text) {
+    public final <T> T showText(CharSequence text) {
         return IToastCompat.showText(getActivity(), text);
     }
 
     @Override
-    public final Object showText(@StringRes int res) {
+    public final <T> T showText(@StringRes int res) {
         return IToastCompat.showText(getActivity(), res);
     }
 
     @Override
-    public final Object showText(@StringRes int res, Object... formatArgs) {
+    public final <T> T showText(@StringRes int res, Object... formatArgs) {
         return IToastCompat.showText(getActivity(), res, formatArgs);
     }
 

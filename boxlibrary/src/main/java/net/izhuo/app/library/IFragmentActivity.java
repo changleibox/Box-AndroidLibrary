@@ -253,17 +253,17 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
     }
 
     @Override
-    public final Object showText(CharSequence text) {
+    public final <T> T showText(CharSequence text) {
         return mHelper.showText(text);
     }
 
     @Override
-    public final Object showText(@StringRes int res) {
+    public final <T> T showText(@StringRes int res) {
         return mHelper.showText(res);
     }
 
     @Override
-    public final Object showText(@StringRes int res, Object... formatArgs) {
+    public final <T> T showText(@StringRes int res, Object... formatArgs) {
         return mHelper.showText(res, formatArgs);
     }
 

@@ -100,11 +100,11 @@ public interface IBaseContext {
 
     Bundle getBundle();
 
-    Object showText(CharSequence text);
+    <T> T showText(CharSequence text);
 
-    Object showText(@StringRes int res);
+    <T> T showText(@StringRes int res);
 
-    Object showText(@StringRes int res, Object... formatArgs);
+    <T> T showText(@StringRes int res, Object... formatArgs);
 
     IOSDialog showTextDialog(String title, String message, IOSDialog.OnClickListener l);
 

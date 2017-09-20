@@ -54,6 +54,11 @@ public class IFragmentHelper {
         }
     }
 
+    public void removeAllFragment() {
+        mFragments.clear();
+        mCurrentTabIndex = -1;
+    }
+
     @SafeVarargs
     public final <T extends IFragment> void setFragments(T... fragments) {
         setFragments(Arrays.asList(fragments));

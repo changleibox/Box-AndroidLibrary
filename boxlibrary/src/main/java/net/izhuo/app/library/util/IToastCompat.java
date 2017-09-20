@@ -25,11 +25,11 @@ public class IToastCompat {
 
     private static OnCreateToastListener mCreateToastListener;
 
-    public static Object showText(Context context, CharSequence text, @Duration int duration) {
+    public static <T> T showText(Context context, CharSequence text, @Duration int duration) {
         if (TextUtils.isEmpty(text)) {
             return null;
         }
-        Object o;
+        T o;
         if (mCreateToastListener != null && (o = mCreateToastListener.onCreateToast(context, text)) != null) {
             return o;
         }
@@ -39,18 +39,19 @@ public class IToastCompat {
             mToast.setText(text);
         }
         mToast.show();
-        return mToast;
+        //noinspection unchecked
+        return (T) mToast;
     }
 
-    public static Object showText(Context context, CharSequence text) {
+    public static <T> T showText(Context context, CharSequence text) {
         return showText(context, text, DEFAULT_DURATION);
     }
 
-    public static Object showText(Context context, @StringRes int res) {
+    public static <T> T showText(Context context, @StringRes int res) {
         return showText(context, context.getString(res));
     }
 
-    public static Object showText(Context context, @StringRes int res, Object... formatArgs) {
+    public static <T> T showText(Context context, @StringRes int res, Object... formatArgs) {
         return showText(context, context.getString(res, formatArgs));
     }
 
@@ -67,8 +68,9 @@ public class IToastCompat {
         IToastCompat.mCreateToastListener = createToastListener;
     }
 
+    @SuppressWarnings("WeakerAccess")
     public interface OnCreateToastListener {
-        Object onCreateToast(Context context, CharSequence text);
+        <T> T onCreateToast(Context context, CharSequence text);
     }
 
 }
