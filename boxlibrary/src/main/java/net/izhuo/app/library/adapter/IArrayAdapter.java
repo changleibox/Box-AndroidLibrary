@@ -217,9 +217,6 @@ public abstract class IArrayAdapter<T, VH extends RecyclerView.ViewHolder> exten
     }
 
     public List<T> getItems() {
-        if (mOriginalValues != null) {
-            return Collections.unmodifiableList(mOriginalValues);
-        }
         return Collections.unmodifiableList(mObjects);
     }
 
