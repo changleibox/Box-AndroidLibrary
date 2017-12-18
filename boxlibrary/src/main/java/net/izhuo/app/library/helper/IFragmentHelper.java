@@ -14,6 +14,7 @@ import net.izhuo.app.library.IFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,32 +23,36 @@ import java.util.List;
  * 处理Fragment的显示隐藏和其他功能
  */
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "unchecked"})
 public class IFragmentHelper {
 
-    private int mCurrentTabIndex = -1;
-    private FragmentManager mFragmentManager;
+    private final FragmentManager mFragmentManager;
+    private final List<IFragment> mFragments;
 
-    private List<IFragment> mFragments;
+    private int mCurrentTabIndex = -1;
 
     public IFragmentHelper(@NonNull FragmentManager fragmentManager) {
         this.mFragmentManager = fragmentManager;
         this.mFragments = new ArrayList<>();
     }
 
-    public IFragment getFragment(int position) {
+    public <Fragment extends IFragment> List<Fragment> getFragments() {
+        return (List<Fragment>) Collections.unmodifiableList(mFragments);
+    }
+
+    public <Fragment extends IFragment> Fragment getFragment(int position) {
         if (position >= mFragments.size()) {
             return null;
         }
-        return mFragments.get(position);
+        return (Fragment) mFragments.get(position);
     }
 
-    public void addFragments(IFragment fragment) {
+    public <Fragment extends IFragment> void addFragments(Fragment fragment) {
         fragment.setPage(mFragments.size());
         mFragments.add(fragment);
     }
 
-    public void removeFragment(IFragment fragment) {
+    public <Fragment extends IFragment> void removeFragment(Fragment fragment) {
         mFragments.remove(fragment);
         for (int i = 0; i < mFragments.size(); i++) {
             mFragments.get(i).setPage(i);
@@ -59,15 +64,19 @@ public class IFragmentHelper {
         mCurrentTabIndex = -1;
     }
 
+    public int getCurrentIndex() {
+        return mCurrentTabIndex;
+    }
+
     @SafeVarargs
-    public final <T extends IFragment> void setFragments(T... fragments) {
+    public final <Fragment extends IFragment> void setFragments(Fragment... fragments) {
         setFragments(Arrays.asList(fragments));
     }
 
-    public <T extends IFragment> void setFragments(List<T> fragments) {
+    public <Fragment extends IFragment> void setFragments(List<Fragment> fragments) {
         mFragments.clear();
         for (int i = 0; i < fragments.size(); i++) {
-            T fragment = fragments.get(i);
+            Fragment fragment = fragments.get(i);
             mFragments.add(fragment.setPage(i));
         }
     }
