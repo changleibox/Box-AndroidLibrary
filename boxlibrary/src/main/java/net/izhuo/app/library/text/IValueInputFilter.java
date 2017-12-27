@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2017 CHANGLEI. All rights reserved.
+ */
+
 package net.izhuo.app.library.text;
 
 import android.text.Spanned;
@@ -7,8 +11,14 @@ import android.text.method.DigitsKeyListener;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-@SuppressWarnings("deprecation")
-public class ValueInputFilter extends DigitsKeyListener {
+/**
+ * Created by box on 2017/11/22.
+ * <p>
+ * 限制ediitext输入数字的最大值和最小值
+ */
+
+@SuppressWarnings({"deprecation", "WeakerAccess"})
+public class IValueInputFilter extends DigitsKeyListener {
 
     private static final String EMPTY = "";
     private static final String NEGATIVE_SIGN = "-";
@@ -16,14 +26,23 @@ public class ValueInputFilter extends DigitsKeyListener {
     private final BigDecimal mMinValue;
     private final BigDecimal mMaxValue;
 
-    public ValueInputFilter(double minValue, double maxValue) {
-        this(minValue, maxValue, true);
+    private boolean isIncludeMin;
+    private boolean isIncludeMax;
+
+    public IValueInputFilter(double minValue, double maxValue) {
+        this(minValue, maxValue, true, true);
     }
 
-    public ValueInputFilter(double minValue, double maxValue, boolean decimal) {
+    public IValueInputFilter(double minValue, double maxValue, boolean includeMin, boolean includeMax) {
+        this(minValue, maxValue, true, includeMin, includeMax);
+    }
+
+    public IValueInputFilter(double minValue, double maxValue, boolean decimal, boolean includeMin, boolean includeMax) {
         super(minValue < 0, decimal);
         this.mMinValue = BigDecimal.valueOf(minValue);
         this.mMaxValue = BigDecimal.valueOf(maxValue);
+        this.isIncludeMin = includeMin;
+        this.isIncludeMax = includeMax;
     }
 
     @Override
@@ -44,11 +63,7 @@ public class ValueInputFilter extends DigitsKeyListener {
             return null;
         }
 
-        CharSequence tmpSource = removeInvalidZero(source, dest, dstart);
-        if (tmpSource == null) {
-            return EMPTY;
-        }
-        char[] chars = tmpSource.toString().toCharArray();
+        char[] chars = source.toString().toCharArray();
         for (int i = chars.length; i >= 0; i--) {
             char[] tmpChars = Arrays.copyOf(chars, i);
             if (!isExceed(new StringBuilder(dest).insert(dstart, tmpChars))) {
@@ -58,6 +73,9 @@ public class ValueInputFilter extends DigitsKeyListener {
         return EMPTY;
     }
 
+    /**
+     * 判断是否超过边界值
+     */
     private boolean isExceed(CharSequence valueStr) {
         if (TextUtils.isEmpty(valueStr) || (valueStr.length() == 1 && (valueStr.charAt(0) == '-' || valueStr.charAt(0) == '.'))) {
             return false;
@@ -68,24 +86,8 @@ public class ValueInputFilter extends DigitsKeyListener {
         } catch (Exception e) {
             return true;
         }
-        return value.compareTo(mMaxValue) == 1 || value.compareTo(mMinValue) == -1;
-    }
 
-    private CharSequence removeInvalidZero(CharSequence source, Spanned dest, int dstart) {
-        if (TextUtils.isEmpty(source)) {
-            return null;
-        }
-        char sourceFirst = source.charAt(0);
-        if (sourceFirst == '-' || TextUtils.isEmpty(dest)) {
-            return source;
-        }
-        if (((dstart <= 1 && dest.charAt(0) == '0'
-                || (dstart == 1 && dest.charAt(0) == '-' && dest.length() > 1 && source.length() == 1 && sourceFirst != '0' && dest.charAt(1) != '0'))
-                || (dstart <= 2 && dest.charAt(0) == '-' && dest.length() > 1 && dest.charAt(1) == '0'))
-                && sourceFirst != '.') {
-            return null;
-        }
-        return source;
+        return value.compareTo(mMaxValue) >= (isIncludeMax ? 1 : 0) || value.compareTo(mMinValue) <= (isIncludeMin ? -1 : 0);
     }
 
 }
