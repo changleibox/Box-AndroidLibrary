@@ -4,6 +4,7 @@
 
 package net.izhuo.app.library.text;
 
+import android.support.annotation.IntDef;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
@@ -20,8 +21,17 @@ import java.util.Arrays;
 @SuppressWarnings({"deprecation", "WeakerAccess"})
 public class IValueInputFilter extends DigitsKeyListener {
 
+    public static final int FLAG_INCLUSIVE_EXCLUSIVE = 0x11;
+    public static final int FLAG_INCLUSIVE_INCLUSIVE = 0x22;
+    public static final int FLAG_EXCLUSIVE_EXCLUSIVE = 0x33;
+    public static final int FLAG_EXCLUSIVE_INCLUSIVE = 0x44;
+
     private static final String EMPTY = "";
     private static final String NEGATIVE_SIGN = "-";
+
+    @IntDef({FLAG_INCLUSIVE_EXCLUSIVE, FLAG_INCLUSIVE_INCLUSIVE, FLAG_EXCLUSIVE_EXCLUSIVE, FLAG_EXCLUSIVE_INCLUSIVE})
+    private @interface Flag {
+    }
 
     private final BigDecimal mMinValue;
     private final BigDecimal mMaxValue;
@@ -30,19 +40,24 @@ public class IValueInputFilter extends DigitsKeyListener {
     private boolean isIncludeMax;
 
     public IValueInputFilter(double minValue, double maxValue) {
-        this(minValue, maxValue, true, true);
+        this(minValue, maxValue, FLAG_INCLUSIVE_INCLUSIVE);
     }
 
-    public IValueInputFilter(double minValue, double maxValue, boolean includeMin, boolean includeMax) {
-        this(minValue, maxValue, true, includeMin, includeMax);
+    public IValueInputFilter(double minValue, double maxValue, @Flag int flag) {
+        this(minValue, maxValue, true, flag);
     }
 
-    public IValueInputFilter(double minValue, double maxValue, boolean decimal, boolean includeMin, boolean includeMax) {
+    public IValueInputFilter(double minValue, double maxValue, boolean decimal, @Flag int flag) {
         super(minValue < 0, decimal);
         this.mMinValue = BigDecimal.valueOf(minValue);
         this.mMaxValue = BigDecimal.valueOf(maxValue);
-        this.isIncludeMin = includeMin;
-        this.isIncludeMax = includeMax;
+        if (flag == FLAG_EXCLUSIVE_EXCLUSIVE) {
+            isIncludeMin = false;
+            isIncludeMax = false;
+        } else {
+            isIncludeMin = flag == FLAG_INCLUSIVE_EXCLUSIVE || flag == FLAG_INCLUSIVE_INCLUSIVE;
+            isIncludeMax = flag == FLAG_INCLUSIVE_INCLUSIVE || flag == FLAG_EXCLUSIVE_INCLUSIVE;
+        }
     }
 
     @Override
