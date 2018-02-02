@@ -179,7 +179,7 @@ public abstract class IFragment extends Fragment implements IContext {
 
     @Override
     public final FragmentManager getSupportFragmentManager() {
-        return getFragmentManager();
+        return getChildFragmentManager();
     }
 
     @Override
