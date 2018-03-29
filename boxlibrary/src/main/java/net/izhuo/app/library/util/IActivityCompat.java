@@ -14,7 +14,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.v4.content.res.ConfigurationHelper;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,6 +25,7 @@ import net.izhuo.app.library.IContext;
 import net.izhuo.app.library.R;
 import net.izhuo.app.library.common.IConstants;
 import net.izhuo.app.library.common.IConstants.IActivityCaches;
+import net.izhuo.app.library.helper.ConfigurationHelper;
 import net.izhuo.app.library.helper.IAppHelper;
 import net.izhuo.app.library.widget.IOSDialog;
 
