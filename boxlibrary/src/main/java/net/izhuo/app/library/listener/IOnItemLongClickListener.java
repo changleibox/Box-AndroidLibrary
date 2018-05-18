@@ -10,7 +10,7 @@ import net.izhuo.app.library.adapter.IArrayAdapter;
 
 /**
  * Created by Box on 16/8/27.
- * <p/>
+ * <p>
  * RecyclerView Item长按事件
  */
 public interface IOnItemLongClickListener {

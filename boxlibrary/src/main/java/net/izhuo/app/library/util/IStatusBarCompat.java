@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by Box on 16/8/15.
- * <p/>
+ * <p>
  * 设置statusBar颜色
  */
 @SuppressWarnings("unused")

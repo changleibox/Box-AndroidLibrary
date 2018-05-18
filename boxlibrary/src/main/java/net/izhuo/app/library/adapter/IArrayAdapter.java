@@ -28,7 +28,7 @@ import java.util.List;
 
 /**
  * Created by Box on 17/3/15.
- * <p/>
+ * <p>
  * 自定义地RecyclerView.Adapter
  */
 @SuppressWarnings({"unused", "WeakerAccess", "unchecked"})
@@ -247,7 +247,7 @@ public abstract class IArrayAdapter<T, VH extends RecyclerView.ViewHolder> exten
     @SuppressLint("RecyclerView")
     @CallSuper
     @Override
-    public void onBindViewHolder(final VH holder, final int position) {
+    public void onBindViewHolder(@NonNull final VH holder, final int position) {
         synchronized (mLock) {
             if (mClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

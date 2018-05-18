@@ -6,14 +6,17 @@ package net.izhuo.app.library.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 
 import net.izhuo.app.library.IContext;
 
 /**
  * Created by Box on 16/8/25.
- * <p/>
+ * <p>
  * RecycleView.Adapter基类
+ * <p>
+ * 此类已过时，请使用{@link IArrayAdapter}
  */
 @Deprecated
 public abstract class IBaseAdapter<T, VH extends RecyclerView.ViewHolder> extends IArrayAdapter<T, VH> {
@@ -101,11 +104,11 @@ public abstract class IBaseAdapter<T, VH extends RecyclerView.ViewHolder> extend
     }
 
     @Deprecated
-    public abstract void onBindViewHolder(VH holder, int position, int viewType);
+    public abstract void onBindViewHolder(@NonNull VH holder, int position, int viewType);
 
     @Deprecated
     @Override
-    public final void onBindViewHolder(final VH holder, final int position) {
+    public final void onBindViewHolder(@NonNull final VH holder, final int position) {
         super.onBindViewHolder(holder, position);
         onBindViewHolder(holder, position, getItemViewType(position));
     }

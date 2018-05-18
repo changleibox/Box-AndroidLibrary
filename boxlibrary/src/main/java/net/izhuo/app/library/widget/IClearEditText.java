@@ -24,7 +24,7 @@ import net.izhuo.app.library.util.IViewDrawable;
  * 带清除按钮的edittext
  *
  * @author Changlei
- *         <p/>
+ *         <p>
  *         2014年6月17日
  */
 @SuppressWarnings({"JavaDoc", "unused"})

@@ -13,7 +13,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by Box on 16/8/27.
- * <p/>
+ * <p>
  * recyclerView滚动工具
  */
 @SuppressWarnings({"WeakerAccess", "unused"})

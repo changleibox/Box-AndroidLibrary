@@ -22,9 +22,9 @@ import net.izhuo.app.library.R;
 /**
  * @author Box
  * @since Jdk1.6
- * <p/>
+ * <p>
  * 2016年1月6日 下午3:24:38
- * <p/>
+ * <p>
  * 模仿键盘
  */
 @SuppressWarnings({"JavaDoc", "unused"})

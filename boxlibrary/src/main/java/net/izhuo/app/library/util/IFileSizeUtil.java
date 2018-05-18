@@ -15,9 +15,9 @@ import java.text.DecimalFormat;
 /**
  * @author Box
  * @since Jdk1.6
- * <p/>
+ * <p>
  * 2015年12月9日 上午11:14:30
- * <p/>
+ * <p>
  * 获取文件大小
  */
 @SuppressWarnings({"unused", "JavaDoc"})

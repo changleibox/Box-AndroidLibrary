@@ -24,7 +24,7 @@ import net.izhuo.app.library.compat.IAttrCompat;
 
 /**
  * Created by Box on 17/3/16.
- * <p/>
+ * <p>
  * 具有上滑加载更多功能
  */
 @SuppressWarnings({"unused", "deprecation"})

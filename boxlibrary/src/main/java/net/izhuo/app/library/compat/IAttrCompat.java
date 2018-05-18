@@ -9,7 +9,7 @@ import android.content.res.TypedArray;
 
 /**
  * Created by Box on 17/3/16.
- * <p/>
+ * <p>
  * 获取属性值
  */
 public class IAttrCompat {
