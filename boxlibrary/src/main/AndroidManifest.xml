@@ -3,17 +3,22 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="net.izhuo.app.library">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="net.box.app.library">
 
     <!-- 默认 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -25,7 +30,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application>
-        <!-- izhuoBase start 请把一下内容复制到新建的项目中，切改成自己项目的内容－－－－－－－－－－－－－－－－－－－－－ -->
+        <!-- boxBase start 请把一下内容复制到新建的项目中，切改成自己项目的内容－－－－－－－－－－－－－－－－－－－－－ -->
         <activity
             android:name=".reader.activity.IChoosePictureActivity"
             android:screenOrientation="portrait"
@@ -34,7 +39,7 @@
             android:name=".reader.activity.IPreviewPictureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Box.Theme.Light.NoTitleBar"/>
-        <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+        <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
         <!-- Umeng 统计 -->
         <meta-data

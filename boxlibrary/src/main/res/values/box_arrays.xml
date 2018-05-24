@@ -5,7 +5,7 @@
 
 <resources>
 
-    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
     <!-- 热门城市 北京、上海、杭州、深圳、广州、成都、武汉、南京、青岛以及天津 -->
     <string-array name="box_hot_address">
         <item>天津市</item>
@@ -19,6 +19,6 @@
         <item>上海市</item>
         <item>北京市</item>
     </string-array>
-    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
 </resources>

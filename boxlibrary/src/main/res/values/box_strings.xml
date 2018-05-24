@@ -62,6 +62,6 @@
 
     <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
-    <string name="box_library_name">IzhuoBaseLib</string>
+    <string name="box_library_name">BoxBaseLib</string>
 
 </resources>

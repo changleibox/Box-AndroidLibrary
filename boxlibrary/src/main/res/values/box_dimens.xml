@@ -4,7 +4,7 @@
 
 <resources>
 
-    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="box_activity_horizontal_margin">16dp</dimen>
     <dimen name="box_activity_vertical_margin">16dp</dimen>
@@ -39,6 +39,6 @@
     <dimen name="box_edittext_size">16sp</dimen>
     <dimen name="box_btn_title_text_size">16sp</dimen>
     <dimen name="box_lable_text_size">14sp</dimen>
-    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
 </resources>

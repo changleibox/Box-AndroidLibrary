@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import net.izhuo.app.library.adapter.IHeaderViewAdapter;
+import net.box.app.library.adapter.IHeaderViewAdapter;
 
 import java.util.ArrayList;
 

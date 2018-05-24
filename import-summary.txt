@@ -9,7 +9,7 @@ so manually move them:
 
 * .idea/
 * .idea/.name
-* .idea/IzhuoBaseLib.iml
+* .idea/BoxBaseLib.iml
 * .idea/compiler.xml
 * .idea/copyright/
 * .idea/copyright/profiles_settings.xml

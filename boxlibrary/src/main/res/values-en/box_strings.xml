@@ -5,8 +5,8 @@
 
 <resources>
 
-    <!-- izhuoBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
-    <!-- izhuoBase lable text -->
+    <!-- boxBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase lable text -->
     <string name="box_lable_spread">%1$d Sheet</string>
     <string name="box_lable_complete_spread">Complete(%1$d/%2$d)</string>
     <string name="box_lable_no_sdcard">Memory card not found!</string>
@@ -36,7 +36,7 @@
     <string name="box_label_loaded_all">Loaded All</string>
     <string name="box_label_loading">Loading……</string>
 
-    <!-- izhuoBase button text -->
+    <!-- boxBase button text -->
     <string name="box_btn_cancel">Cancel</string>
     <string name="box_btn_complete">Complete</string>
     <string name="box_btn_sure">Confirm</string>
@@ -47,7 +47,7 @@
     <string name="box_btn_camera">Photograph</string>
     <string name="box_btn_photo_album">Album</string>
 
-    <!-- izhuoBase toast text -->
+    <!-- boxBase toast text -->
     <string name="box_toast_max_select_picture">You can choose %1$d of the most!</string>
     <string name="box_toast_exit_prompt">Press the return key to exit</string>
     <string name="box_toast_net_exception">Network exception, please check the network!</string>
@@ -60,8 +60,8 @@
     <string name="box_toast_no_camera">No camera equipment.</string>
     <string name="box_toast_no_facing_camera">No pre camera device, open the rear camera device by default.</string>
 
-    <!-- izhuoBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 
-    <string name="box_library_name">IzhuoBaseLib</string>
+    <string name="box_library_name">BoxBaseLib</string>
 
 </resources>
