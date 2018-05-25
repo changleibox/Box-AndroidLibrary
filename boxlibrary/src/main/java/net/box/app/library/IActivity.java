@@ -29,6 +29,7 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import net.box.app.library.helper.IContextHelper;
 import net.box.app.library.helper.IFragmentHelper;
+import net.box.app.library.impl.IProgressImpl;
 import net.box.app.library.reader.picture.IOpenType;
 import net.box.app.library.util.IIntentCompat;
 import net.box.app.library.util.IProgressCompat;
@@ -135,32 +136,32 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public IProgress showLoad(CharSequence message) {
+    public IProgressImpl showLoad(CharSequence message) {
         return IProgressCompat.showLoad(this, message);
     }
 
     @Override
-    public IProgress showLoad(@StringRes int messageResId) {
+    public IProgressImpl showLoad(@StringRes int messageResId) {
         return mHelper.showLoad(messageResId);
     }
 
     @Override
-    public IProgress showLoad() {
+    public IProgressImpl showLoad() {
         return mHelper.showLoad();
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, CharSequence message) {
+    public IProgressImpl showLoad(IProgress.Theme theme, CharSequence message) {
         return mHelper.showLoad(theme, message);
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId) {
+    public IProgressImpl showLoad(IProgress.Theme theme, @StringRes int messageResId) {
         return mHelper.showLoad(theme, messageResId);
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme) {
+    public IProgressImpl showLoad(IProgress.Theme theme) {
         return mHelper.showLoad(theme);
     }
 

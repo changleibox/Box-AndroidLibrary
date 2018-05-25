@@ -36,6 +36,7 @@ import com.umeng.analytics.MobclickAgent;
 import net.box.app.library.IBaseContext;
 import net.box.app.library.IContext;
 import net.box.app.library.common.IConstants;
+import net.box.app.library.impl.IProgressImpl;
 import net.box.app.library.reader.picture.IOpenType;
 import net.box.app.library.util.IActivityCompat;
 import net.box.app.library.util.IImageChooser;
@@ -218,7 +219,7 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(CharSequence message) {
+    public IProgressImpl showLoad(CharSequence message) {
         Activity activity = getActivity();
         if (activity == null) {
             return null;
@@ -227,17 +228,17 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(@StringRes int messageResId) {
+    public IProgressImpl showLoad(@StringRes int messageResId) {
         return IProgressCompat.showLoad(getActivity(), messageResId);
     }
 
     @Override
-    public IProgress showLoad() {
+    public IProgressImpl showLoad() {
         return IProgressCompat.showLoad(getActivity());
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, CharSequence message) {
+    public IProgressImpl showLoad(IProgress.Theme theme, CharSequence message) {
         Activity activity = getActivity();
         if (activity == null) {
             return null;
@@ -246,7 +247,7 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId) {
+    public IProgressImpl showLoad(IProgress.Theme theme, @StringRes int messageResId) {
         Activity activity = getActivity();
         if (activity == null) {
             return null;
@@ -255,7 +256,7 @@ public class IContextHelper implements IBaseContext {
     }
 
     @Override
-    public IProgress showLoad(IProgress.Theme theme) {
+    public IProgressImpl showLoad(IProgress.Theme theme) {
         Activity activity = getActivity();
         if (activity == null) {
             return null;

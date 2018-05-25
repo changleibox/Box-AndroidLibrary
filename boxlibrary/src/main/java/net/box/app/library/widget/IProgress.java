@@ -16,14 +16,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import net.box.app.library.R;
+import net.box.app.library.impl.IProgressImpl;
 
 /**
  * @author Box
- *         <p>
- *         2015年7月22日
+ * <p>
+ * 2015年7月22日
  */
 @SuppressWarnings("JavaDoc")
-public class IProgress extends Dialog {
+public class IProgress extends Dialog implements IProgressImpl {
 
     private Context mContext;
     private TextView mTvMessage;

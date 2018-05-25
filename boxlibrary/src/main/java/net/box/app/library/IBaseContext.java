@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
 import net.box.app.library.helper.IFragmentHelper;
+import net.box.app.library.impl.IProgressImpl;
 import net.box.app.library.reader.picture.IOpenType;
 import net.box.app.library.widget.IOSDialog;
 import net.box.app.library.widget.IProgress;
@@ -50,40 +51,40 @@ public interface IBaseContext {
     /**
      * 显示加载数据条 @param message 需要显示的文本
      */
-    IProgress showLoad(CharSequence message);
+    IProgressImpl showLoad(CharSequence message);
 
     /**
      * 显示加载数据条 @param messageResId 需要显示的文本资源Id
      * <p>
      * {@link #showLoad(CharSequence)} 重载方法
      */
-    IProgress showLoad(@StringRes int messageResId);
+    IProgressImpl showLoad(@StringRes int messageResId);
 
     /**
      * 显示加载数据条
      * <p>
      * {@link #showLoad(int)} 重载方法
      */
-    IProgress showLoad();
+    IProgressImpl showLoad();
 
     /**
      * 显示加载数据条 @param message 需要显示的文本
      */
-    IProgress showLoad(IProgress.Theme theme, CharSequence message);
+    IProgressImpl showLoad(IProgress.Theme theme, CharSequence message);
 
     /**
      * 显示加载数据条 @param messageResId 需要显示的文本资源Id
      * <p>
      * {@link #showLoad(IProgress.Theme, CharSequence)} 重载方法
      */
-    IProgress showLoad(IProgress.Theme theme, @StringRes int messageResId);
+    IProgressImpl showLoad(IProgress.Theme theme, @StringRes int messageResId);
 
     /**
      * 显示加载数据条
      * <p>
      * {@link #showLoad(IProgress.Theme, int)} 重载方法
      */
-    IProgress showLoad(IProgress.Theme theme);
+    IProgressImpl showLoad(IProgress.Theme theme);
 
     /**
      * 关闭进度条
