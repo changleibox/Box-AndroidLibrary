@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
@@ -38,6 +37,7 @@ import java.util.Collection;
  * <p>
  * Activity辅助类
  */
+@SuppressWarnings({"unused", "deprecation", "WeakerAccess"})
 public final class IActivityCompat {
 
     private static InputMethodManager mMethodManager;
@@ -156,16 +156,14 @@ public final class IActivityCompat {
     @SuppressWarnings("deprecation")
     private static void initSrceenWidthAndHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = wm.getDefaultDisplay();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            Point size = new Point();
-            display.getSize(size);
-            mScreenWidth = size.x;
-            mScreenHeight = size.y;
-        } else {
-            mScreenWidth = display.getWidth();
-            mScreenHeight = display.getHeight();
+        if (wm == null) {
+            return;
         }
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        mScreenWidth = size.x;
+        mScreenHeight = size.y;
     }
 
     private static InputMethodManager getMethodManager(Context context) {
@@ -175,6 +173,7 @@ public final class IActivityCompat {
         return mMethodManager;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public static class ExitApplication {
 
         private static final long COUNT_DOWN_INTERVAL = 1000;

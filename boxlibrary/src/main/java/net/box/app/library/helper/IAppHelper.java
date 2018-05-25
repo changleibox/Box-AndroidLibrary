@@ -19,6 +19,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringDef;
 import android.support.annotation.StringRes;
+import android.support.v4.app.ActivityCompat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -223,8 +224,7 @@ public final class IAppHelper {
     }
 
     public static int getColor(@ColorRes int id) {
-        //noinspection deprecation
-        return getResources().getColor(id);
+        return ActivityCompat.getColor(getContext(), id);
     }
 
 }

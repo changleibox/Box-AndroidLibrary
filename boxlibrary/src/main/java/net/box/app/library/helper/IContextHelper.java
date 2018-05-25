@@ -36,7 +36,6 @@ import com.umeng.analytics.MobclickAgent;
 import net.box.app.library.IBaseContext;
 import net.box.app.library.IContext;
 import net.box.app.library.common.IConstants;
-import net.box.app.library.common.IConstants.IActivityCaches;
 import net.box.app.library.reader.picture.IOpenType;
 import net.box.app.library.util.IActivityCompat;
 import net.box.app.library.util.IImageChooser;
@@ -57,6 +56,7 @@ import java.util.List;
  * baseContext辅助类
  */
 
+@SuppressWarnings("SameParameterValue")
 public class IContextHelper implements IBaseContext {
 
     private final String TAG;
@@ -82,7 +82,7 @@ public class IContextHelper implements IBaseContext {
         if (activity == null || !(mContext instanceof Activity)) {
             return;
         }
-        IActivityCaches.putActivity(activity);
+        // IActivityCaches.putActivity(activity);
 
         View containerView = getContainerView(getFrameViewGroup(), savedInstanceState);
         if (containerView != null) {
@@ -153,6 +153,7 @@ public class IContextHelper implements IBaseContext {
         }
     }
 
+    @SuppressWarnings("UnnecessaryReturnStatement")
     public void onDestroy() {
         if (mContext instanceof Fragment) {
             return;
@@ -161,7 +162,7 @@ public class IContextHelper implements IBaseContext {
         if (activity == null) {
             return;
         }
-        IActivityCaches.removeActivity(activity);
+        // IActivityCaches.removeActivity(activity);
     }
 
     public boolean onBackPressed() {
@@ -355,12 +356,18 @@ public class IContextHelper implements IBaseContext {
 
     @Override
     public final void hideKeyboard() {
-        IActivityCompat.hideKeyboard(getActivity());
+        Activity activity = getActivity();
+        if (activity != null) {
+            IActivityCompat.hideKeyboard(activity);
+        }
     }
 
     @Override
     public final void showKeyboard() {
-        IActivityCompat.showKeyboard(getActivity());
+        Activity activity = getActivity();
+        if (activity != null) {
+            IActivityCompat.showKeyboard(activity);
+        }
     }
 
     @SuppressWarnings("MissingPermission")

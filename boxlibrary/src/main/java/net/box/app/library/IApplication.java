@@ -4,10 +4,15 @@
 
 package net.box.app.library;
 
+import android.app.Activity;
+import android.os.Bundle;
 import android.support.multidex.MultiDexApplication;
 
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
+
+import net.box.app.library.common.IConstants;
+import net.box.app.library.util.IProgressCompat;
 
 /**
  * Created by Box on 16/12/3.
@@ -24,9 +29,45 @@ public class IApplication extends MultiDexApplication {
         instance = this;
 
         MobclickAgent.setScenarioType(this, EScenarioType.E_UM_NORMAL);
+
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallback());
     }
 
     public static IApplication getInstance() {
         return instance;
+    }
+
+    private static class ActivityLifecycleCallback implements ActivityLifecycleCallbacks {
+
+        @Override
+        public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            IConstants.IActivityCaches.putActivity(activity);
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+        }
+
+        @Override
+        public void onActivityResumed(Activity activity) {
+        }
+
+        @Override
+        public void onActivityPaused(Activity activity) {
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        }
+
+        @Override
+        public void onActivityDestroyed(Activity activity) {
+            IConstants.IActivityCaches.removeActivity(activity);
+            IProgressCompat.onContextDestroy(activity);
+        }
     }
 }

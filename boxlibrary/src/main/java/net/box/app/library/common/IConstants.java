@@ -10,19 +10,18 @@ import android.support.annotation.NonNull;
 import android.util.SparseArray;
 
 import net.box.app.library.entity.IHotAddress;
-import net.box.app.library.util.IProgressCompat;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author Changlei
- *         <p>
- *         2014年7月29日
+ * <p>
+ * 2014年7月29日
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class IConstants {
@@ -47,27 +46,40 @@ public final class IConstants {
     }
 
     public static final class ICaches {
-        private static final Map<String, Activity> ACTIVITY_MAP = Collections.synchronizedMap(new HashMap<String, Activity>());
+        private static final Map<String, List<Activity>> ACTIVITY_MAP = Collections.synchronizedMap(new HashMap<String, List<Activity>>());
         public static final List<IHotAddress> HOT_ADDRESSES = Collections.synchronizedList(new ArrayList<IHotAddress>());
         // 存放含有索引字母的位置
         public static final Map<String, Integer> SELECTORS = Collections.synchronizedMap(new HashMap<String, Integer>());
     }
 
     public static final class IActivityCaches {
-        public static Collection<Activity> getActivities() {
-            return ICaches.ACTIVITY_MAP.values();
+        public static List<Activity> getActivities() {
+            LinkedList<Activity> activities = new LinkedList<>();
+            for (List<Activity> activityList : ICaches.ACTIVITY_MAP.values()) {
+                if (activityList != null) {
+                    activities.addAll(activityList);
+                }
+            }
+            return Collections.unmodifiableList(activities);
         }
 
-        public static Activity getActivity(@NonNull String activityName) {
-            return ICaches.ACTIVITY_MAP.get(activityName);
+        public static List<Activity> getActivities(@NonNull String activityName) {
+            List<Activity> activities = ICaches.ACTIVITY_MAP.get(activityName);
+            return Collections.unmodifiableList(activities == null ? new LinkedList<Activity>() : activities);
         }
 
-        public static <T extends Activity> Activity getActivity(@NonNull Class<T> cls) {
-            return getActivity(cls.getSimpleName());
+        public static <T extends Activity> List<Activity> getActivities(@NonNull Class<T> cls) {
+            return getActivities(cls.getSimpleName());
         }
 
         public static <T extends Activity> void putActivity(@NonNull T t) {
-            ICaches.ACTIVITY_MAP.put(t.getClass().getSimpleName(), t);
+            String simpleName = t.getClass().getSimpleName();
+            List<Activity> activities = getActivities(simpleName);
+            if (activities == null) {
+                activities = new LinkedList<>();
+            }
+            activities.add(t);
+            ICaches.ACTIVITY_MAP.put(simpleName, activities);
         }
 
         public static void removeActivity(@NonNull String activityName) {
@@ -75,8 +87,16 @@ public final class IConstants {
         }
 
         public static <T extends Activity> void removeActivity(@NonNull T t) {
-            removeActivity(t.getClass().getSimpleName());
-            IProgressCompat.onContextDestroy(t);
+            String simpleName = t.getClass().getSimpleName();
+            List<Activity> activities = getActivities(simpleName);
+            if (activities != null) {
+                activities.remove(t);
+            }
+            ICaches.ACTIVITY_MAP.put(simpleName, activities);
+        }
+
+        public static void clear() {
+            ICaches.ACTIVITY_MAP.clear();
         }
     }
 
