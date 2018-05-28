@@ -24,6 +24,6 @@ public class ISwipeRefreshLayout extends PullToRefreshView {
         super.setOnRefreshListener(listener);
     }
 
-    interface OnRefreshListener extends PullToRefreshView.OnRefreshListener {
+    public interface OnRefreshListener extends PullToRefreshView.OnRefreshListener {
     }
 }
