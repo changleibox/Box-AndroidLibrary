@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- boxBase start －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+
+    <public name="Box.Theme" type="style"/>
+
+    <public name="Box.Theme.Light" type="style"/>
+
+    <public name="Box.Theme.Translucent" type="style"/>
+
+    <public name="Box.Theme.Light.NoTitleBar" type="style"/>
+
+    <public name="Box.Theme.Light.NoTitleBar.Fullscreen" type="style"/>
+
+    <public name="Box.Animation.Activity" type="style"/>
+
+    <public name="Box.Button.Theme" type="style"/>
+
+    <public name="Box.Anim.Popupwindow" type="style"/>
+
+    <public name="Box.Anim.Popupwindow.Dir" type="style"/>
+
+    <!-- dialog -->
+    <public name="Box.Translucent.Dialog" type="style"/>
+
+    <public name="Box.Popupwindow.Anim.Style" type="style"/>
+
+    <public name="Box.Divider.Vertical" type="style"/>
+
+    <public name="Box.Divider.Horizontal" type="style"/>
+
+    <public name="Box.ProgressBar" type="style"/>
+
+    <public name="Box.KeyBorad.Dialog" type="style"/>
+
+    <public name="Box.Anim.Slide.From.Bottom" type="style"/>
+
+    <public name="Box.Dialog.Bottom.Menu" type="style"/>
+    <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
+</resources>
