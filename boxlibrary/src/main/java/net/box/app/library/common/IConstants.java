@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Changlei
@@ -54,7 +55,7 @@ public final class IConstants {
 
     public static final class IActivityCaches {
         public static List<Activity> getActivities() {
-            LinkedList<Activity> activities = new LinkedList<>();
+            List<Activity> activities = new ArrayList<>();
             for (List<Activity> activityList : ICaches.ACTIVITY_MAP.values()) {
                 if (activityList != null) {
                     activities.addAll(activityList);
@@ -76,7 +77,7 @@ public final class IConstants {
             String simpleName = t.getClass().getSimpleName();
             List<Activity> activities = getActivities(simpleName);
             if (activities == null) {
-                activities = new LinkedList<>();
+                activities = new CopyOnWriteArrayList<>();
             }
             activities.add(t);
             ICaches.ACTIVITY_MAP.put(simpleName, activities);
