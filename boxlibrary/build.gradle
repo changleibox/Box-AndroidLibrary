@@ -6,12 +6,12 @@ apply plugin: 'com.jfrog.bintray'
  */
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     resourcePrefix "box"    //这个随便填
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
 
         multiDexEnabled true
     }
@@ -50,24 +50,24 @@ allprojects {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     compileOnly 'com.android.support:appcompat-v7:27.1.1'
     compileOnly 'com.android.support:design:27.1.1'
     compileOnly 'com.android.support:multidex:1.0.3'
     // json解析
-    compile 'com.google.code.gson:gson:2.8.0'
+    api 'com.google.code.gson:gson:2.8.0'
     // 图片加载
-    compile 'com.squareup.picasso:picasso:2.5.2'
+    api 'com.squareup.picasso:picasso:2.5.2'
     // 网络请求
-    compile 'com.loopj.android:android-async-http:1.4.9'
+    api 'com.loopj.android:android-async-http:1.4.9'
     // daimajia.slider 主要实现绚丽的轮播图
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.slider:library:1.1.5@aar'
+    api 'com.nineoldandroids:library:2.4.0'
+    api 'com.daimajia.slider:library:1.1.5@aar'
     // Umeng统计
-    compile 'com.umeng.analytics:analytics:6.1.3'
+    api 'com.umeng.analytics:analytics:6.1.3'
     // 下拉刷新
-    compile 'com.yalantis:phoenix:1.2.3'
+    api 'com.yalantis:phoenix:1.2.3'
 }
 
 task sourcesJar(type: Jar) {
