@@ -14,7 +14,6 @@ import net.box.app.library.entity.IHotAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -55,7 +54,7 @@ public final class IConstants {
 
     public static final class IActivityCaches {
         public static List<Activity> getActivities() {
-            List<Activity> activities = new ArrayList<>();
+            final List<Activity> activities = new CopyOnWriteArrayList<>();
             for (List<Activity> activityList : ICaches.ACTIVITY_MAP.values()) {
                 if (activityList != null) {
                     activities.addAll(activityList);
@@ -65,8 +64,8 @@ public final class IConstants {
         }
 
         public static List<Activity> getActivities(@NonNull String activityName) {
-            List<Activity> activities = ICaches.ACTIVITY_MAP.get(activityName);
-            return Collections.unmodifiableList(activities == null ? new LinkedList<Activity>() : activities);
+            final List<Activity> activities = ICaches.ACTIVITY_MAP.get(activityName);
+            return Collections.unmodifiableList(activities == null ? new CopyOnWriteArrayList<Activity>() : activities);
         }
 
         public static <T extends Activity> List<Activity> getActivities(@NonNull Class<T> cls) {
@@ -74,11 +73,8 @@ public final class IConstants {
         }
 
         public static <T extends Activity> void putActivity(@NonNull T t) {
-            String simpleName = t.getClass().getSimpleName();
-            List<Activity> activities = getActivities(simpleName);
-            if (activities == null) {
-                activities = new CopyOnWriteArrayList<>();
-            }
+            final String simpleName = t.getClass().getSimpleName();
+            final List<Activity> activities = new CopyOnWriteArrayList<>(getActivities(simpleName));
             activities.add(t);
             ICaches.ACTIVITY_MAP.put(simpleName, activities);
         }
@@ -88,11 +84,9 @@ public final class IConstants {
         }
 
         public static <T extends Activity> void removeActivity(@NonNull T t) {
-            String simpleName = t.getClass().getSimpleName();
-            List<Activity> activities = getActivities(simpleName);
-            if (activities != null) {
-                activities.remove(t);
-            }
+            final String simpleName = t.getClass().getSimpleName();
+            final List<Activity> activities = new CopyOnWriteArrayList<>(getActivities(simpleName));
+            activities.remove(t);
             ICaches.ACTIVITY_MAP.put(simpleName, activities);
         }
 
