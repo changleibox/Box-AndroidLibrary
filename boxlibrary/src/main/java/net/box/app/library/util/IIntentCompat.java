@@ -172,7 +172,7 @@ public class IIntentCompat {
 
     public static Fragment startActivityForResult(Fragment fragment, Intent intent, Bundle bundle, int requestCode, Bundle options) {
         intent.putExtras(getBundle(bundle));
-        fragment.startActivityForResult(intent, requestCode, options);
+        fragment.startActivityForResult(intent, requestCode);
         return fragment;
     }
 
