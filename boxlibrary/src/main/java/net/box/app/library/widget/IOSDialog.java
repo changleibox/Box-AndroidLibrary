@@ -87,7 +87,7 @@ public class IOSDialog extends AppCompatDialog {
     private ClickDismissType mDismissType = ClickDismissType.ClickAfter;
 
     /**
-     * Copyright All right reserved by IZHUO.NET.
+     * Copyright All right reserved by CHANGLEI.
      */
     public IOSDialog(Context context) {
         super(context, R.style.Box_Translucent_Dialog);
