@@ -8,6 +8,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import net.box.app.library.adapter.IHeaderViewAdapter;
 
@@ -36,6 +37,8 @@ public class RecyclerViewCompat extends RecyclerView {
 
     private Adapter<?> mAdapter;
     private boolean isShouldSpan;
+
+    private AdapterContextMenuInfo mContextMenuInfo;
 
     public RecyclerViewCompat(Context context) {
         super(context);
@@ -178,5 +181,18 @@ public class RecyclerViewCompat extends RecyclerView {
             }
         }
         return hidden;
+    }
+
+    @Override
+    protected AdapterContextMenuInfo getContextMenuInfo() {
+        return mContextMenuInfo;
+    }
+
+    @Override
+    public boolean showContextMenuForChild(View originalView) {
+        final int position = getChildAdapterPosition(originalView);
+        final long itemId = getChildItemId(originalView);
+        mContextMenuInfo = new AdapterContextMenuInfo(originalView, position, itemId);
+        return super.showContextMenuForChild(originalView);
     }
 }
