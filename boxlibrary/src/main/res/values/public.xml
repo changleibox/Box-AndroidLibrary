@@ -40,5 +40,8 @@
     <public name="Box.Anim.Slide.From.Bottom" type="style"/>
 
     <public name="Box.Dialog.Bottom.Menu" type="style"/>
+
+    <!-- string -->
+    <public name="box_app_name" type="string"/>
     <!-- boxBase end －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－ -->
 </resources>
