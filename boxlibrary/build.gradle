@@ -52,10 +52,10 @@ allprojects {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    //noinspection GradleCompatible
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
-    compileOnly 'com.android.support:design:28.0.0'
-    compileOnly 'com.android.support:multidex:1.0.3'
+    // noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
     // json解析
     api 'com.google.code.gson:gson:2.8.2'
     // 图片加载
@@ -115,7 +115,7 @@ def siteUrl = 'https://github.com/changleibox/Box-AndroidLibrary' // 项目的�
 def gitUrl = 'https://github.com/changleibox/Box-AndroidLibrary.git' // Git仓库的url
 
 group = "me.box.library" // Maven Group ID for the artifact，一般填你唯一的包名
-version = "1.5.5" // This is the library version used when deploying the artifact
+version = "1.5.6" // This is the library version used when deploying the artifact
 
 install {
     repositories.mavenInstaller {
