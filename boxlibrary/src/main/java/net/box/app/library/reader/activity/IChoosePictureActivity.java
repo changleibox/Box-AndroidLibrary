@@ -35,6 +35,7 @@ import com.google.gson.reflect.TypeToken;
 
 import net.box.app.library.IAppCompatActivity;
 import net.box.app.library.R;
+import net.box.app.library.common.IConstants;
 import net.box.app.library.common.IConstants.IKey;
 import net.box.app.library.common.IConstants.IRequestCode;
 import net.box.app.library.reader.entity.IImageFloder;
@@ -42,10 +43,10 @@ import net.box.app.library.reader.picture.IListImageDirPopupWindow;
 import net.box.app.library.reader.picture.IListImageDirPopupWindow.OnImageDirSelected;
 import net.box.app.library.reader.picture.IMyAdapter;
 import net.box.app.library.reader.picture.IOpenType;
+import net.box.app.library.util.IAppUtils;
 import net.box.app.library.util.IFileSizeUtil;
 import net.box.app.library.util.IJsonDecoder;
 import net.box.app.library.util.IPermissionCompat;
-import net.box.app.library.util.IAppUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -53,6 +54,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import static net.box.app.library.util.IIntentCompat.DEF_INTENT_TYPE;
 
 /**
  * 选择图片是我从网上下载，有可能有些Bug
@@ -160,8 +163,9 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
             mSelectImages = IJsonDecoder.jsonToObject(getIntentData(), new TypeToken<List<String>>() {
             }.getType());
         }
-        if (getIntentType() > -1) {
-            MAX_COUNT = getIntentType();
+        final int intentType = getBundle().getInt(IConstants.INTENT_TYPE, DEF_INTENT_TYPE);
+        if (intentType > -1) {
+            MAX_COUNT = intentType;
         }
         refreshBtnComplete(mSelectImages.size());
         getImagesBySDCard();
@@ -338,10 +342,7 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
                 return filename.endsWith(JPG) || filename.endsWith(PNG) || filename.endsWith(JPEG);
             }
         }));
-        List<String> paths = new ArrayList<>();
-        for (String path : mImgs) {
-            paths.add(path);
-        }
+        List<String> paths = new ArrayList<>(mImgs);
         paths.add(0, CAMERA);
         /*
          * 可以看到文件夹的路径和图片的路径分开保存，极大的减少了内存的消耗；
@@ -451,8 +452,7 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
 
                 new Thread(new Runnable() {
                     public void run() {
-                        List<String> newDatas = new ArrayList<>();
-                        newDatas.addAll(mSelectImages);
+                        List<String> newDatas = new ArrayList<>(mSelectImages);
                         newDatas.add(getAbsoluteImagePath(data.getData()));
                         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             return;
