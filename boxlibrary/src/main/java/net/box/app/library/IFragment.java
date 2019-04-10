@@ -160,9 +160,6 @@ public abstract class IFragment extends Fragment implements IContext {
         return this;
     }
 
-    /**
-     * {@hide}
-     */
     @Override
     public final void onRefreshUI() {
         final FragmentActivity activity = getActivity();
