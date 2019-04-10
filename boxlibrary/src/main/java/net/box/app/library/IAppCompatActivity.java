@@ -242,13 +242,13 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
         mHelper.onResume();
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
         mHelper.onPause();
     }

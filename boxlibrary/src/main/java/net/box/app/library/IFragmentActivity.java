@@ -236,13 +236,13 @@ public abstract class IFragmentActivity extends FragmentActivity implements ICon
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
         mHelper.onResume();
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
         mHelper.onPause();
     }

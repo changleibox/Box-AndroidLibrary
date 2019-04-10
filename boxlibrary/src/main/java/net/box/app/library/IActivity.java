@@ -241,13 +241,13 @@ public abstract class IActivity extends Activity implements IContext {
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
         mHelper.onResume();
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         super.onPause();
         mHelper.onPause();
     }

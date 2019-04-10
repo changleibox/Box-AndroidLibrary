@@ -48,7 +48,7 @@ import java.util.List;
  * <p>
  * Fragment基类
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused"})
 public abstract class IFragment extends Fragment implements IContext {
 
     private Fragment mFragment;
@@ -160,8 +160,18 @@ public abstract class IFragment extends Fragment implements IContext {
         return this;
     }
 
+    /**
+     * {@hide}
+     */
     @Override
-    public void onRefreshUI() {
+    public final void onRefreshUI() {
+        final FragmentActivity activity = getActivity();
+        if (activity != null) {
+            onRefreshUI(activity);
+        }
+    }
+
+    public void onRefreshUI(@NonNull Activity activity) {
     }
 
     @Nullable
