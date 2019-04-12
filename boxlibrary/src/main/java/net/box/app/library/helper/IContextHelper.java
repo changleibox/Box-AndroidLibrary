@@ -23,6 +23,7 @@ import android.support.annotation.RequiresPermission;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -477,9 +478,11 @@ public class IContextHelper implements IBaseContext {
         if (activity == null) {
             return null;
         }
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null && fragmentManager.isDestroyed()) {
-            return null;
+        if (activity instanceof FragmentActivity) {
+            FragmentManager fragmentManager = getFragmentManager();
+            if (fragmentManager != null && fragmentManager.isDestroyed()) {
+                return null;
+            }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && activity.isDestroyed()) {
             return null;
