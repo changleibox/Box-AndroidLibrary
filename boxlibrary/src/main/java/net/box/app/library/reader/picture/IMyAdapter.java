@@ -91,9 +91,8 @@ public class IMyAdapter extends ICommonAdapter<String> {
             final ImageView imageView = helper.getView(R.id.box_id_item_image);
             final ImageView select = helper.getView(R.id.box_id_item_select);
 
-            final Picasso.Builder builder = new Picasso.Builder(mContext);
             //noinspection SuspiciousNameCombination
-            builder.build().load(new File(mDirPath + "/" + item)).resize(itemWidth, itemWidth).centerCrop().into(imageView);
+            Picasso.get().load(new File(mDirPath + "/" + item)).resize(itemWidth, itemWidth).centerCrop().into(imageView);
 
             // mActivity.mImageLoader.displayImage(Uri.fromFile(
             // new File(mDirPath + "/" + item)).toString(), imageView,
