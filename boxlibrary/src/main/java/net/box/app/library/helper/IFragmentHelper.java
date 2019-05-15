@@ -41,7 +41,7 @@ public class IFragmentHelper {
     }
 
     public <Fragment extends IFragment> Fragment getFragment(int position) {
-        if (position >= mFragments.size()) {
+        if (position < 0 || position >= mFragments.size()) {
             return null;
         }
         return (Fragment) mFragments.get(position);
@@ -53,6 +53,7 @@ public class IFragmentHelper {
     }
 
     public <Fragment extends IFragment> void removeFragment(Fragment fragment) {
+        hideFragment(fragment);
         mFragments.remove(fragment);
         for (int i = 0; i < mFragments.size(); i++) {
             mFragments.get(i).setPage(i);
@@ -60,6 +61,7 @@ public class IFragmentHelper {
     }
 
     public void removeAllFragment() {
+        hideFragment(mCurrentTabIndex);
         mFragments.clear();
         mCurrentTabIndex = -1;
     }
@@ -90,6 +92,7 @@ public class IFragmentHelper {
         return showFragment(container, fragment);
     }
 
+    @NonNull
     public IFragment showFragment(@IdRes int container, @NonNull IFragment fragment) {
         if (!mFragments.contains(fragment)) {
             mFragments.add(fragment.setPage(mFragments.size()));
@@ -106,6 +109,23 @@ public class IFragmentHelper {
             transaction.show(fragment).commit();
             mCurrentTabIndex = fragment.getPage();
         }
+        return fragment;
+    }
+
+    @Nullable
+    public IFragment hideFragment(int position) {
+        final IFragment fragment = getFragment(position);
+        if (fragment != null) {
+            return hideFragment(fragment);
+        }
+        return null;
+    }
+
+    @NonNull
+    public IFragment hideFragment(@NonNull IFragment fragment) {
+        final FragmentTransaction transaction = mFragmentManager.beginTransaction();
+        transaction.hide(fragment);
+        transaction.commit();
         return fragment;
     }
 
