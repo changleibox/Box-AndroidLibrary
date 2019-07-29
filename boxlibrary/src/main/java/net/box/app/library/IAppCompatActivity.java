@@ -42,7 +42,7 @@ import java.util.List;
  * <p>
  * Activity基类
  */
-@SuppressWarnings({"unused", "deprecation"})
+@SuppressWarnings({"unused"})
 public abstract class IAppCompatActivity extends AppCompatActivity implements IContext {
 
     private IContextHelper mHelper;
@@ -162,46 +162,6 @@ public abstract class IAppCompatActivity extends AppCompatActivity implements IC
     @Override
     public void loadDismiss() {
         mHelper.loadDismiss();
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivityForResult(Class<T> cls, String data, int type, int requestCode) {
-        return IIntentCompat.startActivityForResult(this, cls, data, type, requestCode);
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivityDataForResult(Class<T> cls, String data, int requestCode) {
-        return IIntentCompat.startActivityDataForResult(this, cls, data, requestCode);
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivityTypeForResult(Class<T> cls, int type, int requestCode) {
-        return IIntentCompat.startActivityTypeForResult(this, cls, type, requestCode);
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivity(Class<T> cls, String data, int type) {
-        return IIntentCompat.startActivity(this, cls, data, type);
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivityData(Class<T> cls, String data) {
-        return IIntentCompat.startActivityData(this, cls, data);
-    }
-
-    @Deprecated
-    public final <T extends Activity> IContext startActivityType(Class<T> cls, int type) {
-        return IIntentCompat.startActivityType(this, cls, type);
-    }
-
-    @Deprecated
-    public final String getIntentData() {
-        return IIntentCompat.getIntentData(this);
-    }
-
-    @Deprecated
-    public final int getIntentType() {
-        return IIntentCompat.getIntentType(this);
     }
 
     @Override

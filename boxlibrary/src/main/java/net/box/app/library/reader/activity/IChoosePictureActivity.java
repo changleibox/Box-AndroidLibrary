@@ -55,8 +55,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-import static net.box.app.library.util.IIntentCompat.DEF_INTENT_TYPE;
-
 /**
  * 选择图片是我从网上下载，有可能有些Bug
  *
@@ -73,6 +71,7 @@ import static net.box.app.library.util.IIntentCompat.DEF_INTENT_TYPE;
  * <p>
  * 复审人：Box
  */
+@SuppressWarnings("SwitchStatementWithTooFewBranches")
 public final class IChoosePictureActivity extends IAppCompatActivity implements
         OnImageDirSelected, OnClickListener, IMyAdapter.Callback {
 
@@ -133,12 +132,12 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        mGirdView = (GridView) findViewById(R.id.box_id_gridView);
-        mChooseDir = (Button) findViewById(R.id.box_id_choose_dir);
-        mBtnPreview = (Button) findViewById(R.id.box_btn_preview);
+        mGirdView = findViewById(R.id.box_id_gridView);
+        mChooseDir = findViewById(R.id.box_id_choose_dir);
+        mBtnPreview = findViewById(R.id.box_btn_preview);
 
-        mBottomLy = (RelativeLayout) findViewById(R.id.box_id_bottom_ly);
-        mBtnComplete = (Button) findViewById(R.id.box_btn_complete);
+        mBottomLy = findViewById(R.id.box_id_bottom_ly);
+        mBtnComplete = findViewById(R.id.box_btn_complete);
 
         DisplayMetrics outMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
@@ -150,20 +149,19 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
         XIAO_QU_DIR = IAppUtils.getSDPath() + "/" + getPackageName() + "/";
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void initDatas(Bundle savedInstanceState) {
         mBtnComplete.setText(getString(R.string.box_btn_complete));
         mBtnComplete.setEnabled(false);
         mBtnPreview.setEnabled(false);
-        String data = getIntentData();
-        if (TextUtils.isEmpty(data)) {
+        final String intentData = getBundle().getString(IConstants.INTENT_DATA);
+        final int intentType = getBundle().getInt(IConstants.INTENT_TYPE, -1);
+        if (TextUtils.isEmpty(intentData)) {
             mSelectImages = new ArrayList<>();
         } else {
-            mSelectImages = IJsonDecoder.jsonToObject(getIntentData(), new TypeToken<List<String>>() {
+            mSelectImages = IJsonDecoder.jsonToObject(intentData, new TypeToken<List<String>>() {
             }.getType());
         }
-        final int intentType = getBundle().getInt(IConstants.INTENT_TYPE, DEF_INTENT_TYPE);
         if (intentType > -1) {
             MAX_COUNT = intentType;
         }
@@ -473,9 +471,8 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
             return null;
         }
         // can post image
-        String[] proj = {MediaStore.Images.Media.DATA};
-        @SuppressWarnings("deprecation")
-        Cursor cursor = managedQuery(uri, proj, // Which columns to return
+        final String[] proj = {MediaStore.Images.Media.DATA};
+        final Cursor cursor = managedQuery(uri, proj, // Which columns to return
                 null, // WHERE clause; which rows to return (all rows)
                 null, // WHERE clause selection arguments (none)
                 null); // Order-by clause (ascending by name)
@@ -484,10 +481,10 @@ public final class IChoosePictureActivity extends IAppCompatActivity implements
             return null;
         }
 
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        final int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
 
-        return cursor.getString(column_index);
+        return cursor.getString(columnIndex);
     }
 
     @Override

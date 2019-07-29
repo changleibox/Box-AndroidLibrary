@@ -8,71 +8,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 
 import net.box.app.library.IContext;
-import net.box.app.library.common.IConstants;
 
 /**
  * Created by Box on 16/8/11.
  * <p>
  * 意图
  */
-@SuppressWarnings({"deprecation", "unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class IIntentCompat {
 
     public static final int DEF_INTENT_TYPE = -1;
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivityForResult(IContext iContext, Class<T> cls, String data, int type, int requestCode) {
-        Bundle bundle = new Bundle();
-        if (data != null) {
-            bundle.putString(IConstants.INTENT_DATA, data);
-        }
-        bundle.putInt(IConstants.INTENT_TYPE, type);
-        return startActivityForResult(iContext, cls, bundle, requestCode);
-    }
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivityDataForResult(IContext iContext, Class<T> cls, String data, int requestCode) {
-        return startActivityForResult(iContext, cls, data, DEF_INTENT_TYPE, requestCode);
-    }
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivityTypeForResult(IContext iContext, Class<T> cls, int type, int requestCode) {
-        return startActivityForResult(iContext, cls, null, type, requestCode);
-    }
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivity(IContext iContext, Class<T> cls, String data, int type) {
-        Bundle bundle = new Bundle();
-        if (data != null) {
-            bundle.putString(IConstants.INTENT_DATA, data);
-        }
-        bundle.putInt(IConstants.INTENT_TYPE, type);
-        return startActivity(iContext, cls, bundle);
-    }
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivityData(IContext iContext, Class<T> cls, String data) {
-        return startActivity(iContext, cls, data, DEF_INTENT_TYPE);
-    }
-
-    @Deprecated
-    public static <T extends Activity> IContext startActivityType(IContext iContext, Class<T> cls, int type) {
-        return startActivity(iContext, cls, null, type);
-    }
-
-    @Deprecated
-    public static String getIntentData(IContext iContext) {
-        return getBundle(iContext).getString(IConstants.INTENT_DATA);
-    }
-
-    @Deprecated
-    public static int getIntentType(IContext iContext) {
-        return getBundle(iContext).getInt(IConstants.INTENT_TYPE, DEF_INTENT_TYPE);
-    }
 
     public static Fragment startActivityForResult(Fragment fragment, Intent intent, int requestCode) {
         return startActivityForResult(fragment, intent, null, requestCode);
@@ -138,6 +88,18 @@ public class IIntentCompat {
         return startActivity(context, cls, null);
     }
 
+    public static Fragment startActivity(Fragment fragment, Intent intent) {
+        return startActivity(fragment, intent, null);
+    }
+
+    public static <T extends Activity> Fragment startActivity(Fragment fragment, Class<T> cls, Bundle bundle) {
+        return startActivity(fragment, new Intent(fragment.getContext(), cls), bundle);
+    }
+
+    public static <T extends Activity> Fragment startActivity(Fragment fragment, Class<T> cls) {
+        return startActivity(fragment, cls, null);
+    }
+
     public static Bundle getBundle(IContext iContext) {
         return getBundle(iContext.getActivity());
     }
@@ -187,7 +149,11 @@ public class IIntentCompat {
     }
 
     public static IContext startActivity(IContext iContext, Intent intent, Bundle bundle) {
-        startActivity(iContext.getContext(), intent, bundle);
+        if (iContext instanceof Fragment) {
+            startActivity((Fragment) iContext, intent, bundle);
+        } else {
+            startActivity(iContext.getContext(), intent, bundle);
+        }
         return iContext;
     }
 
@@ -200,18 +166,33 @@ public class IIntentCompat {
         return context;
     }
 
-    public static <T extends Activity> Context startActivity(Activity activity, Class<T> cls, Bundle options) {
-        return startActivity(activity, new Intent(activity, cls), null, options);
-    }
-
-    public static <T extends Activity> Context startActivity(Activity activity, Class<T> cls, Bundle bundle, Bundle options) {
-        return startActivity(activity, new Intent(activity, cls), bundle, options);
-    }
-
-    public static Context startActivity(Activity activity, Intent intent, Bundle bundle, Bundle options) {
+    public static Fragment startActivity(Fragment fragment, Intent intent, Bundle bundle) {
         intent.putExtras(getBundle(bundle));
-        ActivityCompat.startActivity(activity, intent, options);
-        return activity;
+        fragment.startActivity(intent);
+        return fragment;
+    }
+
+    public static <T extends Activity> Context startActivity(Context context, Class<T> cls, @Nullable Bundle bundle, Bundle options) {
+        return startActivity(context, new Intent(context, cls), bundle, options);
+    }
+
+    public static Context startActivity(Context context, Intent intent, @Nullable Bundle bundle, Bundle options) {
+        intent.putExtras(getBundle(bundle));
+        ActivityCompat.startActivity(context, intent, options);
+        if (!(context instanceof Activity)) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        return context;
+    }
+
+    public static <T extends Activity> Fragment startActivity(Fragment fragment, Class<T> cls, @Nullable Bundle bundle, Bundle options) {
+        return startActivity(fragment, new Intent(fragment.getContext(), cls), bundle, options);
+    }
+
+    public static Fragment startActivity(Fragment fragment, Intent intent, @Nullable Bundle bundle, Bundle options) {
+        intent.putExtras(getBundle(bundle));
+        fragment.startActivity(intent, options);
+        return fragment;
     }
 
     private static Bundle getBundle(Bundle bundle) {

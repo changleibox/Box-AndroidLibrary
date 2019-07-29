@@ -63,35 +63,36 @@ public final class IPreviewPictureActivity extends IAppCompatActivity implements
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-        mViewPager = (ViewPager) findViewById(R.id.box_vp_picture);
+        mViewPager = findViewById(R.id.box_vp_picture);
         mVPAdapter = new IVPAdapter(this);
-        mTvCount = (TextView) findViewById(R.id.box_tv_count);
-        mBtnSelect = (Button) findViewById(R.id.box_btn_select);
+        mTvCount = findViewById(R.id.box_tv_count);
+        mBtnSelect = findViewById(R.id.box_btn_select);
         mUnSelectDrawable = IViewDrawable.getDrawable(this, R.drawable.box_img_unchecked);
         mSelectDrawable = IViewDrawable.getDrawable(this, R.drawable.box_img_checked);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void initDatas(Bundle savedInstanceState) {
-        Type type = new TypeToken<List<String>>() {
+        final Type type = new TypeToken<List<String>>() {
         }.getType();
+        final String intentData = getBundle().getString(IConstants.INTENT_DATA);
+        final int intentType = getBundle().getInt(IConstants.INTENT_TYPE, -1);
         mSelectImages = IJsonDecoder.jsonToObject(getIntent().getStringExtra(IConstants.INTENT_DATA_ADDITION), type);
-        mImages = IJsonDecoder.jsonToObject(getIntentData(), type);
+        mImages = IJsonDecoder.jsonToObject(intentData, type);
         mVPAdapter.setData(mImages);
         mViewPager.setAdapter(mVPAdapter);
-        mViewPager.setCurrentItem(getIntentType());
+        mViewPager.setCurrentItem(intentType);
         mViewPager.setPageMargin(VIEW_PAGER_MARGIN);
-        mTvCount.setText(MessageFormat.format("{0}/{1}", getIntentType() + 1, mImages.size()));
+        mTvCount.setText(MessageFormat.format("{0}/{1}", intentType + 1, mImages.size()));
         mMaxSelectCount = getIntent().getIntExtra(IConstants.INTENT_TYPE_ADDITION, mMaxSelectCount);
-        String path = mImages.get(getIntentType());
+        final String path = mImages.get(intentType);
         if (mSelectImages.contains(path)) {
             mBtnSelect.setCompoundDrawables(mSelectDrawable, null, null, null);
         } else {
             mBtnSelect.setCompoundDrawables(mUnSelectDrawable, null, null, null);
         }
-        int intentType = getIntent().getIntExtra(IOpenType.OPEN_TYPE, IOpenType.Type.EDIT.toInteger());
-        if (intentType == IOpenType.Type.EXAMINE.toInteger()) {
+        final int openType = getIntent().getIntExtra(IOpenType.OPEN_TYPE, IOpenType.Type.EDIT.toInteger());
+        if (openType == IOpenType.Type.EXAMINE.toInteger()) {
             mBtnSelect.setVisibility(View.GONE);
         } else {
             mBtnSelect.setVisibility(View.VISIBLE);
