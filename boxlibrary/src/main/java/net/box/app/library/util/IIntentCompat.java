@@ -193,6 +193,7 @@ public class IIntentCompat {
 
     public static Context startActivity(Context context, Intent intent, Bundle bundle) {
         intent.putExtras(getBundle(bundle));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
         return context;
     }
