@@ -14,7 +14,7 @@ import android.net.Uri;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Intents.Insert;
 import android.provider.MediaStore.Audio.Media;
-import android.support.annotation.RequiresPermission;
+import androidx.annotation.RequiresPermission;
 
 /**
  * Created by Box on 16/9/19.

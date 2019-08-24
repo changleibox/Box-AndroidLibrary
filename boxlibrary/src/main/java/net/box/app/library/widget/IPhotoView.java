@@ -15,7 +15,7 @@ import net.box.app.library.widget.IPhotoViewAttacher.OnMatrixChangedListener;
 import net.box.app.library.widget.IPhotoViewAttacher.OnPhotoTapListener;
 import net.box.app.library.widget.IPhotoViewAttacher.OnViewTapListener;
 
-public class IPhotoView extends android.support.v7.widget.AppCompatImageView implements IPhotoViewImp {
+public class IPhotoView extends androidx.appcompat.widget.AppCompatImageView implements IPhotoViewImp {
 
 	private final IPhotoViewAttacher mAttacher;
 

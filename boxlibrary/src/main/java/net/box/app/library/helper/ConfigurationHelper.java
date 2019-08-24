@@ -2,7 +2,7 @@ package net.box.app.library.helper;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import static android.os.Build.VERSION.SDK_INT;
 

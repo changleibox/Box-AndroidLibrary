@@ -15,7 +15,7 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings.Secure;
-import android.support.annotation.RequiresPermission;
+import androidx.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
 
 import java.io.UnsupportedEncodingException;

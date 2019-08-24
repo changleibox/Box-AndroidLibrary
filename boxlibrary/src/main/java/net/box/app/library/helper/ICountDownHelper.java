@@ -5,7 +5,7 @@
 package net.box.app.library.helper;
 
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.format.DateFormat;
 
 /**

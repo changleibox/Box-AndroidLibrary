@@ -5,19 +5,20 @@
 package net.box.app.library.widget;
 
 import android.content.Context;
-import android.support.annotation.IntRange;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerViewCompat;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.IntRange;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.recyclerview.widget.RecyclerViewCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import net.box.app.library.R;
 import net.box.app.library.compat.IAttrCompat;

@@ -59,14 +59,6 @@ import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresPermission;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -88,6 +80,16 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentActivity;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -99,8 +101,8 @@ import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 import net.box.app.library.BuildConfig;
 import net.box.app.library.IAppCompatActivity;
-import net.box.app.library.IFragment;
 import net.box.app.library.IContext;
+import net.box.app.library.IFragment;
 import net.box.app.library.R;
 import net.box.app.library.common.IConstants;
 import net.box.app.library.common.IConstants.IHttpError;
@@ -675,6 +677,9 @@ public class IAppUtils {
         device.setDeviceName(brand + " " + model);
         device.setDeviceTitle(model);
         device.setLoginTime(new Date().getTime());
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return device;
+        }
         String deviceId = new IDeviceUuidFactory(context).getDeviceUuid().toString();
         device.setDeviceID(deviceId);
         device.setSystemVersion(Build.VERSION.RELEASE);

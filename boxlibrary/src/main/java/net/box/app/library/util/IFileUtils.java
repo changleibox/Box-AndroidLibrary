@@ -15,7 +15,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresPermission;
+import androidx.annotation.RequiresPermission;
 
 import java.io.File;
 import java.io.FileInputStream;

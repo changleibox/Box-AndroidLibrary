@@ -6,7 +6,7 @@ package net.box.app.library.common;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.SparseArray;
 
 import net.box.app.library.entity.IHotAddress;

@@ -6,7 +6,7 @@
 package net.box.app.library.widget;
 
 import android.annotation.TargetApi;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
 
 @TargetApi(16)

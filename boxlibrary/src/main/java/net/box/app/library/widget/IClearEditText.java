@@ -7,7 +7,7 @@ package net.box.app.library.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatEditText;
 import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;

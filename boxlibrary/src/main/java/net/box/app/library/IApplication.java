@@ -6,7 +6,7 @@ package net.box.app.library;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;

@@ -7,8 +7,8 @@ package net.box.app.library.util;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import net.box.app.library.widget.IProgress;
 

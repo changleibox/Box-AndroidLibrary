@@ -2,13 +2,14 @@
  * Copyright © 2017 CHANGLEI. All rights reserved.
  */
 
-package android.support.v7.widget;
+package androidx.recyclerview.widget;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+
+import androidx.annotation.Nullable;
 
 import net.box.app.library.adapter.IHeaderViewAdapter;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  * 实现可添加头尾的recyclerView
  */
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"unused"})
 public class RecyclerViewCompat extends RecyclerView {
 
     public static final int ITEM_VIEW_TYPE_HEADER = Integer.MIN_VALUE;

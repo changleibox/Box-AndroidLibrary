@@ -4,7 +4,7 @@
 
 package net.box.app.library.text;
 
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.DigitsKeyListener;
